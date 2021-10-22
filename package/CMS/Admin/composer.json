@@ -1,0 +1,17 @@
+{
+    "name": "taylorpmt/admin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TaylorPMT",
+            "email": "timo@cybridge.jp"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CMS\\Admin\\": "src/"
+        }
+    }
+}

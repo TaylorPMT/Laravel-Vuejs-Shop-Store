@@ -1,0 +1,18 @@
+{
+    "name": "taylorpmt/films",
+    "description": "Films Google Driver",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TaylorPMT",
+            "email": "timo@cybridge.jp"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CMS\\Films\\": "src/"
+        }
+    }
+}
