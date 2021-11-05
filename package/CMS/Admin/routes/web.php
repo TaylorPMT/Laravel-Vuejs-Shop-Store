@@ -9,9 +9,9 @@ Route::group([
 ], function () {
     Route::get('dashboard', 'AuthController@dashboard');
     Route::get('sidebar', 'AuthController@sidebar');
-    Route::get('ckeditor',function(){
 
-    });
+
 });
 
 
+// Route::get('/admin/{path}','\CMS\Admin\Http\Controllers\AdminController@path')->where('path', '([A-z\d\-\/_.]+)');

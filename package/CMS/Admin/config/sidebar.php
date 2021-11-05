@@ -15,4 +15,5 @@ return [
         'icon' => 'movie',
         'active' => false,
     ],
+
 ];

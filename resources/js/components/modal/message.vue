@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="[`${isShow}`, 'modal popup-0']"
+        :class="[`${isShow} modal popup-0`]"
         tabindex="-1"
         data-backdrop="static"
         data-keyboard="false"
@@ -14,9 +14,22 @@
                     {{ text }}
                 </p>
                 <div class="btnEvent">
-                    <button @click="close()" class="btn btn-success btn-sm">
-                        Đồng ý
-                    </button>
+                    <template v-if="action == true">
+                        <button
+                            @click="confirm()"
+                            class="btn btn-success btn-sm"
+                        >
+                            Đồng ý
+                        </button>
+                        <button @click="close()" class="btn btn-danger btn-sm">
+                            Thoát
+                        </button>
+                    </template>
+                    <template v-else>
+                        <button @click="close()" class="btn btn-success btn-sm">
+                            Đồng ý
+                        </button>
+                    </template>
                 </div>
             </div>
         </div>
@@ -29,22 +42,29 @@ export default {
     data: () => ({
         isShow: "",
         key: "",
-        text: ""
+        text: "",
+        action: false
     }),
     computed: {
         ...mapState({
             keyPopup: state => state.AllPage.keyPopup,
-            textPopup: state => state.AllPage.textPopup
+            textPopup: state => state.AllPage.textPopup,
+            confirmPopup: state => state.AllPage.confirmPopup
         })
     },
     methods: {
-        open() {
+        async open() {
             this.isShow = "show";
         },
-        close() {
-            console.log("ok");
-            this.isShow = "fade";
+        async confirm() {
+            this.$store.commit("SET_STATUS_ACTION");
             this.$store.commit("RESET_POPUP");
+        },
+        async close() {
+            this.isShow = "none";
+            this.$store.commit("RESET_POPUP", {
+                action: false
+            });
         }
     },
     watch: {
@@ -52,14 +72,16 @@ export default {
             let vm = this;
             vm.key = val;
             vm.text = vm.textPopup;
+            vm.action = vm.confirmPopup;
             switch (val) {
                 case "success":
                     vm.open();
                     break;
-                case "error":
+                case "danger":
                     vm.open();
                     break;
                 default:
+                    vm.close();
                     break;
             }
         }
@@ -70,6 +92,9 @@ export default {
 .show {
     display: block;
 }
+.none {
+    display: none;
+}
 .title-popup {
     display: block;
     text-align: center;
@@ -77,14 +102,14 @@ export default {
     font-size: 18px;
 }
 .success {
-    color:green;
+    color: green;
     font-weight: 500;
 }
 .danger {
-    color:red;
+    color: red;
     font-weight: 500;
 }
-.btnEvent{
+.btnEvent {
     display: flex;
     justify-content: center;
     margin: 5px;

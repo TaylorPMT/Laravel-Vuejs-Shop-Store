@@ -23,14 +23,12 @@
                                             index) in listData.data"
                                             :key="index"
                                         >
-                                            <td class="td-center">
-                                                {{ listData.from + index }}
-                                            </td>
+                                            <td class="td-center">{{ listData.from + index }}</td>
                                             <td>{{ item.name }}</td>
                                             <td class="box-image">
                                                 <img
                                                     v-bind:src="
-                                                        imageUrl(item.image)
+                                                        imageUrl(item.image[0])
                                                     "
                                                 />
                                             </td>
@@ -45,20 +43,16 @@
                                                     rel="tooltip"
                                                     title="Chỉnh sửa"
                                                     class="btn btn-success"
-
                                                 >
-                                                     <i class="material-icons"
-                                                        >edit</i
-                                                    >
+                                                    <i class="material-icons">edit</i>
                                                 </router-link>
                                                 <button
                                                     type="button"
                                                     rel="tooltip"
                                                     class="btn btn-danger"
+                                                    @click="handleDelete(item.id)"
                                                 >
-                                                    <i class="material-icons"
-                                                        >close</i
-                                                    >
+                                                    <i class="material-icons">close</i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -87,9 +81,10 @@ import { mapState } from "vuex";
 import mixin from "../../../../../../../resources/js/mix/mixin";
 import Navbar from "../../../../../../../resources/js/components/elements/Navbar";
 import Paginate from "../../../../../../../resources/js/components/elements/Paginate";
+import notice from "../../../../../../../resources/js/mix/notice";
 
 export default {
-    mixins: [mixin],
+    mixins: [mixin, notice],
     methods: {
         async getList() {
             let options = {
@@ -98,6 +93,18 @@ export default {
                 ...this.pagination
             };
             let res = await this.$store.dispatch("getListCategory", options);
+        },
+        async handleDelete(id) {
+            let show = confirm(this.message().confirm_delete);
+            if (show) {
+                let res = await this.$store.dispatch("deleteCategoryByID", {
+                    id: id
+                });
+                if (res.error == false) {
+                    await this.success(res.message, "");
+                    await this.getList();
+                }
+            }
         }
     },
     async created() {
@@ -138,3 +145,8 @@ export default {
     height: 100px;
 }
 </style>
+
+.box-image > img {
+    width: 100px;
+    height: 100px;
+}

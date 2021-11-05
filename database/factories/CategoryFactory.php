@@ -25,12 +25,12 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'image' => $this->faker->image(public_path('frontend'),640,480, null, false),
+            'image' => [$this->faker->image(public_path('frontend'), 640, 480, null, false)],
             'description' => $this->faker->sentence(),
             'content' => $this->faker->paragraph(),
             'parent_id' => 0,
-            'link'=>Str::slug($this->faker->name),
-            'orders' =>1,
+            'link' => Str::slug($this->faker->name),
+            'orders' => 1,
         ];
     }
 
@@ -42,9 +42,7 @@ class CategoryFactory extends Factory
     public function unverified()
     {
         return $this->state(function (array $attributes) {
-            return [
-
-            ];
+            return [];
         });
     }
 }

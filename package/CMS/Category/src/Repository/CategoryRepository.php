@@ -37,7 +37,7 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
     {
         $builder = $this->queryCollection();
         $builder = $this->querySelectList($builder, $request);
-        return $builder;
+        return $this->responseJson(false, 200, 'Thành công', $builder);
     }
 
     public function find($request)
@@ -49,14 +49,19 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
                 $query->where('id', $id);
             }
         });
-        return $builder->first();
+        $builder = $builder->first();
+        return $this->responseJson(false, 200, 'Thành công', $builder);
     }
 
-    public function delete($request){
-        $builder = $this->queryCollection();
-        $builder = $builder->with(['products'=> function ($query){
-            return $query->count();
-        }])->find($request->id);
+    public function delete($request)
+    {
+        $builder = $this->_model->secureDeleteTrait($request->id);
+        return $this->responseJson(false, 200, 'Thành công', $builder);
+    }
 
+    public function update($request)
+    {
+        $builder =  $this->_model->find($request->id)->update($request->all());
+        return $this->responseJson(false, 200, 'Thành công', $builder);
     }
 }

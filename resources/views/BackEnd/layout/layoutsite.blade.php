@@ -40,6 +40,7 @@
     </div>
     @yield('script')
     <script src="{{mix('/js/app.js')}}"></script>
+    <script src="{{ asset('admins/CMS//plugins/ckfinder/ckfinder.js') }}"></script>
 
     <script src="{{ asset('assets/demo/demo.js') }}"></script>
     <!--   Core JS Files   -->
@@ -255,7 +256,6 @@
         });
 
     </script>
-
 </body>
 
 </html>

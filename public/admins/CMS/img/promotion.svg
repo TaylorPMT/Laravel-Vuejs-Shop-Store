@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>promotion</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Thêm-khuyến-mãi" transform="translate(-30.000000, -95.000000)" stroke="#39475B">
+            <g id="Chương-trình-KM" transform="translate(20.000000, 85.000000)">
+                <g id="promotion" transform="translate(11.000000, 11.000000)">
+                    <polygon id="Star" stroke-linejoin="round" points="11.5 20.710327 8.52358098 22.608147 6.8948365 19.4763772 3.36827202 19.631728 3.52362284 16.1051635 0.391852998 14.476419 2.289673 11.5 0.391852998 8.52358098 3.52362284 6.8948365 3.36827202 3.36827202 6.8948365 3.52362284 8.52358098 0.391852998 11.5 2.289673 14.476419 0.391852998 16.1051635 3.52362284 19.631728 3.36827202 19.4763772 6.8948365 22.608147 8.52358098 20.710327 11.5 22.608147 14.476419 19.4763772 16.1051635 19.631728 19.631728 16.1051635 19.4763772 14.476419 22.608147"></polygon>
+                    <circle id="Oval" cx="8.625" cy="8.625" r="1.725"></circle>
+                    <circle id="Oval-Copy" cx="14.375" cy="14.375" r="1.725"></circle>
+                    <line x1="7.475" y1="15.525" x2="15.525" y2="7.475" id="Line" stroke-linecap="square"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

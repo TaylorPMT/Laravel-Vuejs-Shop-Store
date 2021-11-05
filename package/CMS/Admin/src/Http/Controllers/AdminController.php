@@ -33,6 +33,6 @@ class AdminController extends BaseController
     }
     public function path(Request $request)
     {
-        return view('BackEnd.pages.user.index');
+        return view('BackEnd.pages.index');
     }
 }
