@@ -15,5 +15,11 @@ return [
         'icon' => 'movie',
         'active' => false,
     ],
-
+    [
+        'url' => '/admin/product',
+        'module' => 'product',
+        'name' => 'Quản lý Sản Phẩm',
+        'icon' => 'movie',
+        'active' => false,
+    ],
 ];

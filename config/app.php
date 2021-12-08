@@ -178,6 +178,7 @@ return [
         CMS\Films\Providers\FilmsServiceProviders::class,
         CMS\Admin\Providers\AdminProviders::class,
         CMS\Category\Providers\CategoryProviders::class,
+        CMS\Product\Providers\ProductProviders::class,
 
     ],
 
