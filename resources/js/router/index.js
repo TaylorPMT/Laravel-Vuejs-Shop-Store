@@ -4,8 +4,10 @@ Vue.use(Router);
 import login from "../components/pages/basic/home.vue";
 import dashboard from "../components/pages/basic/dashboard.vue";
 import main from "../components/pages/basic/main.vue";
-import film from "../components/pages/basic/film.vue";
 import category from "../../../package/CMS/Category/resources/assets/routes/index";
+import product from "../../../package/CMS/Product/resources/assets/routes/index";
+
+import error404 from "../components/error/404.vue";
 const routes = [{
         path: "/admin",
         component: main,
@@ -25,7 +27,7 @@ const routes = [{
                 next({
                     name: "dashboard"
                 });
-            } else  {
+            } else {
                 next();
             }
             next();
@@ -48,10 +50,16 @@ const routes = [{
                 next();
             }
         }
+    },
+    {
+        path: "/404",
+        name: "404",
+        component: error404,
     }
 ];
 routes[0].children = routes[0].children.concat(
-    category
+    category,
+    product
 );
 export default new Router({
     mode: "history",

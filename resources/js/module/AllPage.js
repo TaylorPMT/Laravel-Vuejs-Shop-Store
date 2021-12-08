@@ -9,7 +9,8 @@ const state = {
     confirmPopup: false,
     statusAction: false,
     statusDetail: false,
-    menuSidebar: []
+    menuSidebar: [],
+    ERROR_404: false,
 };
 
 const mutations = {
@@ -39,6 +40,12 @@ const mutations = {
     },
     SET_MENU_SIDEBAR(state, data) {
         state.menuSidebar = data.data;
+    },
+    SET_ERROR_404(state) {
+        state.ERROR_404 = true;
+    },
+    RESET_ERROR_404(state) {
+        state.ERROR_404 = false;
     }
 };
 const actions = {

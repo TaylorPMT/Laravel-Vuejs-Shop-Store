@@ -12,8 +12,6 @@ class FilmsServiceProviders extends ServiceProvider
         $this->loadRoutesFrom(__DIR__."/../../routes/api.php");
     }
     public function register(){
-
-
         $configs = $this->split_files_with_basename($this->app['files']->glob(__DIR__ . '/../../config/*.php'));
         foreach ($configs as $key => $row) {
             $this->mergeConfigFrom($row, $key);

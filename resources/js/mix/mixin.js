@@ -218,7 +218,14 @@ export default {
         },
         confirm(str) {
             return confirm(str);
-        }
+        },
+        abort(status) {
+            switch (status) {
+                case 404:
+                    return this.$router.push({ name: '404' });
+            }
+            return this.$router.push({ name: '404' });
+        },
     },
     filters: {
         DDMMYYYY(val) {

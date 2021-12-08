@@ -8,20 +8,22 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <BaseInput
-                    :label="'Tên Sản Phẩm'"
-                    :class_form="'form-control'"
-                    v-model="dataCurrent.name"
-                ></BaseInput>
-                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="dataCurrent.link"></BaseInput>
-                <BaseCkeditor
-                    :label="'Mô tả chi tiết'"
-                    :editorData="dataCurrent.content"
-                    v-model="dataCurrent.content"
-                ></BaseCkeditor>
+                <BaseInput :label="'Tên Sản Phẩm'" :class_form="'form-control'" v-model="data.name"></BaseInput>
+                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.link"></BaseInput>
+                <form>
+                    <BaseCkeditor
+                        :label="'Mô tả chi tiết'"
+                        :editorData="data.content"
+                        v-model="data.content"
+                    ></BaseCkeditor>
+                </form>
             </div>
             <div class="col-md-4">
-                <BaseCkeditor :label="'Thông tin'" v-model="dataCurrent.description"></BaseCkeditor>
+                <BaseCkeditor
+                    :label="'Thông tin'"
+                    :editorData="data.description"
+                    v-model="data.description"
+                ></BaseCkeditor>
             </div>
         </div>
         <div class="row">
@@ -37,12 +39,8 @@
                     class="btn btn-sm btn-success"
                     @click="handleFileUpload()"
                 >Tải hình ảnh</button>
-                <div class="image-preview" v-if="!isEmpty(dataCurrent.image)">
-                    <div
-                        class="item"
-                        v-for="(item,index) in dataCurrent.image"
-                        :key="'image-' + index"
-                    >
+                <div class="image-preview" v-if="!isEmpty(data.image)">
+                    <div class="item" v-for="(item,index) in data.image" :key="'image-' + index">
                         <img :src="asset(item)" :alt="'image-' + index" />
                     </div>
                 </div>
@@ -61,7 +59,13 @@ export default {
     mixins: [mixin, notice],
     data() {
         return {
-            content: "",
+            data: {
+                name: "",
+                content: "",
+                description: "",
+                link: "",
+                image: [],
+            },
             dataImage: {
                 type: Array,
                 default: () => []
@@ -70,21 +74,12 @@ export default {
     },
     computed: {
         ...mapState({
-            dataCurrent: state => state.storeCategory.DETAIL_CATEGORY
+
         })
     },
     methods: {
         async handleFileUpload() {
             this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
-        },
-        async handleCategoryDetail() {
-            let route = this.getPathUrl();
-            let res = await this.$store.dispatch("findCategoryByID", [route.id, ""]);
-            if (res.error == true) {
-                this.error(res.message);
-                return this.abort(res.response_code);
-            }
-            return res;
         },
         async getValueImage(e) {
             let vm = this;
@@ -93,18 +88,17 @@ export default {
                 return images.slice(index, images.length);
             });
             for (let property in arr) {
-                vm.dataCurrent.image.push(arr[property]);
+                vm.data.image.push(arr[property]);
             }
 
-            return vm.dataCurrent.image;
+            return vm.data.image;
 
         },
         async formatData() {
             let vm = this;
             let customer =
                 vm.readOnlyJson(
-                    vm.parseJSON(vm.dataCurrent),
-                    "id",
+                    vm.parseJSON(vm.data),
                     "content",
                     "description",
                     "link",
@@ -119,7 +113,7 @@ export default {
         async submit() {
             let show = confirm(this.message().confirm_update);
             if (show) {
-                let res = await this.$store.dispatch("updateCategory", {
+                let res = await this.$store.dispatch("createCategory", {
                     data: await this.formatData()
                 });
                 if (res.error == false) {
@@ -132,8 +126,6 @@ export default {
     },
 
     async created() {
-        await this.handleCategoryDetail();
-        this.loading = true
     },
 
     components: {
