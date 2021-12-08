@@ -34,6 +34,7 @@ class AuthController extends BaseController
             $rememberToken = true;
         }
         $credentials = request(['name', 'password']);
+     
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $tokenResult = $user->createToken('Admin');

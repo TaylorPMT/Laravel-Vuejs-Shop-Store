@@ -1,0 +1,32 @@
+<section class="section home-3">
+    <div class="container"> 
+        <div class="wrap-title"> 
+            <div class="section-title">Sản phẩm nổi bật
+                <div class="section-title-line">
+                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt="" title="Symbols">
+                </div>
+            </div>
+        </div>
+        <div class="swiper-home-2">
+            <div class="swiper-container"> 
+                <div class="swiper-wrapper">
+                    @for($i = 1; $i < 6; $i++)
+                    <div class="swiper-slide">
+                        <div class="block-product"> <a class="product-img zoom-out" href="">
+                            <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/')}}/{{$i}}.jpg"  alt=""></a>
+                            <div class="product-info">
+                                <a class="product-info__title" href="">Sản phẩm {{$i}} </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endfor
+                </div>
+            </div>
+            <div class="swiper-navigation"> 
+                <div class="button-next"><em class="material-icons">east</em></div>
+                <div class="button-prev"><em class="material-icons">east</em></div>
+            </div>
+            <div class="wrap-button"> <a class="btn btn-primary" href="">Xem thêm</a></div>
+        </div>
+    </div>
+</section>

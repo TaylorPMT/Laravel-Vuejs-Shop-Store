@@ -1,4 +1,4 @@
-<footer setBackground="./img/banner/5.jpg">
+<footer setBackground="{{ asset('frontend/assets/img/banner/5.jpg') }}">
     <div class="footer-1">
         <div class="container"> 
             <div class="footer-top">
