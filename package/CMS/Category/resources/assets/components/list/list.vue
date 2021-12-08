@@ -3,6 +3,22 @@
         <div class="container-fluid my-5">
             <div class="row">
                 <div class="col-md-12">
+                    <div>
+                        <router-link
+                            :to="
+                                encodeURI('/admin/category/create')
+                            "
+                            rel="tooltip"
+                            title="Thêm loại"
+                            class="btn btn-success"
+                        >
+                            <span class="material-icons">add</span>
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title"></h4>
@@ -26,11 +42,21 @@
                                             <td class="td-center">{{ listData.from + index }}</td>
                                             <td>{{ item.name }}</td>
                                             <td class="box-image">
-                                                <img
-                                                    v-bind:src="
-                                                        imageUrl(item.image[0])
-                                                    "
-                                                />
+                                                <div
+                                                    class="image-preview"
+                                                    v-if="!isEmpty(item.image)"
+                                                >
+                                                    <div
+                                                        class="item"
+                                                        v-for="(item,index) in item.image"
+                                                        :key="'image-' + index"
+                                                    >
+                                                        <img
+                                                            :src="asset(item)"
+                                                            :alt="'image-' + index"
+                                                        />
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td>{{ item.description }}</td>
                                             <td class="td-actions text-right">
@@ -139,14 +165,24 @@ export default {
     }
 };
 </script>
-<style scoped>
-.box-image > img {
-    width: 100px;
-    height: 100px;
+<style lang="scss" scoped>
+.image-preview {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    display: flex;
+    .item {
+        margin: 5px;
+        width: 100px;
+        height: 100px;
+        position: relative;
+        > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
-</style>
-
-.box-image > img {
-    width: 100px;
-    height: 100px;
-}
+</style>>

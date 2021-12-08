@@ -4,7 +4,9 @@ namespace App\Repository;
 
 class BaseRepository
 {
-
+    protected $_messagesErrorsException = 'Lỗi phát sinh';
+    protected $_messagesSuccess = 'Xử lý thành công';
+    protected $_messagesFails = 'Xử lý thất bại thử lại sau';
     public function querySelectList($builder, $request)
     {
         $order_by = $request->get('order_by') ?? 'created_at';

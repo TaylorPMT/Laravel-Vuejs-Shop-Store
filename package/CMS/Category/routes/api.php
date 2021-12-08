@@ -13,6 +13,7 @@ Route::group([
             Route::get('show/{id}', 'CategoryController@show');
             Route::delete('delete/{id}', 'CategoryController@delete');
             Route::put('update/{id}', 'CategoryController@update');
+            Route::post('create', 'CategoryController@create');
         });
     });
 });

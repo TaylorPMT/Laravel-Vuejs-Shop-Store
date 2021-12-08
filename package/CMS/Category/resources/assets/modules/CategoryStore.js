@@ -2,7 +2,6 @@ import { callAxios } from "../../../../../../resources/js/axios/callAxios";
 import callApi from '../../../../../../resources/js/api/callApi';
 
 let axios = new callAxios();
-
 const state = {
     LIST_CATEGORY: [],
     DETAIL_CATEGORY: [],
@@ -23,28 +22,34 @@ const actions = {
         this.commit("SET_LIST_CATEGORY", {
             data: res.data.data
         });
-        return true;
+        return res.data;
     },
     async findCategoryByID({ state, dispatch }, [id, options]) {
         let res = await axios.getById("/api/admin/category/show/", id, options);
+
         this.commit('SET_DETAIL_CATEGORY', {
             data: res.data.data
         });
-        return true;
+        return res.data;
     },
     async updateCategory({ state, dispatch }, options) {
         let url = `${callApi.CATEGORY.EDIT}${options.data.id}`;
         let res = await axios.edit(url, '', options);
-        if (res.data.error == false) {
-            return res.data;
-        }
+        return res.data;
+
+
     },
     async deleteCategoryByID({ state, dispatch }, options) {
         let url = `${callApi.CATEGORY.DELETE}/`;
         let res = await axios.delete(url, options.id, "");
-        if (res.data.error == false) {
-            return res.data;
-        }
+        return res.data;
+
+    },
+    async createCategory({ state, dispatch }, options) {
+        let url = `${callApi.CATEGORY.CREATE}`;
+        let res = await axios.create(url, options);
+        return res.data;
+
     }
 };
 
