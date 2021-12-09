@@ -8,5 +8,6 @@
     @include('Frontend.pages.index.section.section-2')
     @include('Frontend.pages.index.section.section-3')
     @include('Frontend.pages.index.section.section-4')
+    @include('Frontend.pages.index.section.section-5')
 
 @endsection

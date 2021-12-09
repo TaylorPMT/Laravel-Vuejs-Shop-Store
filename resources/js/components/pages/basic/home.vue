@@ -9,6 +9,12 @@
                         method="post"
                         @submit.prevent="login"
                     >
+                        <div class="logo">
+                            <img
+                                                            :src="asset('/frontend/assets/img/logo-main.jpg')"
+                                        
+                                                        />
+                        </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon" id="iconn">
@@ -63,9 +69,12 @@
     </div>
 </template>
 <script>
+import mixin from "../../../mix/mixin";
 import { callAxios } from "../../../axios/callAxios";
 import { mapState } from "vuex";
 export default {
+        mixins: [mixin],
+
     data: () => ({
         form: {
             name: "",
@@ -104,3 +113,9 @@ export default {
     }
 };
 </script>
+
+<style lang="sass" scoped>
+    .logo
+        img
+            width: 300px
+</style>

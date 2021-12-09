@@ -17,7 +17,6 @@
                         <div class="product-info">
                             <a class="product-info__title" href="">Gói sản phẩm {{$i}}</a>
                             <div class="product-info__detail">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita delectus est labore fugit natus, similique atque rem nulla, vero laborum debitis aspernatur ratione animi, vitae sed nisi minima! Sunt, pariatur!</div>
-                            <div class="product-info__price">Liên hệ</div>
                         </div>
                     </div>
                 </div>

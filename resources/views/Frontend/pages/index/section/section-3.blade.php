@@ -3,7 +3,7 @@
         <div class="wrap-title"> 
             <div class="section-title">Sản phẩm nổi bật
                 <div class="section-title-line">
-                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt="" title="Symbols">
+                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt="Symbols" title="Symbols">
                 </div>
             </div>
         </div>
@@ -12,12 +12,7 @@
                 <div class="swiper-wrapper">
                     @for($i = 1; $i < 6; $i++)
                     <div class="swiper-slide">
-                        <div class="block-product"> <a class="product-img zoom-out" href="">
-                            <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/')}}/{{$i}}.jpg"  alt=""></a>
-                            <div class="product-info">
-                                <a class="product-info__title" href="">Sản phẩm {{$i}} </a>
-                            </div>
-                        </div>
+                        @include('Frontend.main.product-item')
                     </div>
                     @endfor
                 </div>

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+include('frontend.php');
 Route::get('{path}', '\CMS\Admin\Http\Controllers\AdminController@path');
 Route::get('/', function () {
     return redirect()->route('login');
@@ -23,6 +23,6 @@ Route::group([
 ], function () {
     Route::any('login', 'AuthController@login')->name('login');
 });
-include('frontend.php');
+
 // Route::get('{path}','\CMS\Admin\Http\Controllers\AdminController@path');
 
