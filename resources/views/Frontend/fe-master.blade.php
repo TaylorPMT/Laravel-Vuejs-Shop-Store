@@ -6,6 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="stylesheet" href="{{ asset('frontend/assets/css/main.min.css') }}">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link rel="icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.ico') }}">
 		<title>@yield('title')</title>
 		<!-- @include('Frontend.main.meta') -->
 		@include('Frontend.main.gg-analytics')
