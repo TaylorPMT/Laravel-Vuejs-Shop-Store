@@ -2,7 +2,7 @@
     <div>
         <div class="container-fluid my-5">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-2">
                     <div>
                         <router-link
                             :to="
@@ -10,28 +10,51 @@
                             "
                             rel="tooltip"
                             title="Thêm loại"
-                            class="btn btn-success"
+                            class="btn btn-success btn-primary"
                         >
+                            <span> Thêm loại sản phẩm mới </span>
                             <span class="material-icons">add</span>
+                            
                         </router-link>
                     </div>
+                </div>
+                <div class="col-md-10 form-search-admin">
+                    <form>
+                        <input type="text" class="form-group" placeholder="Tìm kiếm...">
+                        <button type="submit" class="btn btn-primary">
+                            <em class="material-icons">search</em>
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title"></h4>
-                            <p class="card-category"></p>
-                        </div>
-                        <div class="card-body">
+                        
+                        <div class="card-body no-padding">
                             <div class="table-responsive">
                                 <table class="table" id="myTable">
                                     <thead class="text-primary">
-                                        <th>#</th>
-                                        <th>Tên</th>
+                                        <th style="width: 10%;">
+                                            <span>STT</span>
+                                            <a href="javascript:void(0)" class="sortBtn" title="Sắp xếp">
+                                                <em class="material-icons">
+                                                    arrow_upward
+                                                </em>
+                                            </a>
+                                            
+                                        </th>
+                                        <th>
+                                            <span>Tên</span>
+                                            <a href="javascript:void(0)" class="sortBtn" title="Sắp xếp">
+                                                <em class="material-icons">
+                                                    arrow_upward
+                                                </em>
+                                            </a>
+                                        </th>
                                         <th>Hình</th>
                                         <th>Mô tả ngắn</th>
+                                        <th style="text-align: right;">Lựa chọn</th>
                                     </thead>
                                     <tbody v-if="listData">
                                         <tr
@@ -75,6 +98,7 @@
                                                 <button
                                                     type="button"
                                                     rel="tooltip"
+                                                    title="Xóa loại sản phẩm"
                                                     class="btn btn-danger"
                                                     @click="handleDelete(item.id)"
                                                 >
@@ -173,8 +197,8 @@ export default {
     display: flex;
     .item {
         margin: 5px;
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        height: 130px;
         position: relative;
         > img {
             position: absolute;
@@ -182,7 +206,9 @@ export default {
             left: 0;
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
     }
 }
-</style>>
+
+</style>

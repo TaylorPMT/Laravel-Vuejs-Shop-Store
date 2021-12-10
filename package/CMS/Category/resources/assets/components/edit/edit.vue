@@ -14,40 +14,50 @@
                     v-model="dataCurrent.name"
                 ></BaseInput>
                 <BaseInput :label="'URL'" :class_form="'form-control'" v-model="dataCurrent.link"></BaseInput>
+                <BaseCkeditor :label="'Mô tả ngắn'" v-model="dataCurrent.description"></BaseCkeditor>
                 <BaseCkeditor
                     :label="'Mô tả chi tiết'"
                     :editorData="dataCurrent.content"
                     v-model="dataCurrent.content"
                 ></BaseCkeditor>
+                   
             </div>
             <div class="col-md-4">
-                <BaseCkeditor :label="'Thông tin'" v-model="dataCurrent.description"></BaseCkeditor>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <BaseCkfinder
-                    ref="ckfinder"
-                    id="imagePage"
-                    :multiImage="true"
-                    @inputCKFinder="getValueImage($event)"
-                ></BaseCkfinder>
-                <button
-                    type="button"
-                    class="btn btn-sm btn-success"
-                    @click="handleFileUpload()"
-                >Tải hình ảnh</button>
-                <div class="image-preview" v-if="!isEmpty(dataCurrent.image)">
+                 <div class="image-preview" v-if="!isEmpty(dataCurrent.image)">
                     <div
                         class="item"
                         v-for="(item,index) in dataCurrent.image"
                         :key="'image-' + index"
                     >
                         <img :src="asset(item)" :alt="'image-' + index" />
+                        <div class="delete-image">
+                        <span class="material-icons">
+                            clear
+                        </span>
+
                     </div>
+                    </div>
+                    
                 </div>
+                  <BaseCkfinder
+                    ref="ckfinder"
+                    id="imagePage"
+                    :multiImage="true"
+                    @inputCKFinder="getValueImage($event)"
+                ></BaseCkfinder>
+                <div class="text-right">
+                    <button
+                    type="button"
+                    class="btn btn-sm btn-success"
+                    @click="handleFileUpload()"
+                    >Tải hình ảnh</button>
+                </div>
+                
+               
+              
             </div>
         </div>
+       
     </div>
 </template>
 <script>
@@ -144,14 +154,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .image-preview {
+    margin-top: 30px;
     width: 100%;
-    height: 200px;
+    height: auto;
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     .item {
-        margin: 5px;
-        width: 100px;
-        height: 100px;
+        margin: 10px 5px;
+        width: 150px;
+        height: 150px;
         position: relative;
         > img {
             position: absolute;
@@ -159,7 +171,40 @@ export default {
             left: 0;
             width: 100%;
             height: 100%;
+            object-fit: cover;
+        }
+        .delete-image {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            z-index: 9;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #f44336;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s all;
+            span {
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+            }
+        }
+        &:hover {
+            .delete-image {
+                opacity: 1;
+                visibility: visible;
+                transition: .3s all;
+            }
         }
     }
+}
+.content-group {
+    margin: 5% 4%;
 }
 </style>>

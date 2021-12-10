@@ -1,6 +1,6 @@
 <template>
     <div class="form-group">
-        <label>{{ label }}</label>
+        <label class="f-bold cl-black d-block">{{ label }}</label>
         <input :class="class_form" :type="type" v-model="inputValue" />
     </div>
 </template>

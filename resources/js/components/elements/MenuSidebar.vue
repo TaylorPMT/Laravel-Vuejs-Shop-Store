@@ -5,9 +5,14 @@
         data-background-color="white"
         data-image="/assets/img/sidebar-1.jpg"
     >
-        <div class="logo"><a class="simple-text logo-normal">
+        <div class="logo">
+            <a class="simple-text logo-normal">
+                <img class="img-logo"
+                    :src="asset('/frontend/assets/img/logo-main.jpg')"
+                />
                 Quản lý SHOP
-             </a></div>
+             </a>
+        </div>
         <div class="sidebar-wrapper" v-if="menuSidebar">
             <ul class="nav">
                 <li
@@ -32,8 +37,10 @@
     </div>
 </template>
 <script>
+import mixin from "../../mix/mixin";
 import { mapState } from "vuex";
 export default {
+    mixins: [mixin],
     name: "MenuSidebar",
     computed: {
         ...mapState({
@@ -61,3 +68,11 @@ export default {
     }
 };
 </script>
+<style lang="sass" scoped>
+    .logo
+        img
+            width: 140px
+            margin: 0 auto 10px
+            display: block
+    
+</style>

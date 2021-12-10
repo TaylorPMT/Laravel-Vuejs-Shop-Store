@@ -27,11 +27,11 @@ export default {
         },
         width: {
             type: String,
-            default: "800"
+            default: "1000"
         },
         height: {
             type: String,
-            default: "600"
+            default: "800"
         },
         multiImage: {
             type: Boolean,

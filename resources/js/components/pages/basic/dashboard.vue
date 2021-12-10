@@ -5,11 +5,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title "></h4>
-                            <p class="card-category"></p>
-                        </div>
-                        <div class="card-body">
+                        <div class="card-body no-padding">
                             <div class="table-responsive">
                                 <table class="table" id="myTable">
                                     <thead class=" text-primary">
