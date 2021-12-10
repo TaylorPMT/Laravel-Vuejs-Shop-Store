@@ -9,15 +9,15 @@
 /*============================ PHP Error Reporting ====================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/debugging.html
 $currentPath = str_replace('public', '', $_SERVER['DOCUMENT_ROOT']);
-$lines = file($currentPath.'.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$lines = file($currentPath . '.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 if (!$lines) {
-    $lines = file($_SERVER['DOCUMENT_ROOT'].'/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $lines = file($_SERVER['DOCUMENT_ROOT'] . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 }
 if (!$lines) {
-    $lines = file(__DIR__.'/../../../../../.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $lines = file(__DIR__ . '/../../../../../.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 }
-$licenseName = 'japanav2.test';
-$licenseKey = '1GZGMGBWP7PH6QP8PVG64Z656USJ3';
+$licenseName = 'codeve';
+$licenseKey = '*9?B-*2**-1**W-*2**-*E**-X*F*-1**F';
 foreach ($lines as $line) {
     if (strpos(trim($line), '#') === 0) {
         continue;
@@ -38,7 +38,7 @@ foreach ($lines as $line) {
     }
 }
 
-$protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https://'?'https://':'http://'; // Get HTTP or HTTPS
+$protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https://' ? 'https://' : 'http://'; // Get HTTP or HTTPS
 $hostName = $_SERVER['HTTP_HOST'];
 $currentPath = $_SERVER['PHP_SELF'];
 // 1.use for domain e.g. https://abc.com/public/uploads/
@@ -49,7 +49,7 @@ if (strpos($currentPath, 'public')) {
     $local .= 'public';
 }
 
-$base_url = $protocol.$hostName.$local.'/uploads/';
+$base_url = $protocol . $hostName . $local . '/uploads/';
 
 // Production
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
@@ -108,7 +108,7 @@ $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
     'baseUrl'      => $base_url,
-//  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
+    //  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8',
