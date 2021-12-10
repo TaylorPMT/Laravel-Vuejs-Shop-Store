@@ -8,6 +8,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<title>@yield('title')</title>
 		<!-- @include('Frontend.main.meta') -->
+		@include('Frontend.main.gg-analytics')
 	</head>
 	<body class="@yield('body-class')">
         @include('Frontend.main.header')

@@ -1,4 +1,4 @@
-<!-- if template contains 'product'  -->
+{{-- <!-- if template contains 'product'  -->
 <meta property="og:type" content="product" />
 <meta property="og:title" content="{{ product.title | strip_html | strip_newlines  }}" />
 <meta property="og:image:secure_url" content="https:{{ product.featured_image.src | product_img_url: 'grande'  | remove: 'http:'}}" />
@@ -26,4 +26,4 @@
 <meta property="og:image:secure_url" content="http:{{ 'share_fb_home.png' | asset_url }}" />
 <meta property="og:description" content="{{ page_description | strip_html | strip_newlines }}" />
 <meta property="og:url" content="{{ canonical_url  | remove: 'http:'}}" />
-<meta property="og:site_name" content="{{ shop.name }}" />
+<meta property="og:site_name" content="{{ shop.name }}" /> --}}
