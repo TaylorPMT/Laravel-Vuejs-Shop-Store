@@ -1,6 +1,6 @@
 <template>
     <!-- Begin pagination -->
-    <div class="d-flex align-items-center content-pagination" v-if="data">
+    <tr class="content-pagination" v-if="data">
         <ul
             class="pagination pagination-sm m-0"
             :class="className"
@@ -102,7 +102,7 @@
                 </a>
             </li>
         </ul>
-        <div class="custom-select-option" :class="classNameSelect">
+        <td class="custom-select-option" :class="classNameSelect">
             <select class="custom-select" v-model="value.per_page">
                 <option
                     v-for="(row, index) in options"
@@ -112,12 +112,12 @@
                 >
             </select>
             <i class="ionicons ion-arrow-down-b"></i>
-        </div>
-        <span class="show-paginate"
-            >Hiển thị {{ data.from }}-{{ data.to }} của {{ data.total }}
-            {{ namePaginate }}</span
+        </td>
+        <td class="show-paginate"
+            >Hiển thị <strong>{{ data.from }}-{{ data.to }}</strong> của <strong>{{ data.total }}</strong>
+            {{ namePaginate }}</td
         >
-    </div>
+    </tr>
     <!-- End pagination -->
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div  class="content">
-        <div class="container" style="margin-top:10%">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12" id="login">
                     <form
@@ -9,6 +9,11 @@
                         method="post"
                         @submit.prevent="login"
                     >
+                        <div class="logo">
+                            <img
+                                :src="asset('/frontend/assets/img/logo-main.jpg')"
+                            />
+                        </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon" id="iconn">
@@ -43,12 +48,11 @@
                         </div>
                         <div class="form-group">
                             <div
-                                style="margin-top:50px;"
                                 class="d-flex justify-content-center"
                             >
                                 <button
                                     type="submit"
-                                    class="btn btn-success"
+                                    class="btn btn-success btn-primary"
                                     style="border-radius:30px;"
                                     @click.stop.prevent="handleLogin"
                                 >
@@ -63,9 +67,12 @@
     </div>
 </template>
 <script>
+import mixin from "../../../mix/mixin";
 import { callAxios } from "../../../axios/callAxios";
 import { mapState } from "vuex";
 export default {
+        mixins: [mixin],
+
     data: () => ({
         form: {
             name: "",
@@ -104,3 +111,34 @@ export default {
     }
 };
 </script>
+
+<style lang="sass" scoped>
+    .logo
+        margin-bottom: 30px
+        img
+            width: 300px
+            @media screen and (max-width: 768px)
+                width: 250px
+    .content
+        text-align: center
+        padding: 60px
+        border: 1px solid var(--main-color)
+        max-width: 500px
+        margin: 0 auto
+        transform: translateX(-30%)
+        margin-top: 10%
+        @media screen and (max-width: 768px)
+            padding: 30px
+            transform: translateX(0)
+            margin-top: 30%
+        .input-group input 
+            border: 1px solid var(--main-color)
+            padding: 10px
+            height: 40px
+            background: unset
+            transition: .3s all
+            &:hover,
+            &:focus
+                box-shadow: 0 0 6px rgba(#11706C, 0.8)
+                transition: .3s all
+</style>

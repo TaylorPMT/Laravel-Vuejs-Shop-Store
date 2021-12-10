@@ -1,6 +1,6 @@
 <template>
     <div class="form-group">
-        <label>{{ label }}</label>
+        <label class="f-bold cl-black d-block">{{ label }}</label>
         <ckeditor
             class="form-control ckeditor-form"
             v-model="editorData"
@@ -139,5 +139,8 @@ export default {
 <style>
 .ckeditor-form {
     height: 100%;
+}
+.form-group {
+    margin: 10px 0;
 }
 </style>

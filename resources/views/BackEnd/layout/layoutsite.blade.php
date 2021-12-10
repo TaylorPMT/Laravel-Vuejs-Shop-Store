@@ -19,6 +19,7 @@
     <!-- CSS Files -->
     <link href="{{asset('assets/css/material-dashboard.css?v=2.1.2')}}" rel="stylesheet" />
     <link href="{{ asset('assets/css/default.css') }}" rel="stylesheet">
+    <link href="{{ asset('BackEnd/css/custom.css') }}" rel="stylesheet">
     <!-- CSS Just for demo purpose, dont include it in your project -->
     @yield('head')
 
