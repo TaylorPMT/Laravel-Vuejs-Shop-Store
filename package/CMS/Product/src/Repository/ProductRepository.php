@@ -1,16 +1,15 @@
 <?php
 
-namespace CMS\Category\Repository;
+namespace CMS\Product\Repository;
 
 use App\Repository\BaseRepository;
-use CMS\Category\Models\Category;
+use CMS\Product\Models\Product;
 
-class CategoryRepository extends BaseRepository implements CategoryInterface
+class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
-
     protected $_model;
 
-    public function __construct(Category $model)
+    public function __construct(Product $model)
     {
         $this->_model = $model;
     }
@@ -20,12 +19,12 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
         $select_filter = [
             'id',
             'name',
+            'sku',
             'image',
             'description',
             'content',
-            'parent_id',
-            'link',
-            'orders'
+            'category_id',
+            'link'
         ];
 
         $builder = $this->_model;
@@ -38,7 +37,7 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
         $builder = $this->queryCollection();
         $builder = $builder->where(function ($query) use ($request) {
             if ($request->get('key_word')) {
-                $query->where('name', 'LIKE', "%$request->key_word%");
+                $query->where('name', 'LIKE', "%$request->key_word%")->orWhere('sku', 'LIKE', "%$request->key_word%");
             }
         });
         $builder = $this->querySelectList($builder, $request);

@@ -5,5 +5,9 @@ const callApi = {
         DELETE: prefix + `/category/delete`,
         CREATE: prefix + `/category/create`,
     },
+    PRODUCT: {
+        LIST: prefix + `/product/list?`,
+        CREATE: prefix + `/product/create`,
+    },
 };
 export default callApi;

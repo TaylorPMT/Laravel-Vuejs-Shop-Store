@@ -1,10 +1,9 @@
 <?php
 return [
-    "api"=>[
-        "prefix"=>[
-            'admin'=>'api/',
-            'client'=>'api/client',
+    "product" => [
+        "prefix" => [
+            'admin' => 'api/product',
+            'client' => 'api/client',
         ]
     ]
-
 ];

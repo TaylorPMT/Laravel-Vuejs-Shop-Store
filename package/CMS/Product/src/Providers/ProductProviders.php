@@ -6,6 +6,8 @@ use App\Helpers\Helpers;
 use Illuminate\Support\ServiceProvider;
 use CMS\Category\Repository\CategoryInterface;
 use CMS\Category\Repository\CategoryRepository;
+use CMS\Product\Repository\ProductRepository;
+use CMS\Product\Repository\ProductRepositoryInterface;
 
 class  ProductProviders  extends ServiceProvider
 {
@@ -18,16 +20,14 @@ class  ProductProviders  extends ServiceProvider
     }
     public function register()
     {
-
-
         $configs = $this->split_files_with_basename($this->app['files']->glob(__DIR__ . '/../../config/*.php'));
         foreach ($configs as $key => $row) {
             $this->mergeConfigFrom($row, $key);
         }
         $repository = [
             [
-                'ỉnterface' => CategoryInterface::class,
-                'binding'   => CategoryRepository::class,
+                'ỉnterface' => ProductRepositoryInterface::class,
+                'binding'   => ProductRepository::class,
             ]
         ];
         foreach ($repository as $bind) {

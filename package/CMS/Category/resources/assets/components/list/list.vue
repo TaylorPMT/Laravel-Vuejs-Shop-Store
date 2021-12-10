@@ -12,15 +12,19 @@
                             title="Thêm loại"
                             class="btn btn-success btn-primary"
                         >
-                            <span> Thêm loại sản phẩm mới </span>
+                            <span>Thêm loại sản phẩm mới</span>
                             <span class="material-icons">add</span>
-                            
                         </router-link>
                     </div>
                 </div>
                 <div class="col-md-10 form-search-admin">
-                    <form>
-                        <input type="text" class="form-group" placeholder="Tìm kiếm...">
+                    <form @submit.prevent="handleSearchInput()">
+                        <input
+                            type="text"
+                            v-model="filters.key_word"
+                            class="form-group"
+                            placeholder="Tìm kiếm..."
+                        />
                         <button type="submit" class="btn btn-primary">
                             <em class="material-icons">search</em>
                         </button>
@@ -30,26 +34,28 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        
                         <div class="card-body no-padding">
                             <div class="table-responsive">
                                 <table class="table" id="myTable">
                                     <thead class="text-primary">
                                         <th style="width: 10%;">
                                             <span>STT</span>
-                                            <a href="javascript:void(0)" class="sortBtn" title="Sắp xếp">
-                                                <em class="material-icons">
-                                                    arrow_upward
-                                                </em>
+                                            <a
+                                                href="javascript:void(0)"
+                                                class="sortBtn"
+                                                title="Sắp xếp"
+                                            >
+                                                <em class="material-icons">arrow_upward</em>
                                             </a>
-                                            
                                         </th>
                                         <th>
                                             <span>Tên</span>
-                                            <a href="javascript:void(0)" class="sortBtn" title="Sắp xếp">
-                                                <em class="material-icons">
-                                                    arrow_upward
-                                                </em>
+                                            <a
+                                                href="javascript:void(0)"
+                                                class="sortBtn"
+                                                title="Sắp xếp"
+                                            >
+                                                <em class="material-icons">arrow_upward</em>
                                             </a>
                                         </th>
                                         <th>Hình</th>
@@ -136,6 +142,10 @@ import notice from "../../../../../../../resources/js/mix/notice";
 export default {
     mixins: [mixin, notice],
     methods: {
+        async handleSearchInput() {
+            this.pagination.page = 1;
+            await this.getList();
+        },
         async getList() {
             let options = {
                 ...this.filters,
@@ -210,5 +220,4 @@ export default {
         }
     }
 }
-
 </style>

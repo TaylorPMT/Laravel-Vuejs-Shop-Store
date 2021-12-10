@@ -8,45 +8,41 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <BaseInput
-                    :label="'Tên Sản Phẩm'"
-                    :class_form="'form-control'"
-                    v-model="dataCurrent.name"
-                ></BaseInput>
-                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="dataCurrent.link"></BaseInput>
-                <BaseCkeditor :label="'Mô tả ngắn'" v-model="dataCurrent.description"></BaseCkeditor>
-                <BaseCkeditor
-                    :label="'Mô tả chi tiết'"
-                    :editorData="dataCurrent.content"
-                    v-model="dataCurrent.content"
-                ></BaseCkeditor>
+                <BaseInput :label="'Tên Sản Phẩm'" :class_form="'form-control'" v-model="data.name"></BaseInput>
+                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.link"></BaseInput>
+                <form>
+                    <BaseCkeditor
+                        :label="'Mô tả chi tiết'"
+                        :editorData="data.content"
+                        v-model="data.content"
+                    ></BaseCkeditor>
+                </form>
             </div>
             <div class="col-md-4">
-                <BaseReviewImage :dataCurrent="dataCurrent"></BaseReviewImage>
-                <!-- <div class="image-preview" v-if="!isEmpty(dataCurrent.image)">
-                    <div
-                        class="item"
-                        v-for="(item,index) in dataCurrent.image"
-                        :key="'image-' + index"
-                    >
-                        <img :src="asset(item)" :alt="'image-' + index" />
-                        <div class="delete-image" @click="deleteImage(index)">
-                            <span class="material-icons">clear</span>
-                        </div>
-                    </div>
-                </div>-->
+                <BaseCkeditor
+                    :label="'Thông tin'"
+                    :editorData="data.description"
+                    v-model="data.description"
+                ></BaseCkeditor>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
                 <BaseCkfinder
                     ref="ckfinder"
                     id="imagePage"
                     :multiImage="true"
                     @inputCKFinder="getValueImage($event)"
                 ></BaseCkfinder>
-                <div class="text-right">
-                    <button
-                        type="button"
-                        class="btn btn-sm btn-success"
-                        @click="handleFileUpload()"
-                    >Tải hình ảnh</button>
+                <button
+                    type="button"
+                    class="btn btn-sm btn-success"
+                    @click="handleFileUpload()"
+                >Tải hình ảnh</button>
+                <div class="image-preview" v-if="!isEmpty(data.image)">
+                    <div class="item" v-for="(item,index) in data.image" :key="'image-' + index">
+                        <img :src="asset(item)" :alt="'image-' + index" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,7 +59,13 @@ export default {
     mixins: [mixin, notice],
     data() {
         return {
-            content: "",
+            data: {
+                name: "",
+                content: "",
+                description: "",
+                link: "",
+                image: [],
+            },
             dataImage: {
                 type: Array,
                 default: () => []
@@ -72,27 +74,13 @@ export default {
     },
     computed: {
         ...mapState({
-            dataCurrent: state => state.storeCategory.DETAIL_CATEGORY
+
         })
     },
     methods: {
         async handleFileUpload() {
             this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
         },
-        async handleCategoryDetail() {
-            let route = this.getPathUrl();
-            let res = await this.$store.dispatch("findCategoryByID", [route.id, ""]);
-            if (res.error == true) {
-                this.error(res.message);
-                return this.abort(res.response_code);
-            }
-            return res;
-        },
-        async deleteImage(index) {
-            let vm = this;
-            vm.dataCurrent.image.splice(index, 1);
-        }
-        ,
         async getValueImage(e) {
             let vm = this;
             let arr = e.map((images, i) => {
@@ -100,18 +88,17 @@ export default {
                 return images.slice(index, images.length);
             });
             for (let property in arr) {
-                vm.dataCurrent.image.push(arr[property]);
+                vm.data.image.push(arr[property]);
             }
 
-            return vm.dataCurrent.image;
+            return vm.data.image;
 
         },
         async formatData() {
             let vm = this;
             let customer =
                 vm.readOnlyJson(
-                    vm.parseJSON(vm.dataCurrent),
-                    "id",
+                    vm.parseJSON(vm.data),
                     "content",
                     "description",
                     "link",
@@ -126,7 +113,7 @@ export default {
         async submit() {
             let show = confirm(this.message().confirm_update);
             if (show) {
-                let res = await this.$store.dispatch("updateCategory", {
+                let res = await this.$store.dispatch("createCategory", {
                     data: await this.formatData()
                 });
                 if (res.error == false) {
@@ -139,8 +126,6 @@ export default {
     },
 
     async created() {
-        await this.handleCategoryDetail();
-        this.loading = true
     },
 
     components: {
@@ -150,7 +135,23 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.content-group {
-    margin: 5% 4%;
+.image-preview {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    display: flex;
+    .item {
+        margin: 5px;
+        width: 100px;
+        height: 100px;
+        position: relative;
+        > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 </style>>

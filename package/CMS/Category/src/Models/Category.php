@@ -2,8 +2,8 @@
 
 namespace CMS\Category\Models;
 
-use App\Models\Product;
 use App\Traits\TraitModel;
+use CMS\Product\Models\Product;
 use Database\Factories\CategoryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
