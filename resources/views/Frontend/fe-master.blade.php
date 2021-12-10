@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="{{ asset('frontend/assets/css/main.min.css') }}">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<title>@yield('title')</title>
+		<!-- @include('Frontend.main.meta') -->
 	</head>
 	<body class="@yield('body-class')">
         @include('Frontend.main.header')
