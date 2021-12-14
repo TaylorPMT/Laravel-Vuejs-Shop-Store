@@ -37,7 +37,6 @@ foreach ($lines as $line) {
             break;
     }
 }
-
 $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https://' ? 'https://' : 'http://'; // Get HTTP or HTTPS
 $hostName = $_SERVER['HTTP_HOST'];
 $currentPath = $_SERVER['PHP_SELF'];
