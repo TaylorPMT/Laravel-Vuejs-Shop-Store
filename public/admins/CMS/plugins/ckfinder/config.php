@@ -16,8 +16,8 @@ if (!$lines) {
 if (!$lines) {
     $lines = file(__DIR__ . '/../../../../../.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 }
-$licenseName = 'codeve';
-$licenseKey = '*9?B-*2**-1**W-*2**-*E**-X*F*-1**F';
+$licenseName = 'japanav2.test';
+$licenseKey = '1GZGMGBWP7PH6QP8PVG64Z656USJ3';
 foreach ($lines as $line) {
     if (strpos(trim($line), '#') === 0) {
         continue;
