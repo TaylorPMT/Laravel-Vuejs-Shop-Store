@@ -16,8 +16,8 @@ if (!$lines) {
 if (!$lines) {
     $lines = file(__DIR__ . '/../../../../../.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 }
-$licenseName = 'japanav2.test';
-$licenseKey = '1GZGMGBWP7PH6QP8PVG64Z656USJ3';
+$licenseName = 'sonboutique.com';
+$licenseKey = '49U95AUP5EEM86S9Y43KE1V5RE8E9';
 foreach ($lines as $line) {
     if (strpos(trim($line), '#') === 0) {
         continue;
