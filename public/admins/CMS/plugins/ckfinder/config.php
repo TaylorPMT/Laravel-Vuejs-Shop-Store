@@ -8,47 +8,6 @@
 
 /*============================ PHP Error Reporting ====================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/debugging.html
-$currentPath = str_replace('public', '', $_SERVER['DOCUMENT_ROOT']);
-$lines = file($currentPath . '.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-if (!$lines) {
-    $lines = file($_SERVER['DOCUMENT_ROOT'] . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-}
-if (!$lines) {
-    $lines = file(__DIR__ . '/../../../../../.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-}
-$licenseName = 'japanav2.test';
-$licenseKey = '1GZGMGBWP7PH6QP8PVG64Z656USJ3';
-foreach ($lines as $line) {
-    if (strpos(trim($line), '#') === 0) {
-        continue;
-    }
-    list($name, $value) = explode('=', $line, 2);
-    $name = trim($name);
-    $value = trim($value);
-
-    switch ($name) {
-        case 'CKFINDER_LICENSE_NAME':
-            $licenseName = (string) str_replace('"', '', $value);
-            break;
-        case 'CKFINDER_LICENSE_KEY':
-            $licenseKey = (string) str_replace('"', '', $value);
-            break;
-        default:
-            break;
-    }
-}
-$protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https://' ? 'https://' : 'http://'; // Get HTTP or HTTPS
-$hostName = $_SERVER['HTTP_HOST'];
-$currentPath = $_SERVER['PHP_SELF'];
-// 1.use for domain e.g. https://abc.com/public/uploads/
-// 2.use for dev
-$local = substr($currentPath, 0, strpos($currentPath, 'public/'));
-
-if (strpos($currentPath, 'public')) {
-    $local .= 'public';
-}
-
-$base_url = $protocol . $hostName . $local . '/uploads/';
 
 // Production
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
@@ -67,14 +26,14 @@ $config = array();
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_authentication
 
 $config['authentication'] = function () {
-    return true;
+    return false;
 };
 
 /*============================ License Key ============================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = $licenseName;
-$config['licenseKey']  = $licenseKey;
+$config['licenseName'] = '';
+$config['licenseKey']  = '';
 
 /*============================ CKFinder Internal Directory ============================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_privateDir
@@ -103,11 +62,12 @@ $config['images'] = array(
 
 /*=================================== Backends ========================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_backends
+
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => $base_url,
-    //  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
+    'baseUrl'      => '/ckfinder/userfiles/',
+//  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8',
@@ -122,7 +82,7 @@ $config['resourceTypes'][] = array(
     'name'              => 'Files', // Single quotes not allowed.
     'directory'         => 'files',
     'maxSize'           => 0,
-    'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,pxd,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip,svg',
+    'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip',
     'deniedExtensions'  => '',
     'backend'           => 'default'
 );
@@ -131,16 +91,7 @@ $config['resourceTypes'][] = array(
     'name'              => 'Images',
     'directory'         => 'images',
     'maxSize'           => 0,
-    'allowedExtensions' => 'bmp,gif,jpeg,jpg,png,svg',
-    'deniedExtensions'  => '',
-    'backend'           => 'default'
-);
-
-$config['resourceTypes'][] = array(
-    'name'              => 'Category',
-    'directory'         => 'category',
-    'maxSize'           => 0,
-    'allowedExtensions' => 'bmp,gif,jpeg,jpg,png,svg',
+    'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
     'deniedExtensions'  => '',
     'backend'           => 'default'
 );
