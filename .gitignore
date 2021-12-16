@@ -55,6 +55,7 @@ Thumbs.db
 /storage/*.key
 /vendor
 /public/js/app.js
+ public/uploads/
 .composer-block.json
 .env
 .env.backup
