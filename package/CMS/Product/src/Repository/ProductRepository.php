@@ -29,6 +29,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         $builder = $this->_model;
         $builder = $builder->selectRaw(implode(',', $select_filter));
+        $builder = $builder->with([
+            'category'
+        ]);
         return $builder;
     }
 

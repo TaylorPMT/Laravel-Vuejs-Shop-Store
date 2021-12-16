@@ -11,7 +11,7 @@ class BaseRepository
     {
         $order_by = $request->get('order_by') ?? 'created_at';
         $sort_by  = $request->get('sort_by') ?? 'desc';
-        $paginate = $request->get('per_page') ?? 1;
+        $paginate = $request->get('per_page') ?? 20;
         $onEachSide = $request->get('page') ?? 20;
         $builder = $builder
             ->orderBy($order_by, $sort_by)

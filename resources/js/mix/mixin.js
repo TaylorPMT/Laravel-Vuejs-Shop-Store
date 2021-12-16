@@ -216,6 +216,9 @@ export default {
         isEmpty(str) {
             return (!str || str.length === 0);
         },
+        textEmpty(str) {
+            return !str ? str : '';
+        },
         confirm(str) {
             return confirm(str);
         },

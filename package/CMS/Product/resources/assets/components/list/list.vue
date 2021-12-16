@@ -58,6 +58,8 @@
                                                 <em class="material-icons">arrow_upward</em>
                                             </a>
                                         </th>
+                                        <th>SKU</th>
+                                        <th>Loại sản phẩm</th>
                                         <th>Hình</th>
                                         <th>Mô tả ngắn</th>
                                         <th style="text-align: right;">Lựa chọn</th>
@@ -69,7 +71,15 @@
                                             :key="index"
                                         >
                                             <td class="td-center">{{ listData.from + index }}</td>
-                                            <td>{{ item.name }}</td>
+                                            <td>
+                                                <span v-if="item.name">{{ item.name }}</span>
+                                            </td>
+                                            <td>
+                                                <span v-if="item.sku">{{ item.sku }}</span>
+                                            </td>
+                                            <td>
+                                                <span v-if="item.category">{{ item.category.name }}</span>
+                                            </td>
                                             <td class="box-image">
                                                 <div
                                                     class="image-preview"
@@ -157,7 +167,8 @@ export default {
         async handleDelete(id) {
             let show = confirm(this.message().confirm_delete);
             if (show) {
-                let res = await this.$store.dispatch("deleteCategoryByID", {
+
+                let res = await this.$store.dispatch("deleteProduct", {
                     id: id
                 });
                 if (res.error == false) {
@@ -181,9 +192,7 @@ export default {
     },
     data() {
         return {
-            title: " - Sản phẩm",
-            show_download: true,
-            downloading: false,
+            title: " Sản phẩm",
             pagination: {
                 page: 1,
                 per_page: 20

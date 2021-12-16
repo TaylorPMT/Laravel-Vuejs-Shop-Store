@@ -6,6 +6,7 @@ const api = {
 
     //product
     PRODUCT_LIST_ALL: '/admin/product',
-    PRODUCT_CREATE: '/admin/product/create'
+    PRODUCT_CREATE: '/admin/product/create',
+    PRODUCT_EDIT: '/admin/product/:id/edit',
 }
 export default api;

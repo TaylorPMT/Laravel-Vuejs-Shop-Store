@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-end">
                 <button class="btn btn-sm btn-success" @click="submit()">Lưu lại</button>
-                <BaseBackPage :page="`/admin/category`"></BaseBackPage>
+                <BaseBackPage :page="`/admin/product`"></BaseBackPage>
             </div>
         </div>
         <div class="row">
@@ -11,25 +11,40 @@
                 <BaseInput
                     :label="'Tên Sản Phẩm'"
                     :class_form="'form-control'"
-                    v-model="dataCurrent.name"
+                    v-model="dataProduct.name"
                 ></BaseInput>
-                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="dataCurrent.link"></BaseInput>
-                <BaseCkeditor :label="'Mô tả ngắn'" v-model="dataCurrent.description"></BaseCkeditor>
+                <BaseInput
+                    :label="'SKU Sản Phẩm'"
+                    :class_form="'form-control'"
+                    v-model="dataProduct.sku"
+                ></BaseInput>
+                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="dataProduct.url"></BaseInput>
+                <BaseFormSelect
+                    v-model="dataProduct.category_id"
+                    :label="'Loại sản phẩm'"
+                    :options="CategoryList.data"
+                />
                 <BaseCkeditor
                     :label="'Mô tả chi tiết'"
-                    :editorData="dataCurrent.content"
-                    v-model="dataCurrent.content"
+                    :editorData="dataProduct.content"
+                    v-model="dataProduct.content"
+                ></BaseCkeditor>
+                <BaseCkeditor
+                    :label="'Thông tin'"
+                    :editorData="dataProduct.description"
+                    v-model="dataProduct.description"
                 ></BaseCkeditor>
             </div>
             <div class="col-md-4">
-                <BaseReviewImage :dataCurrent="dataCurrent"></BaseReviewImage>
-                <BaseCkfinder
-                    ref="ckfinder"
-                    id="imagePage"
-                    :multiImage="true"
-                    @inputCKFinder="getValueImage($event)"
-                ></BaseCkfinder>
-                <div class="text-right">
+                <div class="col-md-8">
+                    <BaseReviewImage :dataCurrent="dataProduct"></BaseReviewImage>
+
+                    <BaseCkfinder
+                        ref="ckfinder"
+                        id="imagePage"
+                        :multiImage="true"
+                        @inputCKFinder="getValueImage($event)"
+                    ></BaseCkfinder>
                     <button
                         type="button"
                         class="btn btn-sm btn-success"
@@ -51,7 +66,15 @@ export default {
     mixins: [mixin, notice],
     data() {
         return {
-            content: "",
+            data: {
+                name: "",
+                content: "",
+                description: "",
+                link: "",
+                image: [],
+                category_id: "",
+                sku: "",
+            },
             dataImage: {
                 type: Array,
                 default: () => []
@@ -60,27 +83,28 @@ export default {
     },
     computed: {
         ...mapState({
-            dataCurrent: state => state.storeCategory.DETAIL_CATEGORY
+            dataProduct: state => state.storeProduct.DETAIL_PRODUCT,
+            CategoryList: state => state.storeCategory.LIST_CATEGORY
+
         })
     },
     methods: {
-        async handleFileUpload() {
-            this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
+        async handleGetAllCategory() {
+            let res = await this.$store.dispatch("getListCategory", {});
+
         },
-        async handleCategoryDetail() {
+        async handleDetail() {
             let route = this.getPathUrl();
-            let res = await this.$store.dispatch("findCategoryByID", [route.id, ""]);
+            let res = await this.$store.dispatch("findProduct", [route.id, ""]);
             if (res.error == true) {
                 this.error(res.message);
                 return this.abort(res.response_code);
             }
             return res;
         },
-        async deleteImage(index) {
-            let vm = this;
-            vm.dataCurrent.image.splice(index, 1);
-        }
-        ,
+        async handleFileUpload() {
+            this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
+        },
         async getValueImage(e) {
             let vm = this;
             let arr = e.map((images, i) => {
@@ -88,25 +112,26 @@ export default {
                 return images.slice(index, images.length);
             });
             for (let property in arr) {
-                vm.dataCurrent.image.push(arr[property]);
+                vm.dataProduct.image.push(arr[property]);
             }
 
-            return vm.dataCurrent.image;
+            return vm.dataProduct.image;
 
         },
         async formatData() {
             let vm = this;
             let customer =
                 vm.readOnlyJson(
-                    vm.parseJSON(vm.dataCurrent),
+                    vm.parseJSON(vm.dataProduct),
                     "id",
+                    "name",
                     "content",
                     "description",
                     "link",
-                    "name",
-                    "orders",
-                    "parent_id",
-                    'image'
+                    "image",
+                    "category_id",
+                    'image',
+                    'sku'
                 )
                 ;
             return customer;
@@ -114,7 +139,7 @@ export default {
         async submit() {
             let show = confirm(this.message().confirm_update);
             if (show) {
-                let res = await this.$store.dispatch("updateCategory", {
+                let res = await this.$store.dispatch("updateProduct", {
                     data: await this.formatData()
                 });
                 if (res.error == false) {
@@ -127,8 +152,8 @@ export default {
     },
 
     async created() {
-        await this.handleCategoryDetail();
-        this.loading = true
+        await this.handleGetAllCategory();
+        await this.handleDetail();
     },
 
     components: {
@@ -137,8 +162,4 @@ export default {
     }
 };
 </script>
-<style lang="scss" scoped>
-.content-group {
-    margin: 5% 4%;
-}
-</style>>
+

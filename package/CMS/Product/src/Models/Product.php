@@ -5,15 +5,28 @@ namespace CMS\Product\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\TraitModel;
+use CMS\Category\Models\Category;
 
 class Product extends Model
 {
     use HasFactory;
     use TraitModel;
     public $table = 'products';
+    protected $guarded = [];
+    protected $attributes = [
+        'id'          => '',
+        'name'        => '',
+        'sku'         => '',
+        'image'       => '',
+        'description' => '',
+        'content'     => '',
+        'category_id' => '',
+        'link'        => '',
+    ];
     protected $casts = [
         'image' => 'json',
     ];
+
     public function setImageAttribute($value)
     {
         $this->attributes['image'] = json_encode($value);
@@ -21,6 +34,11 @@ class Product extends Model
 
     public function secureDeleteTrait($id)
     {
-        return true;
+        return Product::find($id)->delete();
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

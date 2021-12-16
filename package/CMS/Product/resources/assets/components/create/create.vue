@@ -3,46 +3,45 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-end">
                 <button class="btn btn-sm btn-success" @click="submit()">Lưu lại</button>
-                <BaseBackPage :page="`/admin/category`"></BaseBackPage>
+                <BaseBackPage :page="`/admin/product`"></BaseBackPage>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <BaseInput :label="'Tên Sản Phẩm'" :class_form="'form-control'" v-model="data.name"></BaseInput>
-                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.link"></BaseInput>
-                <form>
-                    <BaseCkeditor
-                        :label="'Mô tả chi tiết'"
-                        :editorData="data.content"
-                        v-model="data.content"
-                    ></BaseCkeditor>
-                </form>
-            </div>
-            <div class="col-md-4">
+                <BaseInput :label="'SKU Sản Phẩm'" :class_form="'form-control'" v-model="data.sku"></BaseInput>
+                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.url"></BaseInput>
+                <BaseFormSelect
+                    v-model="data.category_id"
+                    :label="'Loại sản phẩm'"
+                    :options="CategoryList.data"
+                />
+                <BaseCkeditor
+                    :label="'Mô tả chi tiết'"
+                    :editorData="data.content"
+                    v-model="data.content"
+                ></BaseCkeditor>
                 <BaseCkeditor
                     :label="'Thông tin'"
                     :editorData="data.description"
                     v-model="data.description"
                 ></BaseCkeditor>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <BaseCkfinder
-                    ref="ckfinder"
-                    id="imagePage"
-                    :multiImage="true"
-                    @inputCKFinder="getValueImage($event)"
-                ></BaseCkfinder>
-                <button
-                    type="button"
-                    class="btn btn-sm btn-success"
-                    @click="handleFileUpload()"
-                >Tải hình ảnh</button>
-                <div class="image-preview" v-if="!isEmpty(data.image)">
-                    <div class="item" v-for="(item,index) in data.image" :key="'image-' + index">
-                        <img :src="asset(item)" :alt="'image-' + index" />
-                    </div>
+            <div class="col-md-4">
+                <div class="col-md-8">
+                    <BaseReviewImage :dataCurrent="data"></BaseReviewImage>
+
+                    <BaseCkfinder
+                        ref="ckfinder"
+                        id="imagePage"
+                        :multiImage="true"
+                        @inputCKFinder="getValueImage($event)"
+                    ></BaseCkfinder>
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-success"
+                        @click="handleFileUpload()"
+                    >Tải hình ảnh</button>
                 </div>
             </div>
         </div>
@@ -65,19 +64,25 @@ export default {
                 description: "",
                 link: "",
                 image: [],
+                category_id: "",
+                sku: "",
             },
             dataImage: {
                 type: Array,
                 default: () => []
             },
-        };
+        }
     },
     computed: {
         ...mapState({
-
+            CategoryList: state => state.storeCategory.LIST_CATEGORY
         })
     },
     methods: {
+        async handleGetAllCategory() {
+            let res = await this.$store.dispatch("getListCategory", {});
+            console.log(this.CategoryList.data);
+        },
         async handleFileUpload() {
             this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
         },
@@ -99,13 +104,14 @@ export default {
             let customer =
                 vm.readOnlyJson(
                     vm.parseJSON(vm.data),
+                    "name",
                     "content",
                     "description",
                     "link",
-                    "name",
-                    "orders",
-                    "parent_id",
-                    'image'
+                    "image",
+                    "category_id",
+                    'image',
+                    'sku'
                 )
                 ;
             return customer;
@@ -113,7 +119,7 @@ export default {
         async submit() {
             let show = confirm(this.message().confirm_update);
             if (show) {
-                let res = await this.$store.dispatch("createCategory", {
+                let res = await this.$store.dispatch("createProduct", {
                     data: await this.formatData()
                 });
                 if (res.error == false) {
@@ -126,6 +132,7 @@ export default {
     },
 
     async created() {
+        await this.handleGetAllCategory();
     },
 
     components: {
