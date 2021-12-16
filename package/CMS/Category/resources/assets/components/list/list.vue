@@ -79,6 +79,7 @@
                                                         class="item"
                                                         v-for="(item,index) in item.image"
                                                         :key="'image-' + index"
+                                                        v-if="index < 1"
                                                     >
                                                         <img
                                                             :src="asset(item)"

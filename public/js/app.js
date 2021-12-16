@@ -2885,6 +2885,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -3660,6 +3661,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -72196,21 +72198,23 @@ var render = function() {
                                       "div",
                                       { staticClass: "image-preview" },
                                       _vm._l(item.image, function(item, index) {
-                                        return _c(
-                                          "div",
-                                          {
-                                            key: "image-" + index,
-                                            staticClass: "item"
-                                          },
-                                          [
-                                            _c("img", {
-                                              attrs: {
-                                                src: _vm.asset(item),
-                                                alt: "image-" + index
-                                              }
-                                            })
-                                          ]
-                                        )
+                                        return index < 1
+                                          ? _c(
+                                              "div",
+                                              {
+                                                key: "image-" + index,
+                                                staticClass: "item"
+                                              },
+                                              [
+                                                _c("img", {
+                                                  attrs: {
+                                                    src: _vm.asset(item),
+                                                    alt: "image-" + index
+                                                  }
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e()
                                       }),
                                       0
                                     )
@@ -72823,21 +72827,23 @@ var render = function() {
                                       "div",
                                       { staticClass: "image-preview" },
                                       _vm._l(item.image, function(item, index) {
-                                        return _c(
-                                          "div",
-                                          {
-                                            key: "image-" + index,
-                                            staticClass: "item"
-                                          },
-                                          [
-                                            _c("img", {
-                                              attrs: {
-                                                src: _vm.asset(item),
-                                                alt: "image-" + index
-                                              }
-                                            })
-                                          ]
-                                        )
+                                        return index < 1
+                                          ? _c(
+                                              "div",
+                                              {
+                                                key: "image-" + index,
+                                                staticClass: "item"
+                                              },
+                                              [
+                                                _c("img", {
+                                                  attrs: {
+                                                    src: _vm.asset(item),
+                                                    alt: "image-" + index
+                                                  }
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e()
                                       }),
                                       0
                                     )
