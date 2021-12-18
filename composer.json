@@ -26,10 +26,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "CMS\\Films\\": "package/CMS/Films/src",
             "CMS\\Admin\\": "package/CMS/Admin/src",
             "CMS\\Category\\": "package/CMS/Category/src",
-            "CMS\\Product\\": "package/CMS/Product/src"
+            "CMS\\Product\\": "package/CMS/Product/src",
+            "CMS\\Frontend\\": "package/CMS/Frontend/src"
         }
     },
     "autoload-dev": {

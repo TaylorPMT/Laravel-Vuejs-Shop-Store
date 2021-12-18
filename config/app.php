@@ -175,10 +175,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        CMS\Films\Providers\FilmsServiceProviders::class,
         CMS\Admin\Providers\AdminProviders::class,
         CMS\Category\Providers\CategoryProviders::class,
         CMS\Product\Providers\ProductProviders::class,
+        CMS\Frontend\Providers\FrontendProviders::class
 
     ],
 

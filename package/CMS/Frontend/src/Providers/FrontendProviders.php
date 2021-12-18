@@ -1,0 +1,35 @@
+<?php
+
+namespace CMS\Frontend\Providers;
+
+use App\Helpers\Helpers;
+use Illuminate\Support\ServiceProvider;
+use CMS\Product\Repository\ProductRepository;
+use CMS\Product\Repository\ProductRepositoryInterface;
+
+class  FrontendProviders  extends ServiceProvider
+{
+    use Helpers;
+    public function boot()
+    {
+        $this->loadRoutesFrom(__DIR__ . "/../../routes/web.php");
+        $this->loadRoutesFrom(__DIR__ . "/../../routes/api.php");
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'product');
+    }
+    public function register()
+    {
+        $configs = $this->split_files_with_basename($this->app['files']->glob(__DIR__ . '/../../config/*.php'));
+        foreach ($configs as $key => $row) {
+            $this->mergeConfigFrom($row, $key);
+        }
+        $repository = [
+            [
+                'ỉnterface' => ProductRepositoryInterface::class,
+                'binding'   => ProductRepository::class,
+            ]
+        ];
+        foreach ($repository as $bind) {
+            $this->app->bind($bind['ỉnterface'], $bind['binding']);
+        }
+    }
+}
