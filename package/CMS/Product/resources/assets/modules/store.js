@@ -1,4 +1,4 @@
-import storeProduct from "../modules/productStore";
+import storeProduct from "../modules/storeProduct";
 export default {
     storeProduct
 }

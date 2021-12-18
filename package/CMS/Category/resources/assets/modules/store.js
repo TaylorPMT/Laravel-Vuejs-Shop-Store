@@ -1,4 +1,4 @@
-import storeCategory from "../modules/CategoryStore";
-export default{
+import storeCategory from "../modules/storeCategory";
+export default {
     storeCategory
 }
