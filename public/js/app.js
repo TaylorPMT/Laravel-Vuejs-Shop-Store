@@ -5556,6 +5556,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     options: {
@@ -74544,7 +74548,7 @@ var render = function() {
         _c("option", [_vm._v("Chọn " + _vm._s(_vm.label))]),
         _vm._v(" "),
         _vm._l(_vm.options, function(option, key) {
-          return _c("option", { domProps: { value: option.id } }, [
+          return _c("option", { key: key, domProps: { value: option.id } }, [
             _vm._v(_vm._s(option.name))
           ])
         })

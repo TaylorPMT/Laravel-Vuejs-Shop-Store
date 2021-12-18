@@ -8,7 +8,11 @@
             v-model="inputValue"
         >
             <option>Chọn {{ label }}</option>
-            <option v-bind:value="option.id" v-for="(option, key) in options">{{ option.name }}</option>
+            <option
+                v-bind:key="key"
+                v-bind:value="option.id"
+                v-for="(option, key) in options"
+            >{{ option.name }}</option>
         </select>
     </div>
 </template>
