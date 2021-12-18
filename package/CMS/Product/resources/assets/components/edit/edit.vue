@@ -36,21 +36,18 @@
                 ></BaseCkeditor>
             </div>
             <div class="col-md-4">
-                <div class="col-md-8">
-                    <BaseReviewImage :dataCurrent="dataProduct"></BaseReviewImage>
-
-                    <BaseCkfinder
-                        ref="ckfinder"
-                        id="imagePage"
-                        :multiImage="true"
-                        @inputCKFinder="getValueImage($event)"
-                    ></BaseCkfinder>
-                    <button
-                        type="button"
-                        class="btn btn-sm btn-success"
-                        @click="handleFileUpload()"
-                    >Tải hình ảnh</button>
-                </div>
+                <BaseReviewImage :dataCurrent="dataProduct"></BaseReviewImage>
+                <BaseCkfinder
+                    ref="ckfinder"
+                    id="imagePage"
+                    :multiImage="true"
+                    @inputCKFinder="getValueImage($event)"
+                ></BaseCkfinder>
+                <button
+                    type="button"
+                    class="btn btn-sm btn-success"
+                    @click="handleFileUpload()"
+                >Tải hình ảnh</button>
             </div>
         </div>
     </div>

@@ -13,16 +13,6 @@ class Product extends Model
     use TraitModel;
     public $table = 'products';
     protected $guarded = [];
-    protected $attributes = [
-        'id'          => '',
-        'name'        => '',
-        'sku'         => '',
-        'image'       => '',
-        'description' => '',
-        'content'     => '',
-        'category_id' => '',
-        'link'        => '',
-    ];
     protected $casts = [
         'image' => 'json',
     ];
