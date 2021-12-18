@@ -48,20 +48,7 @@ export default {
                 return this.$route.path.indexOf(path) === 0;
             });
         },
-        async getSidebar() {
-            if (this.isEmpty(this.menuSidebar)) {
-                let res = await this.$store.dispatch("getSidebarMenu", {
-                    params: {
-                        config: "sidebar"
-                    }
-                });
-                return true;
-            }
-        }
     },
-    async created() {
-        this.getSidebar();
-    }
 };
 </script>
 <style lang="sass" scoped>

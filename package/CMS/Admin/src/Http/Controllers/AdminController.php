@@ -17,7 +17,7 @@ class AdminController extends BaseController
     public function getSidebar(Request $request)
     {
         $config_name = $request->config;
-        $config = config($config_name);
+        $config = config('sidebar');
         return $this->responseJson(null, 200, 'Thành công', $config);
     }
     public function getInfo(Request $request)

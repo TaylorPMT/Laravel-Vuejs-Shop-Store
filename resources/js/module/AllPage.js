@@ -53,8 +53,8 @@ const mutations = {
 };
 const actions = {
     async getSidebarMenu({ state, commit }, options) {
-        let res = await axios.getList("/api/admin/config?", options);
-        commit("SET_MENU_SIDEBAR", {
+        let res = await axios.getList("/api/admin/config?siderbar", options);
+        this.commit("SET_MENU_SIDEBAR", {
             data: res.data.data
         });
         return true;
