@@ -3178,26 +3178,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3239,7 +3219,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   fields: _this2.filters.toString()
                 }, _this2.pagination);
                 _context2.next = 3;
-                return _this2.$store.dispatch("getListCategory", options);
+                return _this2.$store.dispatch("getListMenu", options);
 
               case 3:
                 res = _context2.sent;
@@ -3269,7 +3249,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context3.next = 4;
-                return _this3.$store.dispatch("deleteCategoryByID", {
+                return _this3.$store.dispatch("deleteMenu", {
                   id: id
                 });
 
@@ -3322,12 +3302,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
     listData: function listData(state) {
-      return state.storeCategory.LIST_CATEGORY;
+      return state.storeMenu.LIST;
     }
   })),
   data: function data() {
     return {
-      title: "Quản lý loại sản phẩm",
+      title: "Quản lý menu",
       show_download: true,
       downloading: false,
       pagination: {
@@ -72760,11 +72740,11 @@ var render = function() {
                   attrs: {
                     to: encodeURI("/admin/category/create"),
                     rel: "tooltip",
-                    title: "Thêm loại"
+                    title: "Thêm"
                   }
                 },
                 [
-                  _c("span", [_vm._v("Thêm loại sản phẩm mới")]),
+                  _c("span", [_vm._v("Thêm")]),
                   _vm._v(" "),
                   _c("span", { staticClass: "material-icons" }, [_vm._v("add")])
                 ]
@@ -72836,37 +72816,6 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(item.name))]),
                               _vm._v(" "),
-                              _c("td", { staticClass: "box-image" }, [
-                                !_vm.isEmpty(item.image)
-                                  ? _c(
-                                      "div",
-                                      { staticClass: "image-preview" },
-                                      _vm._l(item.image, function(item, index) {
-                                        return index < 1
-                                          ? _c(
-                                              "div",
-                                              {
-                                                key: "image-" + index,
-                                                staticClass: "item"
-                                              },
-                                              [
-                                                _c("img", {
-                                                  attrs: {
-                                                    src: _vm.asset(item),
-                                                    alt: "image-" + index
-                                                  }
-                                                })
-                                              ]
-                                            )
-                                          : _vm._e()
-                                      }),
-                                      0
-                                    )
-                                  : _vm._e()
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.description))]),
-                              _vm._v(" "),
                               _c(
                                 "td",
                                 { staticClass: "td-actions text-right" },
@@ -72877,7 +72826,7 @@ var render = function() {
                                       staticClass: "btn btn-success",
                                       attrs: {
                                         to: encodeURI(
-                                          "/admin/category/" + item.id + "/edit"
+                                          "/admin/menu/" + item.id + "/edit"
                                         ),
                                         rel: "tooltip",
                                         title: "Chỉnh sửa"
@@ -72899,7 +72848,7 @@ var render = function() {
                                       attrs: {
                                         type: "button",
                                         rel: "tooltip",
-                                        title: "Xóa loại sản phẩm"
+                                        title: "Xóa"
                                       },
                                       on: {
                                         click: function($event) {
@@ -72931,7 +72880,7 @@ var render = function() {
                           attrs: {
                             className: "",
                             data: _vm.listData,
-                            namePaginate: "Customer",
+                            namePaginate: "Menu",
                             classNameSelect: "",
                             options: _vm.options
                           },
@@ -73005,10 +72954,6 @@ var staticRenderFns = [
           ]
         )
       ]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Hình")]),
-      _vm._v(" "),
-      _c("th", { staticStyle: { width: "40%" } }, [_vm._v("Mô tả ngắn")]),
       _vm._v(" "),
       _c("th", { staticStyle: { "text-align": "right" } }, [_vm._v("Lựa chọn")])
     ])
@@ -93576,19 +93521,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var axios = new _resources_js_axios_callAxios__WEBPACK_IMPORTED_MODULE_1__["callAxios"]();
 var state = {
-  LIST_CATEGORY: [],
-  DETAIL_CATEGORY: []
+  LIST: [],
+  DETAIL: []
 };
 var mutations = {
   SET_LIST: function SET_LIST(state, data) {
-    state.LIST_CATEGORY = data.data;
+    state.LIST = data.data;
   },
   SET_DETAIL: function SET_DETAIL(state, data) {
-    state.DETAIL_CATEGORY = data.data;
+    state.DETAIL = data.data;
   }
 };
 var actions = {
-  getList: function getList(_ref, options) {
+  getListMenu: function getListMenu(_ref, options) {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -93618,7 +93563,7 @@ var actions = {
       }, _callee);
     }))();
   },
-  find: function find(_ref2, _ref3) {
+  findMenu: function findMenu(_ref2, _ref3) {
     var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -93650,7 +93595,7 @@ var actions = {
       }, _callee2);
     }))();
   },
-  update: function update(_ref5, options) {
+  updateMenu: function updateMenu(_ref5, options) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var state, dispatch, url, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -93674,7 +93619,7 @@ var actions = {
       }, _callee3);
     }))();
   },
-  "delete": function _delete(_ref6, options) {
+  deleteMenu: function deleteMenu(_ref6, options) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var state, dispatch, url, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -93698,7 +93643,7 @@ var actions = {
       }, _callee4);
     }))();
   },
-  create: function create(_ref7, options) {
+  createMenu: function createMenu(_ref7, options) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
       var state, dispatch, url, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
@@ -97118,7 +97063,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _module_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/store */ "./resources/js/module/store.js");
 /* harmony import */ var _package_CMS_Category_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../package/CMS/Category/resources/assets/modules/store */ "./package/CMS/Category/resources/assets/modules/store.js");
 /* harmony import */ var _package_CMS_Product_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../package/CMS/Product/resources/assets/modules/store */ "./package/CMS/Product/resources/assets/modules/store.js");
-/* harmony import */ var _package_CMS_Menu_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../package/CMS/Menu/resources/assets/modules/store */ "./package/CMS/Menu/resources/assets/modules/store.js");
+/* harmony import */ var _package_CMS_Menu_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../package/CMS/Menu/resources/assets/modules/store */ "./package/CMS/Menu/resources/assets/modules/store.js");
 
 
 
@@ -97128,7 +97073,7 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
-var modules = Object.assign(_module_store__WEBPACK_IMPORTED_MODULE_3__["default"], _package_CMS_Category_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_4__["default"], _package_CMS_Product_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_5__["default"], _package_CMS_Menu_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_7__["default"]);
+var modules = Object.assign(_module_store__WEBPACK_IMPORTED_MODULE_3__["default"], _package_CMS_Category_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_4__["default"], _package_CMS_Product_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_5__["default"], _package_CMS_Menu_resources_assets_modules_store__WEBPACK_IMPORTED_MODULE_6__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: modules
 }));

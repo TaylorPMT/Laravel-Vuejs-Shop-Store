@@ -9,10 +9,10 @@
                                 encodeURI('/admin/category/create')
                             "
                             rel="tooltip"
-                            title="Thêm loại"
+                            title="Thêm"
                             class="btn btn-success btn-primary"
                         >
-                            <span>Thêm loại sản phẩm mới</span>
+                            <span>Thêm</span>
                             <span class="material-icons">add</span>
                         </router-link>
                     </div>
@@ -58,8 +58,6 @@
                                                 <em class="material-icons">arrow_upward</em>
                                             </a>
                                         </th>
-                                        <th>Hình</th>
-                                        <th style="width: 40%;">Mô tả ngắn</th>
                                         <th style="text-align: right;">Lựa chọn</th>
                                     </thead>
                                     <tbody v-if="listData">
@@ -70,29 +68,11 @@
                                         >
                                             <td class="td-center">{{ listData.from + index }}</td>
                                             <td>{{ item.name }}</td>
-                                            <td class="box-image">
-                                                <div
-                                                    class="image-preview"
-                                                    v-if="!isEmpty(item.image)"
-                                                >
-                                                    <div
-                                                        class="item"
-                                                        v-for="(item,index) in item.image"
-                                                        :key="'image-' + index"
-                                                        v-if="index < 1"
-                                                    >
-                                                        <img
-                                                            :src="asset(item)"
-                                                            :alt="'image-' + index"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>{{ item.description }}</td>
+
                                             <td class="td-actions text-right">
                                                 <router-link
                                                     :to="
-                                                        encodeURI('/admin/category/' +
+                                                        encodeURI('/admin/menu/' +
                                                             item.id +
                                                             '/edit')
                                                     "
@@ -105,7 +85,7 @@
                                                 <button
                                                     type="button"
                                                     rel="tooltip"
-                                                    title="Xóa loại sản phẩm"
+                                                    title="Xóa"
                                                     class="btn btn-danger"
                                                     @click="handleDelete(item.id)"
                                                 >
@@ -119,7 +99,7 @@
                                             :className="''"
                                             v-model="pagination"
                                             :data="listData"
-                                            namePaginate="Customer"
+                                            namePaginate="Menu"
                                             :classNameSelect="''"
                                             :options="options"
                                         ></Paginate>
@@ -153,12 +133,12 @@ export default {
                 fields: this.filters.toString(),
                 ...this.pagination
             };
-            let res = await this.$store.dispatch("getListCategory", options);
+            let res = await this.$store.dispatch("getListMenu", options);
         },
         async handleDelete(id) {
             let show = confirm(this.message().confirm_delete);
             if (show) {
-                let res = await this.$store.dispatch("deleteCategoryByID", {
+                let res = await this.$store.dispatch("deleteMenu", {
                     id: id
                 });
                 if (res.error == false) {
@@ -177,12 +157,12 @@ export default {
     },
     computed: {
         ...mapState({
-            listData: state => state.storeCategory.LIST_CATEGORY
+            listData: state => state.storeMenu.LIST
         })
     },
     data() {
         return {
-            title: "Quản lý loại sản phẩm",
+            title: "Quản lý menu",
             show_download: true,
             downloading: false,
             pagination: {

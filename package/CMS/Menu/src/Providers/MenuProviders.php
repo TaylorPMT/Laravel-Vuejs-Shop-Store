@@ -3,6 +3,8 @@
 namespace CMS\Menu\Providers;
 
 use App\Helpers\Helpers;
+use CMS\Menu\Repository\MenuInterface;
+use CMS\Menu\Repository\MenuRepository;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -25,8 +27,8 @@ class  MenuProviders  extends ServiceProvider
         }
         $repository = [
             [
-                'ỉnterface' => CategoryInterface::class,
-                'binding'   => CategoryRepository::class,
+                'ỉnterface' => MenuInterface::class,
+                'binding'   => MenuRepository::class,
             ]
         ];
         foreach ($repository as $bind) {
