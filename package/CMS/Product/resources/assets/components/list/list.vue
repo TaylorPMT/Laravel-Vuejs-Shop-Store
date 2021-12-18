@@ -164,6 +164,7 @@ export default {
                 ...this.pagination
             };
             let res = await this.$store.dispatch("getListProduct", options);
+            return res;
         },
         async handleDelete(id) {
             let show = confirm(this.message().confirm_delete);

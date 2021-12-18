@@ -4201,8 +4201,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 res = _context2.sent;
+                return _context2.abrupt("return", res);
 
-              case 4:
+              case 5:
               case "end":
                 return _context2.stop();
             }
