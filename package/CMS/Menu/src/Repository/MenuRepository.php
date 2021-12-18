@@ -2,15 +2,15 @@
 
 namespace CMS\Menu\Repository;
 
+use App\Models\Menu;
 use App\Repository\BaseRepository;
-use CMS\Category\Models\Category;
 
 class MenuRepository extends BaseRepository implements MenuInterface
 {
 
     protected $_model;
 
-    public function __construct(Category $model)
+    public function __construct(Menu $model)
     {
         $this->_model = $model;
     }
@@ -20,12 +20,10 @@ class MenuRepository extends BaseRepository implements MenuInterface
         $select_filter = [
             'id',
             'name',
-            'image',
-            'description',
-            'content',
-            'parent_id',
             'link',
-            'orders'
+            'parent_id',
+            'category_id',
+            'order',
         ];
 
         $builder = $this->_model;

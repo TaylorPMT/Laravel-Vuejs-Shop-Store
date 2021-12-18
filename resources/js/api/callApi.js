@@ -11,5 +11,11 @@ const callApi = {
         EDIT: prefix + `/product/update/`,
         DELETE: prefix + `/product/delete/`,
     },
+    MENU: {
+        LIST: prefix + `/menu/list?`,
+        CREATE: prefix + `/menu/create`,
+        EDIT: prefix + `/menu/update/`,
+        DELETE: prefix + `/menu/delete/`,
+    },
 };
 export default callApi;
