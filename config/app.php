@@ -178,7 +178,8 @@ return [
         CMS\Admin\Providers\AdminProviders::class,
         CMS\Category\Providers\CategoryProviders::class,
         CMS\Product\Providers\ProductProviders::class,
-        CMS\Frontend\Providers\FrontendProviders::class
+        CMS\Frontend\Providers\FrontendProviders::class,
+        CMS\Menu\Providers\MenuProviders::class,
 
     ],
 
