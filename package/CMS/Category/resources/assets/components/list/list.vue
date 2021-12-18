@@ -142,6 +142,21 @@ import notice from "../../../../../../../resources/js/mix/notice";
 
 export default {
     mixins: [mixin, notice],
+
+    watch: {
+        "pagination.page": async function (val) {
+            let vm = this;
+            if (val) {
+                await vm.getList();
+            }
+        },
+        "pagination.per_page": async function (val) {
+            let vm = this;
+            if (val) {
+                await vm.getList();
+            }
+        }
+    },
     methods: {
         async handleSearchInput() {
             this.pagination.page = 1;

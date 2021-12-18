@@ -2893,115 +2893,179 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_resources_js_mix_mixin__WEBPACK_IMPORTED_MODULE_2__["default"], _resources_js_mix_notice__WEBPACK_IMPORTED_MODULE_5__["default"]],
-  methods: {
-    handleSearchInput: function handleSearchInput() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+  watch: {
+    "pagination.page": function () {
+      var _paginationPage = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(val) {
+        var vm;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.pagination.page = 1;
-                _context.next = 3;
-                return _this.getList();
+                vm = this;
 
-              case 3:
+                if (!val) {
+                  _context.next = 4;
+                  break;
+                }
+
+                _context.next = 4;
+                return vm.getList();
+
+              case 4:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
-    getList: function getList() {
-      var _this2 = this;
+        }, _callee, this);
+      }));
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var options, res;
+      function paginationPage(_x) {
+        return _paginationPage.apply(this, arguments);
+      }
+
+      return paginationPage;
+    }(),
+    "pagination.per_page": function () {
+      var _paginationPer_page = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(val) {
+        var vm;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                options = _objectSpread(_objectSpread({}, _this2.filters), {}, {
-                  fields: _this2.filters.toString()
-                }, _this2.pagination);
-                _context2.next = 3;
-                return _this2.$store.dispatch("getListCategory", options);
+                vm = this;
 
-              case 3:
-                res = _context2.sent;
+                if (!val) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                _context2.next = 4;
+                return vm.getList();
 
               case 4:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
-      }))();
-    },
-    handleDelete: function handleDelete(id) {
-      var _this3 = this;
+        }, _callee2, this);
+      }));
+
+      function paginationPer_page(_x2) {
+        return _paginationPer_page.apply(this, arguments);
+      }
+
+      return paginationPer_page;
+    }()
+  },
+  methods: {
+    handleSearchInput: function handleSearchInput() {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var show, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                show = confirm(_this3.message().confirm_delete);
+                _this.pagination.page = 1;
+                _context3.next = 3;
+                return _this.getList();
 
-                if (!show) {
-                  _context3.next = 10;
-                  break;
-                }
-
-                _context3.next = 4;
-                return _this3.$store.dispatch("deleteCategoryByID", {
-                  id: id
-                });
-
-              case 4:
-                res = _context3.sent;
-
-                if (!(res.error == false)) {
-                  _context3.next = 10;
-                  break;
-                }
-
-                _context3.next = 8;
-                return _this3.success(res.message, "");
-
-              case 8:
-                _context3.next = 10;
-                return _this3.getList();
-
-              case 10:
+              case 3:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
       }))();
+    },
+    getList: function getList() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var options, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                options = _objectSpread(_objectSpread({}, _this2.filters), {}, {
+                  fields: _this2.filters.toString()
+                }, _this2.pagination);
+                _context4.next = 3;
+                return _this2.$store.dispatch("getListCategory", options);
+
+              case 3:
+                res = _context4.sent;
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    handleDelete: function handleDelete(id) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var show, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                show = confirm(_this3.message().confirm_delete);
+
+                if (!show) {
+                  _context5.next = 10;
+                  break;
+                }
+
+                _context5.next = 4;
+                return _this3.$store.dispatch("deleteCategoryByID", {
+                  id: id
+                });
+
+              case 4:
+                res = _context5.sent;
+
+                if (!(res.error == false)) {
+                  _context5.next = 10;
+                  break;
+                }
+
+                _context5.next = 8;
+                return _this3.success(res.message, "");
+
+              case 8:
+                _context5.next = 10;
+                return _this3.getList();
+
+              case 10:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
     }
   },
   created: function created() {
     var _this4 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              _context4.next = 2;
+              _context6.next = 2;
               return _this4.getList();
 
             case 2:
             case "end":
-              return _context4.stop();
+              return _context6.stop();
           }
         }
-      }, _callee4);
+      }, _callee6);
     }))();
   },
   components: {
