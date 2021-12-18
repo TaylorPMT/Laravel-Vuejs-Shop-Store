@@ -15,7 +15,8 @@
                             <div class="title"> <a href="{{ route('frontend.intro') }}">Giới thiệu</a></div>
                         </li>
                         <li>
-                            <div class="title"> <a href="">Bộ sưu tập</a></div>
+                            <div class="title"> <a href="{{ route('frontend.gallery') }}">Bộ sưu tập</a>
+                            </div>
                         </li>
                         <li class="dropdown">
                             <div class="title"><a href="">Hoa sự kiện</a></div>

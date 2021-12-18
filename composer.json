@@ -29,7 +29,8 @@
             "CMS\\Admin\\": "package/CMS/Admin/src",
             "CMS\\Category\\": "package/CMS/Category/src",
             "CMS\\Product\\": "package/CMS/Product/src",
-            "CMS\\Frontend\\": "package/CMS/Frontend/src"
+            "CMS\\Frontend\\": "package/CMS/Frontend/src",
+            "CMS\\Menu\\": "package/CMS/Menu/src"
         }
     },
     "autoload-dev": {
