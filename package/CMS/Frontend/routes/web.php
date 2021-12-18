@@ -2,9 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('', function () {
-    return view('Frontend.pages.index.index');
+
+Route::name('frontend.')->group(function () {
+    Route::group([
+        'namespace' => 'CMS\Frontend\Http\Controllers',
+    ], function () {
+        Route::get('', 'HomeController@home')->name('home');
+        Route::get('gallery', 'HomeController@home')->name('gallery');
+        Route::get('intro', 'HomeController@home')->name('intro');
+    });
 });
+
 Route::get('news-list', function () {
     return view('Frontend.pages.news.list');
 });
@@ -19,10 +27,4 @@ Route::get('product-detail', function () {
 });
 Route::get('contact', function () {
     return view('Frontend.pages.contact.contact');
-});
-Route::get('intro', function () {
-    return view('Frontend.pages.intro.intro');
-});
-Route::get('gallery', function () {
-    return view('Frontend.pages.gallery.gallery');
 });

@@ -3,14 +3,16 @@
         <div class="container">
             <div class="wrap-header">
                 <div class="hamburger-menu"><span></span></div>
-                <div class="logo"><a class="img" href="/" title="Trang chủ"><img class="lazyload" data-src="{{ asset('frontend/assets/img/logo-main.jpg') }}" alt="Logo" title="Sơn Boutique" ></a></div>
+                <div class="logo"><a class="img" href="/" title="Trang chủ"><img
+                            class="lazyload" data-src="{{ asset('frontend/assets/img/logo-main.jpg') }}"
+                            alt="Logo" title="Sơn Boutique"></a></div>
                 <div class="wrap-menu">
                     <ul class="primary-menu">
                         <li>
-                            <div class="title"> <a href="">Trang chủ</a></div>
+                            <div class="title"> <a href="{{ route('frontend.home') }}">Trang chủ</a></div>
                         </li>
                         <li>
-                            <div class="title"> <a href="">Giới thiệu</a></div>
+                            <div class="title"> <a href="{{ route('frontend.intro') }}">Giới thiệu</a></div>
                         </li>
                         <li>
                             <div class="title"> <a href="">Bộ sưu tập</a></div>
