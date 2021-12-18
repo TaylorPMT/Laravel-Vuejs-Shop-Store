@@ -61,7 +61,7 @@
                                         <th>SKU</th>
                                         <th>Loại sản phẩm</th>
                                         <th>Hình</th>
-                                        <th>Mô tả ngắn</th>
+                                        <th style="width: 40%;">Mô tả ngắn</th>
                                         <th style="text-align: right;">Lựa chọn</th>
                                     </thead>
                                     <tbody v-if="listData">
