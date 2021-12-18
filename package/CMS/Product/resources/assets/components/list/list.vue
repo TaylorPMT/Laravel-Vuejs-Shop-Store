@@ -206,6 +206,21 @@ export default {
                 fields: []
             }
         };
+    },
+
+    watch: {
+        "pagination.page": async function (val) {
+            let vm = this;
+            if (val) {
+                await vm.getListCustomers();
+            }
+        },
+        "pagination.per_page": async function (val) {
+            let vm = this;
+            if (val) {
+                await vm.getListCustomers();
+            }
+        }
     }
 };
 </script>

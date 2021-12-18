@@ -4298,6 +4298,70 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         fields: []
       }
     };
+  },
+  watch: {
+    "pagination.page": function () {
+      var _paginationPage = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(val) {
+        var vm;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                vm = this;
+
+                if (!val) {
+                  _context5.next = 4;
+                  break;
+                }
+
+                _context5.next = 4;
+                return vm.getListCustomers();
+
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function paginationPage(_x) {
+        return _paginationPage.apply(this, arguments);
+      }
+
+      return paginationPage;
+    }(),
+    "pagination.per_page": function () {
+      var _paginationPer_page = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(val) {
+        var vm;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                vm = this;
+
+                if (!val) {
+                  _context6.next = 4;
+                  break;
+                }
+
+                _context6.next = 4;
+                return vm.getListCustomers();
+
+              case 4:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function paginationPer_page(_x2) {
+        return _paginationPer_page.apply(this, arguments);
+      }
+
+      return paginationPer_page;
+    }()
   }
 });
 
