@@ -212,13 +212,13 @@ export default {
         "pagination.page": async function (val) {
             let vm = this;
             if (val) {
-                await vm.getListCustomers();
+                await vm.getList();
             }
         },
         "pagination.per_page": async function (val) {
             let vm = this;
             if (val) {
-                await vm.getListCustomers();
+                await vm.getList();
             }
         }
     }

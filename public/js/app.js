@@ -4315,7 +4315,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context5.next = 4;
-                return vm.getListCustomers();
+                return vm.getList();
 
               case 4:
               case "end":
@@ -4346,7 +4346,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context6.next = 4;
-                return vm.getListCustomers();
+                return vm.getList();
 
               case 4:
               case "end":
