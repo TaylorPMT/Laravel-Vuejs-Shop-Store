@@ -9,6 +9,7 @@ import global from '../js/components/global/_globals';
 import CKEditor from 'ckeditor4-vue';
 import Notifications from 'vue-notification'
 
+
 Vue.use(router);
 Vue.use(CKEditor);
 Vue.use(ViewUI);

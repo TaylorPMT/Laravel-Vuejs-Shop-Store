@@ -3447,7 +3447,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 2:
                 res = _context.sent;
-                console.log(_this.CategoryList.data);
+                return _context.abrupt("return", res);
 
               case 4:
               case "end":
@@ -4342,12 +4342,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4376,18 +4370,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return _this2.$store.dispatch("getSidebar", {
+                if (!_this2.isEmpty(_this2.menuSidebar)) {
+                  _context.next = 5;
+                  break;
+                }
+
+                _context.next = 3;
+                return _this2.$store.dispatch("getSidebarMenu", {
                   params: {
                     config: "sidebar"
                   }
                 });
 
-              case 2:
+              case 3:
                 res = _context.sent;
-                return _context.abrupt("return", res);
+                return _context.abrupt("return", true);
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -5439,9 +5438,7 @@ __webpack_require__.r(__webpack_exports__);
     label: {
       type: String
     },
-    value: {
-      type: String
-    },
+    value: {},
     class_form: {
       type: String
     }
@@ -72556,7 +72553,16 @@ var render = function() {
                                   : _vm._e()
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.description))]),
+                              _c("td", [
+                                _vm._v(
+                                  "@" +
+                                    _vm._s(
+                                      _vm._f("strippedContent")(
+                                        item.description
+                                      )
+                                    )
+                                )
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -73690,7 +73696,7 @@ var render = function() {
             staticClass: "img-logo",
             attrs: { src: _vm.asset("/frontend/assets/img/logo-main.jpg") }
           }),
-          _vm._v("\n            Quản lý SHOP\n         ")
+          _vm._v("\n            Quản lý SHOP\n        ")
         ])
       ]),
       _vm._v(" "),
@@ -96532,6 +96538,9 @@ __webpack_require__.r(__webpack_exports__);
     formatNumber: function formatNumber(val) {
       var value = val.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       return value;
+    },
+    strippedContent: function strippedContent(string) {
+      return string.replace(/<\/?[^>]+>/ig, " ");
     }
   },
   watch: {
@@ -96637,6 +96646,9 @@ var mutations = {
   RESET_STATUS_ACTION: function RESET_STATUS_ACTION(state) {
     state.statusAction = false;
   },
+  RESET_MENU_SIDEBAR: function RESET_MENU_SIDEBAR(state) {
+    state.menuSidebar = [];
+  },
   //ENDACTION
   //confirm pop up //
   ///end confirm /
@@ -96654,26 +96666,22 @@ var mutations = {
   }
 };
 var actions = {
-  getSidebar: function getSidebar(_ref, options) {
-    var _this = this;
-
+  getSidebarMenu: function getSidebarMenu(_ref, options) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var state, dispatch, res;
+      var state, commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              state = _ref.state, dispatch = _ref.dispatch;
+              state = _ref.state, commit = _ref.commit;
               _context.next = 3;
               return axios.getList("/api/admin/config?", options);
 
             case 3:
               res = _context.sent;
-
-              _this.commit("SET_MENU_SIDEBAR", {
+              commit("SET_MENU_SIDEBAR", {
                 data: res.data.data
               });
-
               return _context.abrupt("return", true);
 
             case 6:
@@ -96682,103 +96690,6 @@ var actions = {
           }
         }
       }, _callee);
-    }))();
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = ({
-  state: state,
-  mutations: mutations,
-  actions: actions
-});
-
-/***/ }),
-
-/***/ "./resources/js/module/Films.js":
-/*!**************************************!*\
-  !*** ./resources/js/module/Films.js ***!
-  \**************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _axios_callAxios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../axios/callAxios */ "./resources/js/axios/callAxios.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-var axios = new _axios_callAxios__WEBPACK_IMPORTED_MODULE_1__["callAxios"]();
-var state = {
-  LIST_FILM: []
-};
-var mutations = {
-  SET_LIST_FILM: function SET_LIST_FILM(state, data) {
-    state.LIST_FILM = data.data;
-  }
-};
-var actions = {
-  getListFilm: function getListFilm(_ref, options) {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var state, dispatch, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              state = _ref.state, dispatch = _ref.dispatch;
-              _context.next = 3;
-              return axios.getList("/api/admin/film/list?", options);
-
-            case 3:
-              res = _context.sent;
-
-              _this.commit("SET_LIST_FILM", {
-                data: res.data.data
-              });
-
-              return _context.abrupt("return", true);
-
-            case 6:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  },
-  downloadFilm: function downloadFilm(_ref2, id) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var state, dispatch, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              state = _ref2.state, dispatch = _ref2.dispatch;
-              _context2.next = 3;
-              return axios.getById("/api/admin/film/download/", id, "");
-
-            case 3:
-              res = _context2.sent;
-
-              if (!(res.data.response_code == 200)) {
-                _context2.next = 6;
-                break;
-              }
-
-              return _context2.abrupt("return", true);
-
-            case 6:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
     }))();
   }
 };
@@ -96949,14 +96860,11 @@ var actions = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./User */ "./resources/js/module/User.js");
 /* harmony import */ var _AllPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AllPage */ "./resources/js/module/AllPage.js");
-/* harmony import */ var _Films__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Films */ "./resources/js/module/Films.js");
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   AllPage: _AllPage__WEBPACK_IMPORTED_MODULE_1__["default"],
-  User: _User__WEBPACK_IMPORTED_MODULE_0__["default"],
-  Films: _Films__WEBPACK_IMPORTED_MODULE_2__["default"]
+  User: _User__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
 
 /***/ }),

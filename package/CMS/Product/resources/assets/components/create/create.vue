@@ -78,7 +78,7 @@ export default {
     methods: {
         async handleGetAllCategory() {
             let res = await this.$store.dispatch("getListCategory", {});
-            console.log(this.CategoryList.data);
+            return res;
         },
         async handleFileUpload() {
             this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');

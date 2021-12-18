@@ -5,6 +5,7 @@ export default {
             checkAll: false,
         }
     },
+
     methods: {
         formatNumberCMS(val) {
             return val.toString().replace(/,/g, "");
@@ -255,6 +256,9 @@ export default {
             let value = val.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             return value;
         },
+        strippedContent: function(string) {
+            return string.replace(/<\/?[^>]+>/ig, " ");
+        }
     },
     watch: {
         '$route' (to, from) {

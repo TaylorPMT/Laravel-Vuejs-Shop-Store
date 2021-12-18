@@ -26,7 +26,7 @@ export default {
             type: String
         },
         value: {
-            type: String
+
         },
         class_form: {
             type: String
