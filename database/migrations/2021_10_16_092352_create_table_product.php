@@ -15,11 +15,11 @@ class CreateTableProduct extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
+            $table->text('name')->nullable();
+            $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->string('link')->nullable();
+            $table->text('link')->nullable();
             $table->timestamps();
         });
     }
