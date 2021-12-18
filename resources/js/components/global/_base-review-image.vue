@@ -15,7 +15,7 @@ export default {
     mixins: [mixin],
     props: {
         dataCurrent: {
-            type: Object
+
         }
     },
     methods: {

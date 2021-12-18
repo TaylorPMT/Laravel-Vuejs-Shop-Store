@@ -5537,9 +5537,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mix_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   props: {
-    dataCurrent: {
-      type: Object
-    }
+    dataCurrent: {}
   },
   methods: {
     deleteImage: function deleteImage(index) {
