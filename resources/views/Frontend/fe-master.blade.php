@@ -9,6 +9,7 @@
 		<title>@yield('title')</title>
 	</head>
 	<body class="@yield('body-class')">
+	
         @include('Frontend.main.header')
 		<main>
 			@yield('content')	
@@ -39,5 +40,6 @@
 				], function () {
 			});
 		</script>
+		@include('Frontend.scripts.plugins.mess-fb')
 	</body>
 </html>
