@@ -22,4 +22,11 @@ return [
         'icon' => 'movie',
         'active' => false,
     ],
+    [
+        'url' => '/admin/menu',
+        'module' => 'product',
+        'name' => 'Quản lý Menu',
+        'icon' => 'movie',
+        'active' => false,
+    ],
 ];

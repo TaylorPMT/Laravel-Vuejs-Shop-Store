@@ -8,5 +8,8 @@ const api = {
     PRODUCT_LIST_ALL: '/admin/product',
     PRODUCT_CREATE: '/admin/product/create',
     PRODUCT_EDIT: '/admin/product/:id/edit',
+
+    //Menu 
+    MENU_LIST_ALL: '/admin/menu',
 }
 export default api;
