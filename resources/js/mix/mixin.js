@@ -259,6 +259,7 @@ export default {
         strippedContent: function(string) {
             return string.replace(/<\/?[^>]+>/ig, " ");
         }
+
     },
     watch: {
         '$route' (to, from) {

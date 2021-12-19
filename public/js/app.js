@@ -73000,7 +73000,13 @@ var render = function() {
                                   : _vm._e()
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.description))]),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("strippedContent")(item.description)
+                                  )
+                                )
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
