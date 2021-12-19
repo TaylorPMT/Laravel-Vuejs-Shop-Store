@@ -10,7 +10,10 @@ import CKEditor from 'ckeditor4-vue';
 import Notifications from 'vue-notification'
 import App from './components/mainapp.vue';
 import Select2 from 'v-select2-component';
+import Select2MultipleControl from 'v-select2-multiple-component';
+
 Vue.component('Select2', Select2);
+Vue.component('Select2MultipleControl', Select2);
 
 Vue.use(router);
 Vue.use(CKEditor);

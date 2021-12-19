@@ -10,11 +10,12 @@
             <div class="col-md-8">
                 <BaseInput :label="'Tên menu'" :class_form="'form-control'" v-model="data.name"></BaseInput>
                 <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.link"></BaseInput>
+                <BaseInput :label="'Vị trí'" :class_form="'form-control'" v-model="data.order"></BaseInput>
                 <BaseFormSelect2
-                    :id="'type-categroy'"
                     :nameLabel="'Vui lòng chọn Menu Con'"
                     :status="true"
                     :options="this.optionsCategory"
+                    v-model="data.category_id"
                 />
             </div>
         </div>
@@ -35,7 +36,7 @@ export default {
                 name: "",
                 link: "",
                 parent_id: "",
-                category_id: "",
+                category_id: [],
                 order: "",
             },
             optionsCategory: [],

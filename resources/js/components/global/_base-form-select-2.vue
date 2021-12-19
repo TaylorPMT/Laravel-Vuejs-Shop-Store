@@ -6,7 +6,7 @@
         </label>
         <div class="form-select" :id="`format-${id}`">
             <div class="select">
-                <Select2
+                <select2-multiple-control
                     :options="options"
                     :id="`${id}`"
                     :settings="settings"
@@ -14,7 +14,7 @@
                     @select="$emit('select', $event)"
                     @change="$emit('change', $event)"
                     :disabled="disabled"
-                ></Select2>
+                ></select2-multiple-control>
             </div>
         </div>
         <span class="text-danger" :class="`msg-error-${id}`"></span>
@@ -22,7 +22,8 @@
 </template>
 
 <script>
-import Select2 from 'v-select2-component';
+import Select2MultipleControl from 'v-select2-multiple-component';
+
 export default {
     props: {
         status: {
@@ -34,7 +35,7 @@ export default {
             default: ''
         },
         value: {
-            type: [String, Number],
+            type: [String, Number, Array],
             default: ''
         },
         nameLabel: {
@@ -65,7 +66,7 @@ export default {
         }
     },
     components: {
-        Select2
+        Select2MultipleControl
     },
     computed: {
         selectVal: {
@@ -80,12 +81,6 @@ export default {
     watch: {
         selectVal(val) {
             let vm = this;
-            let id = "format-" + vm.id;
-            let msg_error = document.querySelector('.msg-error-' + vm.id);
-            if (val != '') {
-                vm.$root.getId(id).classList.remove('error');
-                msg_error.innerHTML = ''
-            }
         }
     }
 }
