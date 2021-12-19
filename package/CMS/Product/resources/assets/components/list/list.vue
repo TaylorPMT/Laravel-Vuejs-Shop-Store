@@ -98,7 +98,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{{ item.description | strippedContent }}</td>
+                                            <td v-html="item.description | strippedContent"></td>
                                             <td class="td-actions text-right">
                                                 <router-link
                                                     :to="

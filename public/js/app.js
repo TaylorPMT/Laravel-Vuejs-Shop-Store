@@ -72342,16 +72342,13 @@ var render = function() {
                                   : _vm._e()
                               ]),
                               _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  "@" +
-                                    _vm._s(
-                                      _vm._f("strippedContent")(
-                                        item.description
-                                      )
-                                    )
-                                )
-                              ]),
+                              _c("td", {
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    item.description | _vm.strippedContent
+                                  )
+                                }
+                              }),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -73000,13 +72997,13 @@ var render = function() {
                                   : _vm._e()
                               ]),
                               _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("strippedContent")(item.description)
+                              _c("td", {
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    item.description | _vm.strippedContent
                                   )
-                                )
-                              ]),
+                                }
+                              }),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -95966,8 +95963,7 @@ __webpack_require__.r(__webpack_exports__);
       return value;
     },
     strippedContent: function strippedContent(string) {
-      string = string.replace(/<\/?[^>]+>/ig, " ");
-      return string.replace("/\xA0/g", '');
+      return string;
     }
   },
   watch: {
