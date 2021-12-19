@@ -95963,6 +95963,7 @@ __webpack_require__.r(__webpack_exports__);
       return value;
     },
     strippedContent: function strippedContent(string) {
+      string = string.replace(/<\/?[^>]+>/ig, " ");
       return string;
     }
   },

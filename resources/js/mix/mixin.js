@@ -257,6 +257,7 @@ export default {
             return value;
         },
         strippedContent: function(string) {
+            string = string.replace(/<\/?[^>]+>/ig, " ");
             return string;
         }
 
