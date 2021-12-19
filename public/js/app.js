@@ -95945,7 +95945,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     strippedContent: function strippedContent(string) {
-      return string;
+      return string.substring(0, 120) + "..";
     }
   },
   filters: {
