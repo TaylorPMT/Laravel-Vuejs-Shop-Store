@@ -95966,7 +95966,8 @@ __webpack_require__.r(__webpack_exports__);
       return value;
     },
     strippedContent: function strippedContent(string) {
-      return string.replace(/<\/?[^>]+>/ig, " ");
+      string = string.replace(/<\/?[^>]+>/ig, " ");
+      return string.replace(/\u00A0/g, '');
     }
   },
   watch: {
