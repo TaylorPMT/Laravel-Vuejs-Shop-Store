@@ -262,7 +262,7 @@ export default {
     },
     watch: {
         '$route' (to, from) {
-            this.$store.commit('resetState')
+            // this.$store.commit('resetState')
         }
     },
 }

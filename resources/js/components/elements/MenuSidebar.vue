@@ -11,11 +11,11 @@
                 Quản lý SHOP
             </a>
         </div>
-        <div class="sidebar-wrapper" v-if="menuSidebar">
+        <div class="sidebar-wrapper" v-if="this.$root.list_menu">
             <ul class="nav">
                 <li
                     class="nav-item"
-                    v-for="(item, index) in menuSidebar"
+                    v-for="(item, index) in this.$root.list_menu"
                     :key="index"
                     :class="{
                         active: subIsActive(item.url)
@@ -32,14 +32,11 @@
 </template>
 <script>
 import mixin from "../../mix/mixin";
-import { mapState } from "vuex";
 export default {
     mixins: [mixin],
     name: "MenuSidebar",
     computed: {
-        ...mapState({
-            menuSidebar: state => state.AllPage.menuSidebar
-        })
+
     },
     methods: {
         subIsActive(input) {

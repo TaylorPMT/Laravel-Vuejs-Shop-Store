@@ -9,7 +9,6 @@ const state = {
     confirmPopup: false,
     statusAction: false,
     statusDetail: false,
-    menuSidebar: [],
     ERROR_404: false,
 };
 
@@ -31,9 +30,7 @@ const mutations = {
     RESET_STATUS_ACTION(state) {
         state.statusAction = false;
     },
-    RESET_MENU_SIDEBAR(state) {
-        state.menuSidebar = [];
-    },
+
     //ENDACTION
     //confirm pop up //
 
@@ -41,9 +38,7 @@ const mutations = {
     SET_STATUS_DETAIL(state, data) {
         state.statusDetail = data;
     },
-    SET_MENU_SIDEBAR(state, data) {
-        state.menuSidebar = data.data;
-    },
+
     SET_ERROR_404(state) {
         state.ERROR_404 = true;
     },
@@ -54,10 +49,9 @@ const mutations = {
 const actions = {
     async getSidebarMenu({ state, commit }, options) {
         let res = await axios.getList("/api/admin/config?siderbar", options);
-        this.commit("SET_MENU_SIDEBAR", {
-            data: res.data.data
-        });
-        return true;
+
+        return res.data.data
+
     }
 };
 

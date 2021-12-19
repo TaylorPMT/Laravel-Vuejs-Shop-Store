@@ -4148,13 +4148,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mix_mixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mix/mixin */ "./resources/js/mix/mixin.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -4187,16 +4180,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mix_mixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
   name: "MenuSidebar",
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
-    menuSidebar: function menuSidebar(state) {
-      return state.AllPage.menuSidebar;
-    }
-  })),
+  computed: {},
   methods: {
     subIsActive: function subIsActive(input) {
       var _this = this;
@@ -6049,9 +6037,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_fragment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-fragment */ "./node_modules/vue-fragment/dist/vue-fragment.esm.js");
 /* harmony import */ var _modal_message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../modal/message */ "./resources/js/components/modal/message.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _elements_MenuSidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../elements/MenuSidebar */ "./resources/js/components/elements/MenuSidebar.vue");
-/* harmony import */ var _elements_Navbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../elements/Navbar */ "./resources/js/components/elements/Navbar.vue");
+/* harmony import */ var _elements_MenuSidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../elements/MenuSidebar */ "./resources/js/components/elements/MenuSidebar.vue");
+/* harmony import */ var _elements_Navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../elements/Navbar */ "./resources/js/components/elements/Navbar.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -6070,12 +6057,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Fragment: vue_fragment__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Navbar: _elements_Navbar__WEBPACK_IMPORTED_MODULE_5__["default"],
-    MenuSidebar: _elements_MenuSidebar__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Navbar: _elements_Navbar__WEBPACK_IMPORTED_MODULE_4__["default"],
+    MenuSidebar: _elements_MenuSidebar__WEBPACK_IMPORTED_MODULE_3__["default"],
     Message: _modal_message__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
@@ -73273,12 +73259,12 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm.menuSidebar
+      this.$root.list_menu
         ? _c("div", { staticClass: "sidebar-wrapper" }, [
             _c(
               "ul",
               { staticClass: "nav" },
-              _vm._l(_vm.menuSidebar, function(item, index) {
+              _vm._l(this.$root.list_menu, function(item, index) {
                 return _c(
                   "li",
                   {
@@ -74636,13 +74622,13 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("MenuSidebar"),
-      _vm._v(" "),
       _c("Navbar"),
       _vm._v(" "),
-      _c("router-view"),
+      _c("MenuSidebar"),
       _vm._v(" "),
-      _c("Message")
+      _c("Message"),
+      _vm._v(" "),
+      _c("router-view")
     ],
     1
   )
@@ -93679,7 +93665,9 @@ new Vue({
   store: _store__WEBPACK_IMPORTED_MODULE_5__["default"],
   router: _router_index__WEBPACK_IMPORTED_MODULE_1__["default"],
   data: function data() {
-    return {};
+    return {
+      list_menu: []
+    };
   },
   methods: {
     getListSidebar: function getListSidebar() {
@@ -93700,6 +93688,9 @@ new Vue({
                 });
 
               case 3:
+                _this.list_menu = _context.sent;
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -95973,8 +95964,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {
-    '$route': function $route(to, from) {
-      this.$store.commit('resetState');
+    '$route': function $route(to, from) {// this.$store.commit('resetState')
     }
   }
 });
@@ -96054,7 +96044,6 @@ var state = {
   confirmPopup: false,
   statusAction: false,
   statusDetail: false,
-  menuSidebar: [],
   ERROR_404: false
 };
 var mutations = {
@@ -96075,17 +96064,11 @@ var mutations = {
   RESET_STATUS_ACTION: function RESET_STATUS_ACTION(state) {
     state.statusAction = false;
   },
-  RESET_MENU_SIDEBAR: function RESET_MENU_SIDEBAR(state) {
-    state.menuSidebar = [];
-  },
   //ENDACTION
   //confirm pop up //
   ///end confirm /
   SET_STATUS_DETAIL: function SET_STATUS_DETAIL(state, data) {
     state.statusDetail = data;
-  },
-  SET_MENU_SIDEBAR: function SET_MENU_SIDEBAR(state, data) {
-    state.menuSidebar = data.data;
   },
   SET_ERROR_404: function SET_ERROR_404(state) {
     state.ERROR_404 = true;
@@ -96096,8 +96079,6 @@ var mutations = {
 };
 var actions = {
   getSidebarMenu: function getSidebarMenu(_ref, options) {
-    var _this = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var state, commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -96110,14 +96091,9 @@ var actions = {
 
             case 3:
               res = _context.sent;
+              return _context.abrupt("return", res.data.data);
 
-              _this.commit("SET_MENU_SIDEBAR", {
-                data: res.data.data
-              });
-
-              return _context.abrupt("return", true);
-
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }

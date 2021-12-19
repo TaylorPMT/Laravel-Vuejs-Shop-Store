@@ -21,20 +21,19 @@ new Vue({
     el: "#app",
     store,
     router,
-
     data() {
         return {
-
-        };
+            list_menu: []
+        }
     },
     methods: {
         async getListSidebar() {
             let vm = this;
-            await vm.$store.dispatch("getSidebarMenu", {
+            this.list_menu = await vm.$store.dispatch("getSidebarMenu", {
                 params: {
                     config: "sidebar"
                 }
             });
-        },
+        }
     }
 });

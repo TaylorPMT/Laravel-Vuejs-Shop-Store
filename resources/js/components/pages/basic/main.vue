@@ -1,15 +1,14 @@
 <template>
     <div>
-        <MenuSidebar></MenuSidebar>
         <Navbar></Navbar>
-        <router-view />
+        <MenuSidebar></MenuSidebar>
         <Message></Message>
+        <router-view />
     </div>
 </template>
 <script>
 import Fragment from "vue-fragment";
 import Message from "../../modal/message";
-import { mapState } from "vuex";
 import MenuSidebar from "../../elements/MenuSidebar";
 import Navbar from "../../elements/Navbar";
 export default {
