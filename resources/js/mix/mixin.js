@@ -231,7 +231,10 @@ export default {
             return this.$router.push({ name: '404' });
         },
         strippedContent(string) {
-            return string.substring(0, 120) + "..";
+            if (!this.isEmpty(string)) {
+                return string.substring(0, 120) + "..";
+            }
+            return '';
         }
     },
     filters: {
