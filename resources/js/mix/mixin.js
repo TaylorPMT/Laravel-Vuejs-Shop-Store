@@ -258,7 +258,7 @@ export default {
         },
         strippedContent: function(string) {
             string = string.replace(/<\/?[^>]+>/ig, " ");
-            return string.replace(/\u00A0/g, '');
+            return string.replace("<[^>]*>", '');
         }
 
     },
