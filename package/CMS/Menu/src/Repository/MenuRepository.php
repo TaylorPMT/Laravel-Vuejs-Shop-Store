@@ -2,8 +2,9 @@
 
 namespace CMS\Menu\Repository;
 
-use App\Models\Menu;
+
 use App\Repository\BaseRepository;
+use CMS\Menu\Models\Menu;
 
 class MenuRepository extends BaseRepository implements MenuInterface
 {
@@ -18,21 +19,18 @@ class MenuRepository extends BaseRepository implements MenuInterface
     public function queryCollection($condition = [])
     {
         $select_filter = [
-            'id',
-            'name',
-            'link',
-            'parent_id',
-            'category_id',
-            'order',
+            '*'
         ];
 
         $builder = $this->_model;
+
         $builder = $builder->selectRaw(implode(',', $select_filter));
         return $builder;
     }
 
     public function list($request)
     {
+
         $builder = $this->queryCollection();
         $builder = $builder->where(function ($query) use ($request) {
             if ($request->get('key_word')) {
@@ -70,7 +68,7 @@ class MenuRepository extends BaseRepository implements MenuInterface
     public function delete($request)
     {
         try {
-            $builder = $this->_model->secureDeleteTrait($request->id);
+            $builder = $this->_model->delete($request->id);
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());

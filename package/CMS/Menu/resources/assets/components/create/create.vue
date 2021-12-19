@@ -15,7 +15,7 @@
                     :nameLabel="'Vui lòng chọn Menu Con'"
                     :status="true"
                     :options="this.optionsCategory"
-                    v-model="data.category_id"
+                    v-model="dataCategory"
                 />
             </div>
         </div>
@@ -40,10 +40,7 @@ export default {
                 order: "",
             },
             optionsCategory: [],
-            dataImage: {
-                type: Array,
-                default: () => []
-            },
+            dataCategory: [],
         };
     },
     computed: {
@@ -67,8 +64,22 @@ export default {
 
             this.optionsCategory = arr;
         },
+        async setCategory() {
+            let vm = this;
+            let dataCategory = this.dataCategory;
+
+            for (let property in dataCategory) {
+                if (dataCategory[property] !== '') {
+                    let obj = {};
+                    obj.id = dataCategory[property];
+                    vm.data.category_id.push(obj);
+                }
+            }
+        },
         async formatData() {
             let vm = this;
+            await this.setCategory();
+
             let customer =
                 vm.readOnlyJson(
                     vm.parseJSON(vm.data),
@@ -77,7 +88,6 @@ export default {
                     "parent_id",
                     "category_id",
                     "order",
-
                 )
                 ;
             return customer;

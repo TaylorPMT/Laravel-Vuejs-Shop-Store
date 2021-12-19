@@ -12,6 +12,9 @@ class Menu extends Model
     use TraitModel;
     use HasFactory;
     public $table = 'menus';
+
     protected $guarded = [];
-    protected $casts = [];
+    protected $casts = [
+        'category_id' => 'json'
+    ];
 }

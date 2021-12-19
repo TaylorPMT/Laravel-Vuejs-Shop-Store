@@ -108,6 +108,7 @@ export default {
                     'image'
                 )
                 ;
+
             return customer;
         },
         async submit() {

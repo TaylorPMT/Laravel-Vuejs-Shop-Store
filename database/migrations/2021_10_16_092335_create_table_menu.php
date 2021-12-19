@@ -17,9 +17,9 @@ class CreateTableMenu extends Migration
             $table->id();
             $table->text('name')->nullable();
             $table->text('link')->nullable();
-            $table->bigInteger('parent_id')->nullable()->index();
-            $table->bigInteger('category_id')->nullable()->index();
-            $table->bigInteger('order')->nullable();
+            $table->bigInteger('parent_id')->nullable();
+            $table->text('category_id')->nullable();
+            $table->text('order')->nullable();
             $table->timestamps();
         });
     }

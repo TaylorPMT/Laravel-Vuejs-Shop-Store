@@ -4,6 +4,6 @@ namespace CMS\Menu\Repository;
 
 use App\Repository\BaseInterface;
 
-interface MenuInterface  extends BaseInterface
+interface MenuInterface
 {
 }
