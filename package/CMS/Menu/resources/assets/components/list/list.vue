@@ -73,7 +73,7 @@
                                                 <p v-html="strippedContent(item.link)"></p>
                                             </td>
                                             <td class="td-actions text-right">
-                                                <router-link
+                                                <!-- <router-link
                                                     :to="
                                                         encodeURI('/admin/menu/' +
                                                             item.id +
@@ -84,7 +84,7 @@
                                                     class="btn btn-success"
                                                 >
                                                     <i class="material-icons">edit</i>
-                                                </router-link>
+                                                </router-link>-->
                                                 <button
                                                     type="button"
                                                     rel="tooltip"
