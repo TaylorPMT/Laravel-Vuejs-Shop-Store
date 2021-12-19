@@ -9,6 +9,9 @@ import global from '../js/components/global/_globals';
 import CKEditor from 'ckeditor4-vue';
 import Notifications from 'vue-notification'
 import App from './components/mainapp.vue';
+import Select2 from 'v-select2-component';
+Vue.component('Select2', Select2);
+
 Vue.use(router);
 Vue.use(CKEditor);
 Vue.use(ViewUI);

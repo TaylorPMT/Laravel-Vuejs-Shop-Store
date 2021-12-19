@@ -9,7 +9,9 @@ const api = {
     PRODUCT_CREATE: '/admin/product/create',
     PRODUCT_EDIT: '/admin/product/:id/edit',
 
-    //Menu 
+    //Menu
     MENU_LIST_ALL: '/admin/menu',
+    MENU_CREATE: '/admin/menu/create',
+    MENU_EDIT: '/admin/menu/:id/edit',
 }
 export default api;
