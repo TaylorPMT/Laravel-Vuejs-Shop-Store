@@ -2886,6 +2886,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -3735,6 +3737,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -72342,13 +72346,15 @@ var render = function() {
                                   : _vm._e()
                               ]),
                               _vm._v(" "),
-                              _c("td", {
-                                domProps: {
-                                  innerHTML: _vm._s(
-                                    item.description | _vm.strippedContent
-                                  )
-                                }
-                              }),
+                              _c("td", [
+                                _c("p", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.strippedContent(item.description)
+                                    )
+                                  }
+                                })
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -72997,13 +73003,15 @@ var render = function() {
                                   : _vm._e()
                               ]),
                               _vm._v(" "),
-                              _c("td", {
-                                domProps: {
-                                  innerHTML: _vm._s(
-                                    item.description | _vm.strippedContent
-                                  )
-                                }
-                              }),
+                              _c("td", [
+                                _c("p", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.strippedContent(item.description)
+                                    )
+                                  }
+                                })
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -95935,6 +95943,9 @@ __webpack_require__.r(__webpack_exports__);
       return this.$router.push({
         name: '404'
       });
+    },
+    strippedContent: function strippedContent(string) {
+      return string;
     }
   },
   filters: {
@@ -95961,10 +95972,6 @@ __webpack_require__.r(__webpack_exports__);
     formatNumber: function formatNumber(val) {
       var value = val.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       return value;
-    },
-    strippedContent: function strippedContent(string) {
-      string = string.replace(/<\/?[^>]+>/ig, " ");
-      return string;
     }
   },
   watch: {

@@ -230,6 +230,9 @@ export default {
             }
             return this.$router.push({ name: '404' });
         },
+        strippedContent(string) {
+            return string;
+        }
     },
     filters: {
         DDMMYYYY(val) {
@@ -256,11 +259,6 @@ export default {
             let value = val.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             return value;
         },
-        strippedContent: function(string) {
-            string = string.replace(/<\/?[^>]+>/ig, " ");
-            return string;
-        }
-
     },
     watch: {
         '$route' (to, from) {

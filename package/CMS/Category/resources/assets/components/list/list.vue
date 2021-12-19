@@ -88,7 +88,9 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td v-html="item.description | strippedContent"></td>
+                                            <td>
+                                                <p v-html="strippedContent(item.description)"></p>
+                                            </td>
                                             <td class="td-actions text-right">
                                                 <router-link
                                                     :to="
