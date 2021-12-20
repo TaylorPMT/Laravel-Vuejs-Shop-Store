@@ -17,24 +17,28 @@
                 <div class="row">
                     @foreach ($data as $item)
                         @if (!empty($item->image))
-                            @foreach ($item->image as $subImage)
-                                <div class="col-lg-3 col-md-3 col-sm-6">
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                            
+                                <a class="fancybox gallery-item" rel="group-{{ $item->id }}" href="{{ asset(current($item->image)) }}"
+                                    data-fancybox="group-{{ $item->id }}">
 
-                                    <a class="gallery-item" href="{{ asset(current($item->image)) }}"
-                                        data-fancybox="Img">
+                                    <div class="img zoom-out">
+                                        <img class="lazyload" data-src="{{ asset(current($item->image)) }}"
+                                            alt="{{ $item->name }}" title="{{ $item->name }}">
+                                    </div>
 
-                                        <div class="img zoom-out">
-                                            <img class="lazyload" data-src="{{ asset($subImage) }}"
-                                                alt="{{ $subImage }}" title="{{ $subImage }}">
-                                        </div>
-
-                                        <div class="title">{{ $item->name }}</div>
-                                        <div class="inner-action">
-                                            <em class="material-icons">collections</em>
-                                        </div>
-                                    </a>
-                                </div>
-                            @endforeach
+                                    <div class="title">{{ $item->name }}</div>
+                                    <div class="inner-action">
+                                        <em class="material-icons">collections</em>
+                                    </div>
+                                </a>
+                                @foreach ($item->image as $subImage)
+                                <a class="d-none fancybox" rel="group-{{ $item->id  }}" data-fancybox="group-{{ $item->id }}" href="{{ asset($subImage) }}">
+                                <img src="{{ asset($subImage) }}">
+                                </a>
+                                @endforeach
+                            </div>
+                            
                         @endif
                     @endforeach
                 </div>
@@ -42,3 +46,7 @@
         </div>
     </section>
 @endsection
+<style>
+
+
+</style>
