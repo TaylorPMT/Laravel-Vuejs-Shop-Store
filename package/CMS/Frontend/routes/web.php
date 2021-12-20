@@ -7,7 +7,7 @@ Route::name('frontend.')->group(function () {
     Route::group([
         'namespace' => 'CMS\Frontend\Http\Controllers',
     ], function () {
-        Route::get('', 'HomeController@home')->name('home');
+        Route::get('/', 'HomeController@home')->name('home');
         Route::get('gallery', 'HomeController@home')->name('gallery');
         Route::get('intro', 'HomeController@home')->name('intro');
         Route::get('category/{url}', 'HomeController@category')->name('product.category');
