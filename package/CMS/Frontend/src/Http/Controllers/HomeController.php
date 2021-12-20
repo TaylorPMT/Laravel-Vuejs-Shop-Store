@@ -20,4 +20,9 @@ class HomeController extends BaseController
     {
         return view('Frontend.pages.intro.intro');
     }
+
+    public function category($url)
+    {
+        return view('Frontend.pages.product.category');
+    }
 }

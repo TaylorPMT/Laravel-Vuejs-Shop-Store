@@ -4,6 +4,7 @@ namespace CMS\Category\Repository;
 
 use App\Repository\BaseRepository;
 use CMS\Category\Models\Category;
+use Illuminate\Support\Str;
 
 class CategoryRepository extends BaseRepository implements CategoryInterface
 {
@@ -92,6 +93,9 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
     public function create($request)
     {
         try {
+            if (empty($request->link)) {
+                $request->merge(['link', Str::slug($request->name)]);
+            }
             $builder = $this->_model->create($request->all());
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {

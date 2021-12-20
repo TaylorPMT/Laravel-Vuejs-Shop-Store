@@ -10,6 +10,7 @@ Route::name('frontend.')->group(function () {
         Route::get('', 'HomeController@home')->name('home');
         Route::get('gallery', 'HomeController@home')->name('gallery');
         Route::get('intro', 'HomeController@home')->name('intro');
+        Route::get('category/{url}', 'HomeController@category')->name('product.category');
     });
 });
 
@@ -19,9 +20,7 @@ Route::get('news-list', function () {
 Route::get('news-detail', function () {
     return view('Frontend.pages.news.detail');
 });
-Route::get('product-category', function () {
-    return view('Frontend.pages.product.category');
-});
+
 Route::get('product-detail', function () {
     return view('Frontend.pages.product.detail');
 });

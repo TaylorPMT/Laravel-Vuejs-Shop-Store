@@ -1,3 +1,7 @@
+@php
+$repo = app(\CMS\Frontend\Repository\FrontendRepository::class);
+$menu = $repo->menus();
+@endphp
 <header>
     <div class="header">
         <div class="container">
@@ -8,50 +12,30 @@
                             alt="Logo" title="Sơn Boutique"></a></div>
                 <div class="wrap-menu">
                     <ul class="primary-menu">
-                        <li>
-                            <div class="title"> <a href="{{ route('frontend.home') }}">Trang chủ</a></div>
-                        </li>
-                        <li>
-                            <div class="title"> <a href="{{ route('frontend.intro') }}">Giới thiệu</a></div>
-                        </li>
-                        <li>
-                            <div class="title"> <a href="{{ route('frontend.gallery') }}">Bộ sưu tập</a>
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <div class="title"><a href="">Hoa sự kiện</a></div>
-                            <ul class="sub-menu">
+                        @foreach ($menu as $item)
+                            @if (count($item->category_id) == 0)
                                 <li>
-                                    <div class="title"><a href="#">Giáng xinh</a></div>
+                                    <div class="title"> <a href="{{ $item->link }}">{{ $item->name }}</a>
+                                    </div>
                                 </li>
-                                <li>
-                                    <div class="title"><a href="#">Lễ / Tết</a></div>
+                            @else
+                                <li class="dropdown">
+                                    <div class="title"><a>{{ $item->name }}</a></div>
+                                    @foreach ($item->categorys($item) as $category)
+                                        <ul class="sub-menu">
+                                            @php
+                                                $url = !empty($category->url) ? $category->url : route('frontend.product.category', ['url' => $category->id]);
+                                            @endphp
+                                            <li>
+                                                <div class="title"><a
+                                                        href="{{ $url }}">{{ $category->name }}</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    @endforeach
                                 </li>
-                                <li>
-                                    <div class="title"><a href="#">Lễ tình nhân</a></div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <div class="title"> <a href="">Hoa trang trí</a></div>
-                            <ul class="sub-menu">
-                                <li>
-                                    <div class="title"><a href="#">Sustainability statement</a></div>
-                                </li>
-                                <li>
-                                    <div class="title"><a href="#">Our Focus</a></div>
-                                </li>
-                                <li>
-                                    <div class="title"><a href="#">Stakeholders Engagement</a></div>
-                                </li>
-                                <li>
-                                    <div class="title"><a href="#">Anual Report</a></div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <div class="title"> <a href="">Hoa mới</a></div>
-                        </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
                 <div class="wrap-right">
