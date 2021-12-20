@@ -8,8 +8,8 @@ Route::name('frontend.')->group(function () {
         'namespace' => 'CMS\Frontend\Http\Controllers',
     ], function () {
         Route::get('/', 'HomeController@home')->name('home');
-        Route::get('gallery', 'HomeController@home')->name('gallery');
-        Route::get('intro', 'HomeController@home')->name('intro');
+        Route::get('gallery', 'HomeController@gallery')->name('gallery');
+        Route::get('intro', 'HomeController@intro')->name('intro');
         Route::get('category/{url}', 'HomeController@category')->name('product.category');
     });
 });
