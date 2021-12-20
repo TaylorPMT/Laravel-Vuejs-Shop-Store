@@ -24,7 +24,7 @@ $menu = $repo->menus();
                                     @foreach ($item->categorys($item) as $category)
                                         <ul class="sub-menu">
                                             @php
-                                                $url = !empty($category->url) ? $category->url : route('frontend.product.category', ['url' => $category->id]);
+                                                $url = !empty($category->url) ? route('frontend.product.category', ['url' => $category->url]) : route('frontend.product.category', ['url' => $category->id]);
                                             @endphp
                                             <li>
                                                 <div class="title"><a
