@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-8">
                 <BaseInput :label="'Tên Sản Phẩm'" :class_form="'form-control'" v-model="data.name"></BaseInput>
-                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.link"></BaseInput>
+                <!-- <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.link"></BaseInput> -->
                 <form>
                     <BaseCkeditor
                         :label="'Mô tả chi tiết'"

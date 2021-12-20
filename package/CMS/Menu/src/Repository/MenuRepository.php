@@ -5,6 +5,7 @@ namespace CMS\Menu\Repository;
 
 use App\Repository\BaseRepository;
 use CMS\Menu\Models\Menu;
+use Illuminate\Support\Str;
 
 class MenuRepository extends BaseRepository implements MenuInterface
 {
@@ -68,7 +69,8 @@ class MenuRepository extends BaseRepository implements MenuInterface
     public function delete($request)
     {
         try {
-            $builder = $this->_model->delete($request->id);
+            $builder = $this->_model->where('id', $request->id)->first();
+            $builder->delete();
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
@@ -78,17 +80,32 @@ class MenuRepository extends BaseRepository implements MenuInterface
     public function update($request)
     {
         try {
-            $builder =  $this->_model->find($request->id)->update($request->all());
+            $builder =  $this->_model->find($request->id)->update($this->formatData($request->all()));
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
         }
     }
 
+    public function formatData($data)
+    {
+
+        $list = collect($data)->map(function ($value, $key) use ($data) {
+            if ($key == 'link') {
+                if (!empty($data['name'])) {
+                    return Str::slug($data['name']);
+                }
+            }
+            return $value;
+        })->toArray();
+        return $list;
+    }
+
+
     public function create($request)
     {
         try {
-            $builder = $this->_model->create($request->all());
+            $builder = $this->_model->create($this->formatData($request->all()));
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());

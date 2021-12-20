@@ -10,7 +10,7 @@
             <div class="col-md-8">
                 <BaseInput :label="'Tên Sản Phẩm'" :class_form="'form-control'" v-model="data.name"></BaseInput>
                 <BaseInput :label="'SKU Sản Phẩm'" :class_form="'form-control'" v-model="data.sku"></BaseInput>
-                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.url"></BaseInput>
+                <!-- <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.url"></BaseInput> -->
                 <BaseFormSelect
                     v-model="data.category_id"
                     :label="'Loại sản phẩm'"

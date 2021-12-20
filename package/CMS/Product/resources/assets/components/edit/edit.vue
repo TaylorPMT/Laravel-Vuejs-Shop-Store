@@ -18,7 +18,7 @@
                     :class_form="'form-control'"
                     v-model="dataProduct.sku"
                 ></BaseInput>
-                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="dataProduct.url"></BaseInput>
+                <!-- <BaseInput :label="'URL'" :class_form="'form-control'" v-model="dataProduct.url"></BaseInput> -->
                 <BaseFormSelect
                     v-model="dataProduct.category_id"
                     :label="'Loại sản phẩm'"

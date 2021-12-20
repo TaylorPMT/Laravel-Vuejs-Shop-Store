@@ -83,20 +83,32 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
     public function update($request)
     {
         try {
-            $builder =  $this->_model->find($request->id)->update($request->all());
+            $data = $this->formatData($request->all());
+            $builder =  $this->_model->find($request->id)->update($data);
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
         }
     }
 
+    public function formatData($data)
+    {
+        $list = collect($data)->map(function ($value, $key) use ($data) {
+            if ($key == 'link') {
+                if (!empty($data['name'])) {
+                    return Str::slug($data['name']);
+                }
+            }
+            return $value;
+        })->toArray();
+        return $list;
+    }
+
     public function create($request)
     {
         try {
-            if (empty($request->link)) {
-                $request->merge(['link', Str::slug($request->name)]);
-            }
-            $builder = $this->_model->create($request->all());
+            $data = $this->formatData($request->all());
+            $builder = $this->_model->create($data);
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());

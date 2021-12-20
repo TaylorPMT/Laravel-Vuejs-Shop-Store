@@ -13,7 +13,7 @@
                     :class_form="'form-control'"
                     v-model="dataCurrent.name"
                 ></BaseInput>
-                <BaseInput :label="'URL'" :class_form="'form-control'" v-model="dataCurrent.link"></BaseInput>
+                <!-- <BaseInput :label="'URL'" :class_form="'form-control'" v-model="dataCurrent.link"></BaseInput> -->
                 <BaseCkeditor :label="'Mô tả ngắn'" v-model="dataCurrent.description"></BaseCkeditor>
                 <BaseCkeditor
                     :label="'Mô tả chi tiết'"
