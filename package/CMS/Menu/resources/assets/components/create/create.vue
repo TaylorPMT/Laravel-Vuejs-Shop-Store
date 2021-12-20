@@ -79,7 +79,6 @@ export default {
         async formatData() {
             let vm = this;
             await this.setCategory();
-
             let customer =
                 vm.readOnlyJson(
                     vm.parseJSON(vm.data),

@@ -27,7 +27,6 @@ class FrontendRepository extends BaseRepository implements CategoryInterface
     {
 
         $data = $this->_menus->orderBy('order', 'asc')->get();
-
         return $data;
     }
 }
