@@ -21,8 +21,9 @@ $menu = $repo->menus();
                             @else
                                 <li class="dropdown">
                                     <div class="title"><a>{{ $item->name }}</a></div>
-                                    @foreach ($item->categorys($item) as $category)
+                                    
                                         <ul class="sub-menu">
+                                        @foreach ($item->categorys($item) as $category)
                                             @php
                                                 $url = !empty($category->url) ? route('frontend.product.category', ['url' => $category->url]) : route('frontend.product.category', ['url' => $category->id]);
                                             @endphp
@@ -31,8 +32,9 @@ $menu = $repo->menus();
                                                         href="{{ $url }}">{{ $category->name }}</a>
                                                 </div>
                                             </li>
+                                            @endforeach
                                         </ul>
-                                    @endforeach
+                                    
                                 </li>
                             @endif
                         @endforeach
