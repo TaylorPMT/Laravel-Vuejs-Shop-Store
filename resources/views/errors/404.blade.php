@@ -1,1 +1,1 @@
-@extends('BackEnd.layout.layoutsite')
+{{-- @extends('BackEnd.layout.layoutsite') --}}

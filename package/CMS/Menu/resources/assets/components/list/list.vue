@@ -66,6 +66,7 @@
                                             v-for="(item,
                                             index) in listData.data"
                                             :key="index"
+                                            v-sortable="{ onEnd: reorder }"
                                         >
                                             <td class="td-center">{{ listData.from + index }}</td>
                                             <td>{{ item.name }}</td>
@@ -123,6 +124,8 @@ import Navbar from "../../../../../../../resources/js/components/elements/Navbar
 import Paginate from "../../../../../../../resources/js/components/elements/Paginate";
 import notice from "../../../../../../../resources/js/mix/notice";
 
+import Sortable from 'sortablejs';
+
 export default {
     mixins: [mixin, notice],
 
@@ -141,6 +144,9 @@ export default {
         }
     },
     methods: {
+        async reorder({ oldIndex, newIndex }) {
+
+        },
         async handleSearchInput() {
             this.pagination.page = 1;
             await this.getList();
