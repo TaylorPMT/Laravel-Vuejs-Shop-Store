@@ -36,9 +36,13 @@ export default {
     flex-wrap: wrap;
     .item {
         margin: 10px 5px;
-        width: 150px;
+        width: calc(100% / 3.15);
         height: 150px;
         position: relative;
+        &:first-child {
+            width: 100%;
+            height: 280px;
+        }
         > img {
             position: absolute;
             top: 0;
@@ -47,6 +51,7 @@ export default {
             height: 100%;
             object-fit: cover;
         }
+
         .delete-image {
             position: absolute;
             right: -10px;

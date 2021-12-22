@@ -141,4 +141,5 @@ export default {
 .content-group {
     margin: 5% 4%;
 }
+
 </style>>
