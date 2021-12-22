@@ -21,20 +21,17 @@ $menu = $repo->menus();
                             @else
                                 <li class="dropdown">
                                     <div class="title"><a>{{ $item->name }}</a></div>
-                                    
-                                        <ul class="sub-menu">
+
+                                    <ul class="sub-menu">
                                         @foreach ($item->categorys($item) as $category)
-                                            @php
-                                                $url = !empty($category->url) ? route('frontend.product.category', ['url' => $category->url]) : route('frontend.product.category', ['url' => $category->id]);
-                                            @endphp
                                             <li>
                                                 <div class="title"><a
-                                                        href="{{ $url }}">{{ $category->name }}</a>
+                                                        href="{{ route('frontend.product.category', ['url' => $category->link]) }}">{{ $category->name }}</a>
                                                 </div>
                                             </li>
-                                            @endforeach
-                                        </ul>
-                                    
+                                        @endforeach
+                                    </ul>
+
                                 </li>
                             @endif
                         @endforeach

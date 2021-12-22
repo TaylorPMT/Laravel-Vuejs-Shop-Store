@@ -32,10 +32,16 @@ class Category extends Model
     {
         return CategoryFactory::new();
     }
+
     public function secureDeleteTrait($id)
     {
         $category =
             Category::find($id);
         return $category->secureDelete('products');
+    }
+
+    public function scopeProductsCategory($query)
+    {
+        return $this->products()->orderBy('created_at')->take(5)->get();
     }
 }

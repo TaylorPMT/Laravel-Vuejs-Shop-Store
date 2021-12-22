@@ -4,6 +4,7 @@ namespace CMS\Product\Repository;
 
 use App\Repository\BaseRepository;
 use CMS\Product\Models\Product;
+use Illuminate\Support\Str;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
@@ -84,7 +85,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function update($request)
     {
         try {
-            $builder =  $this->_model->find($request->id)->update($request->all());
+            $builder =  $this->_model->find($request->id)->update($this->formatData($request->all()));
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
@@ -94,10 +95,23 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function create($request)
     {
         try {
-            $builder = $this->_model->create($request->all());
+            $builder = $this->_model->create($this->formatData($request->all()));
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
         }
+    }
+
+    public function formatData($data)
+    {
+        $list = collect($data)->map(function ($value, $key) use ($data) {
+            if ($key == 'link') {
+                if (!empty($data['name'])) {
+                    return Str::slug($data['name']);
+                }
+            }
+            return $value;
+        })->toArray();
+        return $list;
     }
 }
