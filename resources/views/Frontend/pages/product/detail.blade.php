@@ -66,6 +66,7 @@
                 <div class="block__content">
                     <ul class="active" id="content-1">
                         <li>
+                            {{ dd(html_entity_decode($data->content)) }}
                             {!! $data->content !!}
                         </li>
                     </ul>
