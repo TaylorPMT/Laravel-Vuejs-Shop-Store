@@ -61,12 +61,12 @@
                                         <th style="width: 40%;">Link</th>
                                         <th style="text-align: right;">Lựa chọn</th>
                                     </thead>
-                                    <tbody v-if="listData">
+                                    <tbody v-if="listData" v-sortable="{ onEnd: reorder }">
                                         <tr
                                             v-for="(item,
                                             index) in listData.data"
                                             :key="index"
-                                            v-sortable="{ onEnd: reorder }"
+                                            
                                         >
                                             <td class="td-center">{{ listData.from + index }}</td>
                                             <td>{{ item.name }}</td>
