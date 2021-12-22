@@ -24,7 +24,7 @@ export default {
             vm.dataCurrent.image.splice(index, 1);
         },
         async reorder({ oldIndex, newIndex }) {
-
+            
         },
     },
 }
