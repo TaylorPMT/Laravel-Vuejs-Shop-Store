@@ -1,7 +1,6 @@
 <template>
-    <div class="image-preview" v-if="!isEmpty(dataCurrent.image)">
-        <div class="item" v-for="(item,index) in dataCurrent.image" :key="'image-' + index" 
-        v-sortable="{ onEnd: reorder }">
+    <div class="image-preview" v-if="!isEmpty(dataCurrent.image)" v-sortable="{ onEnd: reorder }">
+        <div class="item" v-for="(item,index) in dataCurrent.image" :key="'image-' + index" >
             <img :src="asset(item)" :alt="'image-' + index" />
             <div class="delete-image" @click="deleteImage(index)">
                 <span class="material-icons">clear</span>
