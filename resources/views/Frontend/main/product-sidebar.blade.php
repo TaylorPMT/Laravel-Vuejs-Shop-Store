@@ -11,7 +11,7 @@
                             <ul class="cate-sub-menu">
                                 @foreach ($item->productsCategory() as $product)
                                     <li> <a
-                                            href="{{ route('frontend.product', ['url' => $product->link ?? $product->id]) }}">{{ $product->name }}}</a>
+                                            href="{{ route('frontend.product', ['url' => $product->link ?? $product->id]) }}">{{ $product->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
