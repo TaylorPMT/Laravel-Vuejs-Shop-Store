@@ -1,6 +1,7 @@
 <template>
     <div class="image-preview" v-if="!isEmpty(dataCurrent.image)">
-        <div class="item" v-for="(item,index) in dataCurrent.image" :key="'image-' + index">
+        <div class="item" v-for="(item,index) in dataCurrent.image" :key="'image-' + index" 
+        v-sortable="{ onEnd: reorder }">
             <img :src="asset(item)" :alt="'image-' + index" />
             <div class="delete-image" @click="deleteImage(index)">
                 <span class="material-icons">clear</span>
@@ -10,7 +11,7 @@
 </template>
 <script>
 import mixin from "../../mix/mixin";
-
+import Sortable from 'sortablejs';
 export default {
     mixins: [mixin],
     props: {
@@ -22,7 +23,10 @@ export default {
         async deleteImage(index) {
             let vm = this;
             vm.dataCurrent.image.splice(index, 1);
-        }
+        },
+        async reorder({ oldIndex, newIndex }) {
+
+        },
     },
 }
 </script>
