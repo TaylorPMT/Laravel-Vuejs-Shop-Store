@@ -36,7 +36,7 @@ export default {
     flex-wrap: wrap;
     .item {
         margin: 10px 5px;
-        width: calc(100% / 3.15);
+        width: calc(100% / 3.2);
         height: 150px;
         position: relative;
         &:first-child {
