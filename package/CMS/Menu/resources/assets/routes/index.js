@@ -1,6 +1,8 @@
 import api from '../../../../../../resources/js/api/index';
 import list from '../components/list/list.vue';
 import create from '../components/create/create.vue';
+import edit from '../components/edit/edit.vue';
+
 export default [{
     path: api.MENU_LIST_ALL,
     name: api.MENU_LIST_ALL,
@@ -9,4 +11,10 @@ export default [{
     path: api.MENU_CREATE,
     name: api.MENU_CREATE,
     component: create
-}];
+}, {
+    path: api.MENU_EDIT,
+    name: api.MENU_EDIT,
+    component: edit
+}
+
+];

@@ -61,7 +61,7 @@
                                         <th style="width: 40%;">Link</th>
                                         <th style="text-align: right;">Lựa chọn</th>
                                     </thead>
-                                    <tbody v-if="listData" v-sortable="{ onEnd: reorder }">
+                                    <tbody v-if="listData" v-sortable="{ onEnd: reorder }" >
                                         <tr
                                             v-for="(item,
                                             index) in listData.data"
@@ -74,7 +74,7 @@
                                                 <p v-html="strippedContent(item.link)"></p>
                                             </td>
                                             <td class="td-actions text-right">
-                                                <!-- <router-link
+                                            <router-link
                                                     :to="
                                                         encodeURI('/admin/menu/' +
                                                             item.id +
@@ -85,7 +85,7 @@
                                                     class="btn btn-success"
                                                 >
                                                     <i class="material-icons">edit</i>
-                                                </router-link>-->
+                                                </router-link>
                                                 <button
                                                     type="button"
                                                     rel="tooltip"
@@ -144,8 +144,11 @@ export default {
         }
     },
     methods: {
-        async reorder({ oldIndex, newIndex }) {
-
+       
+         async reorder({ oldIndex, newIndex }) {
+            let swap = this.listData.data;
+            [swap[oldIndex], swap[newIndex]] = [swap[newIndex], swap[oldIndex]]
+           
         },
         async handleSearchInput() {
             this.pagination.page = 1;
@@ -170,7 +173,11 @@ export default {
                     await this.getList();
                 }
             }
-        }
+        },
+        async sortImage(e) {
+            let vm = this;
+            vm.dataCurrent.image = e;
+        },
     },
     async created() {
         await this.getList();
