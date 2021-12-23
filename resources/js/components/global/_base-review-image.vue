@@ -1,6 +1,6 @@
 <template>
     <div class="image-preview" v-if="!isEmpty(dataCurrent.image)" v-sortable="{ onEnd: reorder }">
-        <div class="item" v-for="(item,index) in dataCurrent.image" :key="'image-' + index" >
+        <div class="item" v-for="(item,index) in dataCurrent.image" :key="'image-' + index">
             <img :src="asset(item)" :alt="'image-' + index" />
             <div class="delete-image" @click="deleteImage(index)">
                 <span class="material-icons">clear</span>
@@ -24,7 +24,9 @@ export default {
             vm.dataCurrent.image.splice(index, 1);
         },
         async reorder({ oldIndex, newIndex }) {
-            
+            let swap = this.dataCurrent.image;
+            [swap[oldIndex], swap[newIndex]] = [swap[newIndex], swap[oldIndex]]
+            this.$emit('sortImage', swap);
         },
     },
 }

@@ -22,7 +22,7 @@
                 ></BaseCkeditor>
             </div>
             <div class="col-md-4">
-                <BaseReviewImage :dataCurrent="dataCurrent"></BaseReviewImage>
+                <BaseReviewImage :dataCurrent="dataCurrent" @sortImage="sortImage"></BaseReviewImage>
                 <BaseCkfinder
                     ref="ckfinder"
                     id="imagePage"
@@ -75,6 +75,10 @@ export default {
                 return this.abort(res.response_code);
             }
             return res;
+        },
+        async sortImage(e) {
+            let vm = this;
+            vm.dataCurrent.image = e;
         },
         async deleteImage(index) {
             let vm = this;
@@ -141,5 +145,4 @@ export default {
 .content-group {
     margin: 5% 4%;
 }
-
 </style>>
