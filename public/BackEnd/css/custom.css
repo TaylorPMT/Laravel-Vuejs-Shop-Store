@@ -107,5 +107,5 @@ b, strong, .f-bold {
 }
 
 select, select.form-control {
-    -webkit-appearance: normal!important;
+    -webkit-appearance: auto!important;
 }

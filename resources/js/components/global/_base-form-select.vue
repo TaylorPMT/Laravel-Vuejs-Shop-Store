@@ -7,7 +7,7 @@
             id="exampleFormControlSelect1"
             v-model="inputValue"
         >
-            <option selected>Chọn {{ label }}</option>
+            <option value="">Chọn {{ label }}</option>
             <option
                 v-bind:key="key"
                 v-bind:value="option.id"
@@ -43,8 +43,10 @@ export default {
             },
             set(val) {
                 this.$emit("input", val);
-            }
+                
+            },
         }
-    }
+    },
+    
 };
 </script>
