@@ -114,4 +114,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         })->toArray();
         return $list;
     }
+
+    public function getProductBySku($sku){
+        $data = $this->_model->whereIn('sku' , $sku)->get();
+        if(empty($data)){
+            return false;
+        }
+        return $data;
+    }
 }

@@ -6,6 +6,8 @@ use App\Helpers\Helpers;
 use Illuminate\Support\ServiceProvider;
 use CMS\Category\Repository\CategoryInterface;
 use CMS\Category\Repository\CategoryRepository;
+use Shortcode;
+use CMS\Product\Shortcode\ProductSingleShortcode;
 use CMS\Product\Repository\ProductRepository;
 use CMS\Product\Repository\ProductRepositoryInterface;
 
@@ -24,6 +26,7 @@ class  ProductProviders  extends ServiceProvider
         foreach ($configs as $key => $row) {
             $this->mergeConfigFrom($row, $key);
         }
+        Shortcode::register(ProductSingleShortcode::shortcode_name,ProductSingleShortcode::class);
         $repository = [
             [
                 'ỉnterface' => ProductRepositoryInterface::class,

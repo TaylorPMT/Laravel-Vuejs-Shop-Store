@@ -7,4 +7,5 @@ use App\Repository\BaseInterface;
 
 interface ProductRepositoryInterface extends BaseInterface
 {
+    public function getProductBySku($sku);
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\TraitModel;
 use CMS\Category\Models\Category;
+use Shortcode;
 
 class Product extends Model
 {
@@ -30,5 +31,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function getContentAttribute(){
+
+        return Shortcode::compile($this->attributes['content']);
     }
 }
