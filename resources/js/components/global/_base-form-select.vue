@@ -7,7 +7,7 @@
             id="exampleFormControlSelect1"
             v-model="inputValue"
         >
-            <option>Chọn {{ label }}</option>
+            <option selected>Chọn {{ label }}</option>
             <option
                 v-bind:key="key"
                 v-bind:value="option.id"

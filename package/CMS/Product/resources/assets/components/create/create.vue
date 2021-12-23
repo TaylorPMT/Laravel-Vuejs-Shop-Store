@@ -17,15 +17,16 @@
                     :options="CategoryList.data"
                 />
                 <BaseCkeditor
+                    :label="'Mô tả ngắn'"
+                    :editorData="data.description"
+                    v-model="data.description"
+                ></BaseCkeditor>
+                <BaseCkeditor
                     :label="'Mô tả chi tiết'"
                     :editorData="data.content"
                     v-model="data.content"
                 ></BaseCkeditor>
-                <BaseCkeditor
-                    :label="'Thông tin'"
-                    :editorData="data.description"
-                    v-model="data.description"
-                ></BaseCkeditor>
+                
             </div>
             <div class="col-md-4">
                 <BaseReviewImage :dataCurrent="data"></BaseReviewImage>
