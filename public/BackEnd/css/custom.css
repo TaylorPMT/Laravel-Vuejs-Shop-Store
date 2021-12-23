@@ -105,3 +105,7 @@ b, strong, .f-bold {
 .sortBtn:focus {
     color: white;
 }
+
+select, select.form-control {
+    -webkit-appearance: auto!important;
+}

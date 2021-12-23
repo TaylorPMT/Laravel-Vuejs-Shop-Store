@@ -44,10 +44,10 @@ export default {
         width: calc(100% / 3.2);
         height: 150px;
         position: relative;
-        // &:first-child {
-        //     width: 100%;
-        //     height: 280px;
-        // }
+        &:first-child {
+            width: 100%;
+            height: 280px;
+        }
         > img {
             position: absolute;
             top: 0;

@@ -52,6 +52,7 @@ import Form from "../../../../../../../resources/js/components/elements/Form";
 import mixin from "../../../../../../../resources/js/mix/mixin";
 import notice from "../../../../../../../resources/js/mix/notice";
 
+
 export default {
     mixins: [mixin, notice],
     data() {

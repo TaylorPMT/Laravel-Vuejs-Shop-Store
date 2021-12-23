@@ -25,15 +25,16 @@
                     :options="CategoryList.data"
                 />
                 <BaseCkeditor
+                    :label="'Mô tả ngắn'"
+                    :editorData="dataProduct.description"
+                    v-model="dataProduct.description"
+                ></BaseCkeditor>
+                <BaseCkeditor
                     :label="'Mô tả chi tiết'"
                     :editorData="dataProduct.content"
                     v-model="dataProduct.content"
                 ></BaseCkeditor>
-                <BaseCkeditor
-                    :label="'Thông tin'"
-                    :editorData="dataProduct.description"
-                    v-model="dataProduct.description"
-                ></BaseCkeditor>
+                
             </div>
             <div class="col-md-4">
                 <BaseReviewImage :dataCurrent="dataProduct"></BaseReviewImage>

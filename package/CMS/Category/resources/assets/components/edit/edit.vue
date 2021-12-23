@@ -78,7 +78,6 @@ export default {
         },
         async sortImage(e) {
             let vm = this;
-            console.log(e);
             vm.dataCurrent.image = e;
         },
         async deleteImage(index) {
