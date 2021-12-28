@@ -7,6 +7,7 @@ import main from "../components/pages/basic/main.vue";
 import category from "../../../package/CMS/Category/resources/assets/routes/index";
 import product from "../../../package/CMS/Product/resources/assets/routes/index";
 import menu from "../../../package/CMS/Menu/resources/assets/routes/index";
+import news from '../../../package/CMS/News/resources/assets/routes/index';
 import error404 from "../components/error/404.vue";
 const routes = [{
         path: "/admin",
@@ -60,7 +61,8 @@ const routes = [{
 routes[0].children = routes[0].children.concat(
     category,
     product,
-    menu
+    menu,
+    news
 );
 export default new Router({
     mode: "history",

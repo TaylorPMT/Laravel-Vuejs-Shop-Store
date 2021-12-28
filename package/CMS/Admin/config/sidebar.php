@@ -31,7 +31,7 @@ return [
     ],
 
     [
-        'url' => '/admin/news',
+        'url' => '/admin/news/category',
         'module' => 'product',
         'name' => 'Quản lý Danh Mục Tin Tức',
         'icon' => 'movie',

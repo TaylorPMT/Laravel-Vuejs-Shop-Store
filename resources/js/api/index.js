@@ -13,5 +13,8 @@ const api = {
     MENU_LIST_ALL: '/admin/menu',
     MENU_CREATE: '/admin/menu/create',
     MENU_EDIT: '/admin/menu/:id/edit',
+
+    //News
+    NEWS_CATEGORY_LIST: '/admin/news/category',
 }
 export default api;
