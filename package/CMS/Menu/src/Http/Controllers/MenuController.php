@@ -44,4 +44,9 @@ class MenuController extends BaseController
         $builder = $this->_menu_repo->create($request);
         return $builder;
     }
+
+    public function order(Request $request){
+        $builder = $this->_menu_repo->order($request);
+        return $builder;
+    }
 }

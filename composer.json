@@ -30,7 +30,8 @@
             "CMS\\Category\\": "package/CMS/Category/src",
             "CMS\\Product\\": "package/CMS/Product/src",
             "CMS\\Frontend\\": "package/CMS/Frontend/src",
-            "CMS\\Menu\\": "package/CMS/Menu/src"
+            "CMS\\Menu\\": "package/CMS/Menu/src",
+            "CMS\\News\\": "package/CMS/News/src"
         }
     },
     "autoload-dev": {

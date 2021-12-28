@@ -61,20 +61,19 @@
                                         <th style="width: 40%;">Link</th>
                                         <th style="text-align: right;">Lựa chọn</th>
                                     </thead>
-                                    <tbody v-if="listData" v-sortable="{ onEnd: reorder }" >
+                                    <tbody v-if="listData" v-sortable="{ onEnd: reorder }">
                                         <tr
                                             v-for="(item,
                                             index) in listData.data"
-                                            :key="index"
-                                            
+                                            :key="item.id"
                                         >
                                             <td class="td-center">{{ listData.from + index }}</td>
                                             <td>{{ item.name }}</td>
                                             <td>
-                                                <p v-html="strippedContent(item.link)"></p>
+                                                <p v-html="item.link"></p>
                                             </td>
                                             <td class="td-actions text-right">
-                                            <router-link
+                                                <router-link
                                                     :to="
                                                         encodeURI('/admin/menu/' +
                                                             item.id +
@@ -144,11 +143,35 @@ export default {
         }
     },
     methods: {
-       
-         async reorder({ oldIndex, newIndex }) {
+
+        async reorder({ oldIndex, newIndex }) {
             let swap = this.listData.data;
-            [swap[oldIndex], swap[newIndex]] = [swap[newIndex], swap[oldIndex]]
-           
+
+            [swap[oldIndex], swap[newIndex]] = [swap[newIndex], swap[oldIndex]];
+            let data = await this.formatSwap(swap);
+            data = await this.formatData(data);
+            let res = await this.$store.dispatch('orderMenu', {
+                data
+            });
+            if (res.error == false) {
+                await this.success(res.message, "");
+            }
+        },
+        async formatData(data) {
+            let vm = this;
+            data = vm.readOnlyArray(
+                vm.parseJSON(data), 'order'
+            );
+            return data;
+        },
+        async formatSwap(data) {
+            let arrayInput = [];
+            for (let e in data) {
+                arrayInput[e] = {
+                    order: data[e].id
+                };
+            }
+            return arrayInput;
         },
         async handleSearchInput() {
             this.pagination.page = 1;

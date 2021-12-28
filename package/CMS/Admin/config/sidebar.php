@@ -29,4 +29,12 @@ return [
         'icon' => 'movie',
         'active' => false,
     ],
+
+    [
+        'url' => '/admin/news',
+        'module' => 'product',
+        'name' => 'Quản lý Danh Mục Tin Tức',
+        'icon' => 'movie',
+        'active' => false,
+    ]
 ];
