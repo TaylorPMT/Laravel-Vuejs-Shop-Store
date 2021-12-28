@@ -22,20 +22,22 @@ class ProductSingleShortcode
             $sku = $this->productRepository->getProductBySku($skuArr);
             if ($sku) {
                 $shortcode = self::shortcode_name;
-                $html = "<ul class=\"list-product-content\">";
+                $html = "<div class=\"block-product\">";
                 foreach ($sku as $item) {
                     $productImage = asset($item->image[0] ?? 'default');
                     $productName = $item->name;
                     $productSlug = route('frontend.product', ['url' => $item->link]);
                     $html .= "
-                                   <li class=\"$shortcode\">
-                                      <div class=\"box-img\">
+                                   <div class=\"$shortcode text-center\">
+                                      <div class=\"product-img\">
                                          <a href=\"\" title=\"$item->name\">
-                                         <img src=\"$productImage\" alt=\"$productName\">
+                                         <img src=\"$productImage\" alt=\"$productName\"
+                                         class=\"block-product\"
+                                         >
                                          </a>
                                       </div>
-                                      <div class=\"detail\">
-                                         <p class=\"title-pro\">
+                                      <div class=\"product-info\">
+                                         <p class=\"title-pro product-info__title\">
                                             <a href=\"$productSlug\" title=\"$productName\">
                                             $productName</a>
                                          </p>
@@ -44,10 +46,10 @@ class ProductSingleShortcode
                                       <div class=\"box-button\">
                                          <a href=\"$productSlug\" title=\"$productName\" class=\"btn-detail\">Chi tiết</a>
                                       </div>
-                                   </li>
+                                   </div>
                                    ";
                 }
-                $html .= "</ul>";
+                $html .= "</div>";
                 return $html;
             }
         }
