@@ -22,7 +22,7 @@ class ProductSingleShortcode
             $sku = $this->productRepository->getProductBySku($skuArr);
             if ($sku) {
                 $shortcode = self::shortcode_name;
-                $html = "<div class=\"block-product\">";
+                $html = "<div class=\"block-product productRelated\">";
                 foreach ($sku as $item) {
                     $productImage = asset($item->image[0] ?? 'default');
                     $productName = $item->name;
