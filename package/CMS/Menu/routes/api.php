@@ -14,6 +14,7 @@ Route::group([
             Route::delete('delete/{id}', 'MenuController@delete');
             Route::put('update/{id}', 'MenuController@update');
             Route::post('create', 'MenuController@create');
+            Route::put('order','MenuController@order');
         });
     });
 });

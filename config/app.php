@@ -180,6 +180,7 @@ return [
         CMS\Product\Providers\ProductProviders::class,
         CMS\Frontend\Providers\FrontendProviders::class,
         CMS\Menu\Providers\MenuProviders::class,
+        CMS\News\Providers\NewsProviders::class,
 
     ],
 

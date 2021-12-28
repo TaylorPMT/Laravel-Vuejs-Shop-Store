@@ -67,7 +67,6 @@ export default {
         async setCategory() {
             let vm = this;
             let dataCategory = this.dataCategory;
-
             for (let property in dataCategory) {
                 if (dataCategory[property] !== '') {
                     let obj = {};

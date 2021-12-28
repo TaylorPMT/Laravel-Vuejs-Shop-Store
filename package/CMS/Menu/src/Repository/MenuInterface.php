@@ -4,6 +4,7 @@ namespace CMS\Menu\Repository;
 
 use App\Repository\BaseInterface;
 
-interface MenuInterface
+interface MenuInterface extends BaseInterface
 {
+    public function order($data);
 }

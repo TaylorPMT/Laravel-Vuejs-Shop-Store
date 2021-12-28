@@ -6,6 +6,7 @@ namespace CMS\Menu\Repository;
 use App\Repository\BaseRepository;
 use CMS\Menu\Models\Menu;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class MenuRepository extends BaseRepository implements MenuInterface
 {
@@ -25,7 +26,7 @@ class MenuRepository extends BaseRepository implements MenuInterface
 
         $builder = $this->_model;
 
-        $builder = $builder->selectRaw(implode(',', $select_filter));
+        $builder = $builder->selectRaw(implode(',', $select_filter))->orderBy('order');
         return $builder;
     }
 
@@ -91,11 +92,6 @@ class MenuRepository extends BaseRepository implements MenuInterface
     {
 
         $list = collect($data)->map(function ($value, $key) use ($data) {
-            if ($key == 'link') {
-                if (!empty($data['name'])) {
-                    return Str::slug($data['name']);
-                }
-            }
             return $value;
         })->toArray();
         return $list;
@@ -108,6 +104,29 @@ class MenuRepository extends BaseRepository implements MenuInterface
             $builder = $this->_model->create($this->formatData($request->all()));
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
+            return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
+        }
+    }
+
+    public function formatOrder($data)
+    {
+        foreach ($data as $order => $id) {
+            $builder = $this->_model->find($id['order'])->update([
+                'order' => $order,
+            ]);
+        }
+        return true;
+    }
+
+    public function order($request)
+    {
+        DB::beginTransaction();
+        try {
+            $builder = $this->formatOrder($request->all());
+            DB::commit();
+            return $this->responseJson(false, 200, 'Thành công', $builder);
+        } catch (\Exception $e) {
+            DB::rollBack();
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
         }
     }

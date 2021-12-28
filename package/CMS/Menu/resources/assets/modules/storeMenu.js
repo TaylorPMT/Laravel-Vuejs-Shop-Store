@@ -26,7 +26,6 @@ const actions = {
     },
     async findMENUByID({ state, dispatch }, [id, options]) {
         let res = await axios.getById("/api/admin/menu/show/", id, options);
-
         this.commit('SET_DETAIL_MENU', {
             data: res.data.data
         });
@@ -36,8 +35,6 @@ const actions = {
         let url = `${callApi.MENU.EDIT}${options.data.id}`;
         let res = await axios.edit(url, '', options);
         return res.data;
-
-
     },
     async deleteMenuByID({ state, dispatch }, options) {
         let url = `${callApi.MENU.DELETE}/`;
@@ -50,6 +47,11 @@ const actions = {
         let res = await axios.create(url, options);
         return res.data;
 
+    },
+    async orderMenu({ state, dispatch }, options) {
+        let url = `${callApi.MENU.ORDER}`;
+        let res = await axios.edit(url, '', options);
+        return res.data;
     }
 };
 
