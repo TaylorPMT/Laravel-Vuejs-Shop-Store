@@ -2,13 +2,15 @@
 
 namespace CMS\News\Repository;
 
-use App\Models\News;
+use  CMS\News\Models\News;
 use App\Repository\BaseRepository;
 
 use CMS\News\Repository\NewRepositoryInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
-class NewRepository extends BaseRepository implements NewRepositoryInterface  {
+class NewRepository extends BaseRepository implements NewRepositoryInterface
+{
     protected $_model;
 
     public function __construct(News $model)
@@ -24,7 +26,7 @@ class NewRepository extends BaseRepository implements NewRepositoryInterface  {
 
         $builder = $this->_model;
 
-        $builder = $builder->selectRaw(implode(',', $select_filter))->orderBy('order');
+        $builder = $builder->selectRaw(implode(',', $select_filter))->orderBy('created_at');
         return $builder;
     }
 
@@ -90,6 +92,11 @@ class NewRepository extends BaseRepository implements NewRepositoryInterface  {
     {
 
         $list = collect($data)->map(function ($value, $key) use ($data) {
+            if ($key == 'link') {
+                if (!empty($data['name'])) {
+                    return Str::slug($data['name']);
+                }
+            }
             return $value;
         })->toArray();
         return $list;
@@ -102,29 +109,6 @@ class NewRepository extends BaseRepository implements NewRepositoryInterface  {
             $builder = $this->_model->create($this->formatData($request->all()));
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
-            return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
-        }
-    }
-
-    public function formatOrder($data)
-    {
-        foreach ($data as $order => $id) {
-            $builder = $this->_model->find($id['order'])->update([
-                'order' => $order,
-            ]);
-        }
-        return true;
-    }
-
-    public function order($request)
-    {
-        DB::beginTransaction();
-        try {
-            $builder = $this->formatOrder($request->all());
-            DB::commit();
-            return $this->responseJson(false, 200, 'Thành công', $builder);
-        } catch (\Exception $e) {
-            DB::rollBack();
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
         }
     }

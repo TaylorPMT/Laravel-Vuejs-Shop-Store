@@ -8,24 +8,25 @@
         </div>
         <div class="row">
             <div class="col-md-8 2">
-                <BaseInput :label="'Tên Loại Sản Phẩm'" :class_form="'form-control'" v-model="data.name"></BaseInput>
+                <BaseInput
+                    :label="'Tên Loại Sản Phẩm'"
+                    :class_form="'form-control'"
+                    v-model="data.name"
+                ></BaseInput>
                 <!-- <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.link"></BaseInput> -->
                 <BaseCkeditor
                     :label="'Mô tả ngắn'"
                     :editorData="data.description"
                     v-model="data.description"
                 ></BaseCkeditor>
-
-                <form>
-                    <BaseCkeditor
-                        :label="'Mô tả chi tiết'"
-                        :editorData="data.content"
-                        v-model="data.content"
-                    ></BaseCkeditor>
-                </form>
+                <BaseCkeditor
+                    :label="'Mô tả chi tiết'"
+                    :editorData="data.content"
+                    v-model="data.content"
+                ></BaseCkeditor>
             </div>
             <div class="col-md-4">
-                 <BaseCkfinder
+                <BaseCkfinder
                     ref="ckfinder"
                     id="imagePage"
                     :multiImage="true"

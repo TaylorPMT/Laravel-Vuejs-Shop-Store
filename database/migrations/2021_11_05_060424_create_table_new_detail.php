@@ -15,6 +15,9 @@ class CreateTableNewDetail extends Migration
     {
         Schema::create('new_detail', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('name')->nullable();
+            $table->text('content')->nullable();
             $table->timestamps();
         });
     }

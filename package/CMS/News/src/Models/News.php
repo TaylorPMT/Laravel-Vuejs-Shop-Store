@@ -4,8 +4,9 @@ namespace CMS\News\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model{
+class News extends Model
+{
 
-    protected $table = 'news';
-
+    public $table = 'news';
+    public $guarded = [];
 }

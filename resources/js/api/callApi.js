@@ -18,5 +18,11 @@ const callApi = {
         DELETE: prefix + `/menu/delete`,
         ORDER: prefix + `/menu/order`,
     },
+    NEWS_CATEGORY: {
+        LIST: prefix + `/news/category/list?`,
+        CREATE: prefix + `/news/category/create`,
+        SHOW: prefix + `/news/category/show/`,
+        EDIT: prefix + `/news/category/update/`,
+    }
 };
 export default callApi;
