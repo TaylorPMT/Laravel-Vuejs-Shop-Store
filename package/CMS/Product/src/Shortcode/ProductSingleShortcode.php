@@ -22,15 +22,15 @@ class ProductSingleShortcode
             $sku = $this->productRepository->getProductBySku($skuArr);
             if ($sku) {
                 $shortcode = self::shortcode_name;
-                $html = "<div class=\"block-product\">";
+                $html = "<div class=\"block-product productRelated\">";
                 foreach ($sku as $item) {
                     $productImage = asset($item->image[0] ?? 'default');
                     $productName = $item->name;
                     $productSlug = route('frontend.product', ['url' => $item->link]);
                     $html .= "
                                    <div class=\"$shortcode text-center\">
-                                      <div class=\"product-img\">
-                                         <a href=\"\" title=\"$item->name\">
+                                      <div >
+                                         <a class=\"product-img\" href=\"\" title=\"$item->name\">
                                          <img src=\"$productImage\" alt=\"$productName\"
                                          class=\"block-product\"
                                          >
