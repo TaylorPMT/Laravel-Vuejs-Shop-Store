@@ -31,7 +31,7 @@ $first_record = $news[0] ?? '';
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 box-right">
                     <div class="row">
                         @if (count($news) > 2 && !empty($news))
-                            @foreach (array_slice($news, 1) as $item)
+                            @foreach (collect($news)->slice(1) as $item)
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                     <div class="news-item sm-item">
                                         <div class="news-item__image"> <a href=""><img class="lazyload"
