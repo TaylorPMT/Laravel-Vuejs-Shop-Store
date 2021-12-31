@@ -43,5 +43,12 @@ return [
         'name' => 'Quản lý bài viết',
         'icon' => 'movie',
         'active' => false,
+    ],
+    [
+        'url' => '/admin/page',
+        'module' => 'product',
+        'name' => 'Quản lý trang',
+        'icon' => 'movie',
+        'active' => false,
     ]
 ];

@@ -14,7 +14,17 @@ Route::group([
             Route::delete('delete/{id}', 'MenuController@delete');
             Route::put('update/{id}', 'MenuController@update');
             Route::post('create', 'MenuController@create');
-            Route::put('order','MenuController@order');
+            Route::put('order', 'MenuController@order');
+        });
+    });
+    Route::prefix('admin/page')->group(function () {
+        Route::group(['middleware' => 'admin:api'], function () {
+            Route::get('list', 'PageController@list');
+            Route::get('show/{id}', 'PageController@show');
+            Route::delete('delete/{id}', 'PageController@delete');
+            Route::put('update/{id}', 'PageController@update');
+            Route::post('create', 'PageController@create');
+            Route::put('order', 'PageController@order');
         });
     });
 });

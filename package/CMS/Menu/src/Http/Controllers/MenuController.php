@@ -45,7 +45,8 @@ class MenuController extends BaseController
         return $builder;
     }
 
-    public function order(Request $request){
+    public function order(Request $request)
+    {
         $builder = $this->_menu_repo->order($request);
         return $builder;
     }

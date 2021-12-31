@@ -31,7 +31,9 @@ const callApi = {
         EDIT: prefix + `/news/detail/update/`,
         DELETE: prefix + `/news/detail/delete`,
         SHOW: prefix + `/news/detail/show/`,
-
-    }
+    },
+    CONFIG_PAGE: {
+        LIST: prefix + `/page/list`,
+    },
 };
 export default callApi;

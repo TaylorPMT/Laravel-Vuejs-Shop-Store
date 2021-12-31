@@ -24,5 +24,8 @@ const api = {
     NEWS_DETAIL_CREATE: '/admin/news/detail/create',
     NEWS_DETAIL_EDIT: '/admin/news/detail/:id/edit',
 
+    // quan ly page
+    LIST_PAGE_HOME: '/admin/page',
+
 }
 export default api;
