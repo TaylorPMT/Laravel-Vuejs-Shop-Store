@@ -20,7 +20,7 @@
             </div>
         </div>
     </section>
-    @if (!empty($data->newCategory))
+    @if (!empty($data->news))
         <section class="news-related">
             <div class="container">
                 <div class="wrap-title">
