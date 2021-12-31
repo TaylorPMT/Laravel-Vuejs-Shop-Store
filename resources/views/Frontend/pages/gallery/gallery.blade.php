@@ -32,7 +32,7 @@
                                         <em class="material-icons">collections</em>
                                     </div>
                                 </a>
-                                @foreach ($item->slice(1)->image as $subImage)
+                                @foreach (collect($item->image)->slice(1) as $subImage)
                                     <a class="d-none fancybox" rel="group-{{ $item->id }}"
                                         data-fancybox="group-{{ $item->id }}" href="{{ asset($subImage) }}">
                                         <img src="{{ asset($subImage) }}">
