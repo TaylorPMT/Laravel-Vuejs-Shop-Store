@@ -9,6 +9,9 @@ class News extends Model
 
     public $table = 'news';
     public $guarded = [];
+    protected $casts = [
+        'image' => 'json',
+    ];
 
     public function scopeNewsHome($query, $limit, $id_unset)
     {
