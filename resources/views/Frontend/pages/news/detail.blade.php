@@ -37,7 +37,7 @@
                                     <div class="wrap-news">
                                         <div class="newsimage"> <a class="img zoom-out"
                                                 href="{{ route('frontend.news.detail', ['url' => $item->link]) }}"><img
-                                                    class="lazyload" data-src="{{ $item->image[0] ?? '' }}"
+                                                    class="lazyload" data-src="{{ asset($item->image[0] ?? '') }}"
                                                     alt="{{ $item->name }}"></a>
                                         </div>
                                         <div class="newsitem">
