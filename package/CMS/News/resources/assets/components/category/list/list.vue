@@ -6,7 +6,7 @@
                     <div>
                         <router-link
                             :to="
-                                encodeURI('/admin/news/create')
+                                encodeURI('/admin/news/category/create')
                             "
                             rel="tooltip"
                             :title="title"
