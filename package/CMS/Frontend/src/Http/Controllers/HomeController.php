@@ -15,9 +15,12 @@ class HomeController extends BaseController
         $this->_home = $frontendInterface;
     }
 
-    public function home()
+    public function home(Request $request)
     {
-        return view('Frontend.pages.index.index');
+        $category =
+            $this->_home->categoryProduct(1);
+        $news = $this->_home->news(5);
+        return view('Frontend.pages.index.index', compact('category', 'news'));
     }
 
     public function gallery()

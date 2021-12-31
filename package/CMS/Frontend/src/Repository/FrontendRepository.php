@@ -6,6 +6,7 @@ use App\Repository\BaseRepository;
 use CMS\Category\Models\Category;
 use CMS\Category\Repository\CategoryInterface;
 use CMS\Menu\Models\Menu;
+use CMS\News\Models\NewsDetail;
 use CMS\Product\Models\Product;
 
 class FrontendRepository extends BaseRepository implements CategoryInterface
@@ -13,11 +14,13 @@ class FrontendRepository extends BaseRepository implements CategoryInterface
     public $_category;
     public $_menus;
     public $_product;
-    public function __construct(Category $category, Menu $menu, Product $product)
+    public $_news_detail;
+    public function __construct(Category $category, Menu $menu, Product $product, NewsDetail $_news_detail)
     {
         $this->_category = $category;
         $this->_menus = $menu;
         $this->_product = $product;
+        $this->_news_detail = $_news_detail;
     }
 
     public function category()
@@ -30,6 +33,18 @@ class FrontendRepository extends BaseRepository implements CategoryInterface
     {
 
         $data = $this->_menus->orderBy('order', 'asc')->get();
+        return $data;
+    }
+    public function news($total_news)
+    {
+        $data = $this->_news_detail->orderBy('created_at')->take($total_news)->get();
+        return $data;
+    }
+    public function categoryProduct($total)
+    {
+        $data = $this->_category->with(['products' => function ($query) {
+            $query->paginate(config('general.product.paginate'));
+        }])->take($total)->get();
         return $data;
     }
 

@@ -15,12 +15,12 @@
             </div>
             <div class="wrap-gallery">
                 <div class="row">
-                    @foreach ($data as $item)
+                    @foreach (array_slice($data, 1) as $item)
                         @if (!empty($item->image))
                             <div class="col-lg-3 col-md-3 col-sm-6">
-                            
-                                <a class="fancybox gallery-item" rel="group-{{ $item->id }}" href="{{ asset(current($item->image)) }}"
-                                    data-fancybox="group-{{ $item->id }}">
+
+                                <a class="fancybox gallery-item" rel="group-{{ $item->id }}"
+                                    href="{{ asset(current($item->image)) }}" data-fancybox="group-{{ $item->id }}">
 
                                     <div class="img zoom-out">
                                         <img class="lazyload" data-src="{{ asset(current($item->image)) }}"
@@ -33,12 +33,13 @@
                                     </div>
                                 </a>
                                 @foreach ($item->image as $subImage)
-                                <a class="d-none fancybox" rel="group-{{ $item->id  }}" data-fancybox="group-{{ $item->id }}" href="{{ asset($subImage) }}">
-                                <img src="{{ asset($subImage) }}">
-                                </a>
+                                    <a class="d-none fancybox" rel="group-{{ $item->id }}"
+                                        data-fancybox="group-{{ $item->id }}" href="{{ asset($subImage) }}">
+                                        <img src="{{ asset($subImage) }}">
+                                    </a>
                                 @endforeach
                             </div>
-                            
+
                         @endif
                     @endforeach
                 </div>

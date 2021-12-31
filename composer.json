@@ -32,7 +32,10 @@
             "CMS\\Frontend\\": "package/CMS/Frontend/src",
             "CMS\\Menu\\": "package/CMS/Menu/src",
             "CMS\\News\\": "package/CMS/News/src"
-        }
+        },
+        "files": [
+            "app/Helpers/Common.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
