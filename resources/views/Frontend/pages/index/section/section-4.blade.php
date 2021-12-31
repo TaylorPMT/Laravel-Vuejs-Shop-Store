@@ -14,16 +14,20 @@ $first_record = $news[0] ?? '';
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 box-left">
                     @if (!empty($first_record))
                         <div class="news-item lg-item">
-                            <div class="news-item__image"> <a href=""><img
+                            <div class="news-item__image"> <a
+                                    href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}"><img
                                         src="{{ asset($first_record->image[0] ?? '') }}"
                                         alt="{{ $first_record->link }}"></a></div>
                             <div class="news-item__detail">
-                                <div class="title"> <a href="">{{ $first_record->name }}</a></div>
-                                <div class="date">{{ convert_date($first_record->created_at) }}</div>
-                                <div class="content">{!! $first_record->content !!}
+                                <div class="title"> <a
+                                        href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}">{{ $first_record->name }}</a>
                                 </div>
-                                <div class="seemore"> <a href=""> <span>Xem chi tiết</span><em
-                                            class="material-icons">east</em></a></div>
+                                <div class="date">{{ convert_date($first_record->created_at) }}</div>
+                                <div class="content">{!! $first_record->description !!}
+                                </div>
+                                <div class="seemore"> <a
+                                        href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}">
+                                        <span>Xem chi tiết</span><em class="material-icons">east</em></a></div>
                             </div>
                         </div>
                     @endif
@@ -34,17 +38,23 @@ $first_record = $news[0] ?? '';
                             @foreach (collect($news)->slice(1) as $item)
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                     <div class="news-item sm-item">
-                                        <div class="news-item__image"> <a href=""><img class="lazyload"
+                                        <div class="news-item__image"> <a
+                                                href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}"><img
+                                                    class="lazyload"
                                                     data-src="{{ asset($item->image[0] ?? '') }}" alt="" title=""></a>
                                         </div>
                                         <div class="news-item__detail">
-                                            <div class="title"> <a href="">{{ @$item->name }}</a></div>
+                                            <div class="title"> <a
+                                                    href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}">{{ @$item->name }}</a>
+                                            </div>
                                             <div class="date">
                                                 <time>{{ convert_date($item->created_at) }}</time>
                                             </div>
-                                            <div class="content">{!! $first_record->content !!}</div>
-                                            <div class="seemore"> <a href=""> <span>Xem chi tiết</span><em
-                                                        class="material-icons">east</em></a></div>
+                                            <div class="content">{!! $first_record->description !!}</div>
+                                            <div class="seemore"> <a
+                                                    href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}">
+                                                    <span>Xem chi tiết</span><em class="material-icons">east</em></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

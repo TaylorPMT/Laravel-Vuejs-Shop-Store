@@ -35,9 +35,16 @@ class FrontendRepository extends BaseRepository implements CategoryInterface
         $data = $this->_menus->orderBy('order', 'asc')->get();
         return $data;
     }
+
     public function news($total_news)
     {
         $data = $this->_news_detail->orderBy('created_at')->take($total_news)->get();
+        return $data;
+    }
+    public function newsDetail($request)
+    {
+        $data = $this->_news_detail->with(['newCategory'])->where('link', $request->url)->first();
+
         return $data;
     }
     public function categoryProduct($total)

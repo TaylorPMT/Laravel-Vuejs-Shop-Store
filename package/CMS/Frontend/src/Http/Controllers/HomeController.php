@@ -88,4 +88,15 @@ class HomeController extends BaseController
         ];
         return view('Frontend.pages.product.detail', compact('data', 'breadcrumb'));
     }
+
+    public function newDetail(Request $request)
+    {
+        $data = $this->_home->newsDetail($request);
+
+        if (empty($data)) {
+            abort(404);
+        }
+
+        return view('Frontend.pages.news.detail', compact('data'));
+    }
 }
