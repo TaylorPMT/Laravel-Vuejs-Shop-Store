@@ -6,7 +6,7 @@
                     <div>
                         <router-link
                             :to="
-                                encodeURI('/admin/news/create')
+                                encodeURI('/admin/news/detail/create')
                             "
                             rel="tooltip"
                             :title="title"
@@ -58,7 +58,7 @@
                                                 <em class="material-icons">arrow_upward</em>
                                             </a>
                                         </th>
-
+                                        <th>Hình</th>
                                         <th style="width: 40%;">Mô tả ngắn</th>
                                         <th style="text-align: right;">Lựa chọn</th>
                                     </thead>
@@ -70,14 +70,31 @@
                                         >
                                             <td class="td-center">{{ listData.from + index }}</td>
                                             <td>{{ item.name }}</td>
-
+                                            <td class="box-image">
+                                                <div
+                                                    class="image-preview"
+                                                    v-if="!isEmpty(item.image)"
+                                                >
+                                                    <div
+                                                        class="item"
+                                                        v-for="(item,index) in item.image"
+                                                        :key="'image-' + index"
+                                                        v-if="index < 1"
+                                                    >
+                                                        <img
+                                                            :src="asset(item)"
+                                                            :alt="'image-' + index"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <p v-html="strippedContent(item.description)"></p>
                                             </td>
                                             <td class="td-actions text-right">
                                                 <router-link
                                                     :to="
-                                                        encodeURI('/admin/news/category/' +
+                                                        encodeURI('/admin/news/detail/' +
                                                             item.id +
                                                             '/edit')
                                                     "
@@ -104,7 +121,7 @@
                                             :className="''"
                                             v-model="pagination"
                                             :data="listData"
-                                            namePaginate="Customer"
+                                            :namePaginate="title"
                                             :classNameSelect="''"
                                             :options="options"
                                         ></Paginate>
@@ -153,14 +170,14 @@ export default {
                 fields: this.filters.toString(),
                 ...this.pagination
             };
-            let res = await this.$store.dispatch('getListNewsCategory', options);
+            let res = await this.$store.dispatch('getNewsListDetail', options);
 
             return res;
         },
         async handleDelete(id) {
             let show = confirm(this.message().confirm_delete);
             if (show) {
-                let res = await this.$store.dispatch("deleteCategoryByID", {
+                let res = await this.$store.dispatch("deleteNewsDetailByID", {
                     id: id
                 });
                 if (res.error == false) {
@@ -179,12 +196,12 @@ export default {
     },
     computed: {
         ...mapState({
-            listData: state => state.storeNews.LIST_NEWS_CATEGORY
+            listData: state => state.storeNews.LIST_NEWS_DETAIL
         })
     },
     data() {
         return {
-            title: "Thêm danh mục",
+            title: "Bài viết",
             show_download: true,
             downloading: false,
             pagination: {

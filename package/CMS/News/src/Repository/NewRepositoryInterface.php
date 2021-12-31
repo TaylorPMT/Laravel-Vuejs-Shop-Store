@@ -2,8 +2,8 @@
 
 namespace CMS\News\Repository;
 
-use App\Repository\BaseInterface ;
+use App\Repository\BaseInterface;
 
-interface NewRepositoryInterface extends BaseInterface{
-
+interface NewRepositoryInterface extends BaseInterface
+{
 }

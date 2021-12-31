@@ -6,6 +6,7 @@ use App\Helpers\Helpers;
 use CMS\News\Repository\NewRepository;
 use CMS\News\Repository\NewRepositoryInterface;
 use CMS\News\Repository\NewsDetailRepository;
+use CMS\News\Repository\NewsDetailRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class NewsProviders extends ServiceProvider
@@ -28,16 +29,16 @@ class NewsProviders extends ServiceProvider
         }
         $repository = [
             [
-                'ỉnterface' => NewRepositoryInterface::class,
+                'interface' => NewRepositoryInterface::class,
                 'binding'   => NewRepository::class,
             ],
             [
-                'ỉnterface' => NewRepositoryInterface::class,
+                'interface' => NewsDetailRepositoryInterface::class,
                 'binding'   => NewsDetailRepository::class,
             ]
         ];
         foreach ($repository as $bind) {
-            $this->app->bind($bind['ỉnterface'], $bind['binding']);
+            $this->app->bind($bind['interface'], $bind['binding']);
         }
     }
 }

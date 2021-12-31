@@ -23,6 +23,15 @@ const callApi = {
         CREATE: prefix + `/news/category/create`,
         SHOW: prefix + `/news/category/show/`,
         EDIT: prefix + `/news/category/update/`,
+        DELETE: prefix + `/news/category/delete`,
+    },
+    NEW_DETAIL: {
+        LIST: prefix + `/news/detail/list?`,
+        CREATE: prefix + `/news/detail/create`,
+        EDIT: prefix + `/news/detail/update/`,
+        DELETE: prefix + `/news/detail/delete`,
+        SHOW: prefix + `/news/detail/show/`,
+
     }
 };
 export default callApi;

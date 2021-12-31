@@ -21,6 +21,8 @@ const api = {
 
     //news detail
     NEWS_DETAIL: '/admin/news/detail',
+    NEWS_DETAIL_CREATE: '/admin/news/detail/create',
+    NEWS_DETAIL_EDIT: '/admin/news/detail/:id/edit',
 
 }
 export default api;

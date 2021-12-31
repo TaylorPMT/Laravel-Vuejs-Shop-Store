@@ -160,7 +160,7 @@ export default {
         async handleDelete(id) {
             let show = confirm(this.message().confirm_delete);
             if (show) {
-                let res = await this.$store.dispatch("deleteCategoryByID", {
+                let res = await this.$store.dispatch("deleteNewsCategoryByID", {
                     id: id
                 });
                 if (res.error == false) {
