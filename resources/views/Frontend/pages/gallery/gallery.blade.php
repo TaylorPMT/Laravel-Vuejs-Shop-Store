@@ -15,7 +15,7 @@
             </div>
             <div class="wrap-gallery">
                 <div class="row">
-                    @foreach (array_slice($data, 1) as $item)
+                    @foreach ($data as $item)
                         @if (!empty($item->image))
                             <div class="col-lg-3 col-md-3 col-sm-6">
 
@@ -32,7 +32,7 @@
                                         <em class="material-icons">collections</em>
                                     </div>
                                 </a>
-                                @foreach ($item->image as $subImage)
+                                @foreach (array_slice($item->image) as $subImage)
                                     <a class="d-none fancybox" rel="group-{{ $item->id }}"
                                         data-fancybox="group-{{ $item->id }}" href="{{ asset($subImage) }}">
                                         <img src="{{ asset($subImage) }}">
