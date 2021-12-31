@@ -43,7 +43,7 @@ class FrontendRepository extends BaseRepository implements CategoryInterface
     }
     public function newsDetail($request)
     {
-        $data = $this->_news_detail->with(['newCategory'])->where('link', $request->url)->first();
+        $data = $this->_news_detail->with(['news'])->where('link', $request->url)->first();
 
         return $data;
     }

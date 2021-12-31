@@ -12,9 +12,14 @@ class NewsDetail extends Model
         'image' => 'json',
     ];
 
-    public function newCategory()
+    public function news()
     {
         return $this->belongsTo(News::class, 'category_id');
+    }
+
+    public function newsDetail($query, $limit, $id_unset)
+    {
+        return $query->where([['id', '<>', $id_unset]])->take($limit)->get();
     }
 
     public function setImageAttribute($value)

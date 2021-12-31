@@ -32,7 +32,7 @@
                 <div class="swiper-news-related">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            @foreach ($data->newCategory->newsHome(7, $data->id) as $item)
+                            @foreach ($data->news()->newsdetail(7, $item->id) as $item)
                                 <div class="swiper-slide">
                                     <div class="wrap-news">
                                         <div class="newsimage"> <a class="img zoom-out"
