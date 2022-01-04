@@ -1,3 +1,5 @@
+require("./bootstrap");
+
 window.Vue = require("vue");
 import router from "./router/index";
 import Vuex from "vuex";
