@@ -127,6 +127,7 @@ export default {
         margin: 0 auto
         transform: translateX(-30%)
         margin-top: 10%
+        min-height: auto!important
         @media screen and (max-width: 768px)
             padding: 30px
             transform: translateX(0)
