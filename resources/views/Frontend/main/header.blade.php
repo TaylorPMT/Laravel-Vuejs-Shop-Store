@@ -47,30 +47,9 @@ $menu = $repo->menus();
             </div>
         </div>
     </div>
-    <div class="wrap-search">
-        <div class="searchbox">
-            <input placeholder="Tìm Kiếm">
-            <button class="btn-search"><em class="material-icons">search</em></button>
-            <div class="wrap-search-result">
-						<ul>
-							<li>
-								<div class="item"><a class="wrap-img" href=""><img src="./img/flower/1.jpg" alt=""></a><a class="wrap-title" href="">Sản phẩm 1</a></div>
-							</li>
-							<li>
-								<div class="item"><a class="wrap-img" href=""><img src="./img/flower/2.jpg" alt=""></a><a class="wrap-title" href="">Sản phẩm 2</a></div>
-							</li>
-							<li>
-								<div class="item"><a class="wrap-img" href=""><img src="./img/flower/3.jpg" alt=""></a><a class="wrap-title" href="">Sản phẩm 3</a></div>
-							</li>
-							<li>
-								<div class="item"><a class="wrap-img" href=""><img src="./img/flower/4.jpg" alt=""></a><a class="wrap-title" href="">Sản phẩm 4</a></div>
-							</li>
-							<li>
-								<div class="item"><a class="wrap-img" href=""><img src="./img/flower/5.jpg" alt=""></a><a class="wrap-title" href="">Sản phẩm 5</a></div>
-							</li>
-						</ul>
-					</div>
-        </div>
+    <div id="app">
+        <search-component></search-component>
     </div>
+
     <div class="wrap-menu-mb"></div>
 </header>

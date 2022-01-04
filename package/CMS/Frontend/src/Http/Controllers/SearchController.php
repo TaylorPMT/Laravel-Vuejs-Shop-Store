@@ -13,7 +13,8 @@ class SearchController extends BaseController
 
     public function search(Request $request)
     {
-        $data = FullSiteSearch::search($request->keyword);
+        $keyword = $request->key_word;
+        $data = FullSiteSearch::search($keyword);
         return $this->responseJson(false, 200, 'Thành công', $data);
     }
 }

@@ -22,6 +22,8 @@ Vue.use(ViewUI);
 Vue.use(Vuex);
 Vue.use(Notifications)
 Vue.component("mainapp", require("./components/mainapp.vue").default);
+Vue.component('search-component', require('./components/pages/components/search.vue').default);
+
 window.eventBus = new Vue({});
 
 Vue.directive('sortable', {

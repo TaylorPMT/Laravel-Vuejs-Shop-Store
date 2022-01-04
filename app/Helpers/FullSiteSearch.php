@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class FullSiteSearch
 {
+
+
+    public static $keyword = '';
     public static function useModel()
     {
         return [
@@ -34,6 +37,7 @@ class FullSiteSearch
     {
 
         $path_file = app()->basePath();
+        self::$keyword = $keyword;
         $data_result = [];
         // getting all the model files from the model folder
         collect(self::useModel())->map(function ($path, $name_space) use ($path_file, &$data_result) {
@@ -43,7 +47,7 @@ class FullSiteSearch
             })->map(function ($class_name) use ($name_space, &$data_result) {
                 $model = app($name_space . $class_name);
                 $fields = array_filter($model::SEARCHABLE_FIELDS, fn ($fields) => $fields !== 'id');
-                $data_result =  $model::search(request()->keyword)->get()->map(function ($model_record) use ($fields, $class_name) {
+                $data_result =  $model::search(self::$keyword)->get()->map(function ($model_record) use ($fields, $class_name) {
                     //for result
                     return self::createMatchAttribute($model_record, $fields, $class_name);
                 });
@@ -57,7 +61,8 @@ class FullSiteSearch
     {
         // only extracting the relevant fields from our model
         $field_data =  $model_record->only($fields);
-        $key_word = request()->keyword;
+        $key_word =
+            self::$keyword;
         $image_link = $field_data['image'][0] ?? '';
         unset($field_data['image']);
         $serialized_values = collect($field_data)->join(' ');

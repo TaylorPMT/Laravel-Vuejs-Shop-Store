@@ -49,9 +49,7 @@ const mutations = {
 const actions = {
     async getSidebarMenu({ state, commit }, options) {
         let res = await axios.getList("/api/admin/config?siderbar", options);
-
         return res.data.data
-
     }
 };
 
