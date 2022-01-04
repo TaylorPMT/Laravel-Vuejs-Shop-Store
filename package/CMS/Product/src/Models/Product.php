@@ -6,13 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\TraitModel;
 use CMS\Category\Models\Category;
+use Laravel\Scout\Searchable;
 use Shortcode;
 
 class Product extends Model
 {
     use HasFactory;
     use TraitModel;
+    use Searchable;
     public $table = 'products';
+    const BUFFER = 10;
+    const SEARCHABLE_FIELDS = [
+        'id',  'name', 'description', 'link', 'image'
+    ];
     protected $guarded = [];
     protected $casts = [
         'image' => 'json',
@@ -33,7 +39,19 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function getContentAttribute(){
+    public function searchableAs()
+    {
+        return 'products_index';
+    }
+
+
+    public function toSearchableArray()
+    {
+        return $this->only(self::SEARCHABLE_FIELDS);
+    }
+
+    public function getContentAttribute()
+    {
 
         return Shortcode::compile($this->attributes['content']);
     }

@@ -5,6 +5,7 @@ let axios = new callAxios();
 const state = {
     LIST_MENU: [],
     DETAIL_MENU: [],
+    LIST_CONFIG_PAGE: [],
 };
 
 const mutations = {
@@ -13,6 +14,9 @@ const mutations = {
     },
     SET_DETAIL_MENU(state, data) {
         state.DETAIL_MENU = data.data;
+    },
+    SET_LIST_CONFIG_PAGE(state, data) {
+        state.LIST_CONFIG_PAGE = data.data;
     }
 };
 
@@ -52,6 +56,14 @@ const actions = {
         let url = `${callApi.MENU.ORDER}`;
         let res = await axios.edit(url, '', options);
         return res.data;
+    },
+    async getListConfigPage({ state, dispatch }, options) {
+        let url = `${callApi.CONFIG_PAGE.LIST}`;
+        let res = await axios.get(url, options);
+        this.commit('SET_LIST_CONFIG_PAGE', {
+            data: res.data
+        });
+        return true;
     }
 };
 

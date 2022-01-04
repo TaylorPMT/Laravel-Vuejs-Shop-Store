@@ -27,7 +27,7 @@ class ProductSingleShortcode
                     $productImage = asset($item->image[0] ?? 'default');
                     $productName = $item->name;
                     $productSlug = route('frontend.product', ['url' => $item->link]);
-                    $html .= "
+                    $html .= "<div>
                                    <div class=\"$shortcode text-center\">
                                       <div >
                                          <a class=\"product-img\" href=\"\" title=\"$item->name\">
@@ -47,7 +47,7 @@ class ProductSingleShortcode
                                          <a href=\"$productSlug\" title=\"$productName\" class=\"btn-detail\">Chi tiết</a>
                                       </div>
                                    </div>
-                                   ";
+                                  </div> ";
                 }
                 $html .= "</div>";
                 return $html;

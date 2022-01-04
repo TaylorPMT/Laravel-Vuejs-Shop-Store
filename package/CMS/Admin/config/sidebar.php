@@ -33,7 +33,21 @@ return [
     [
         'url' => '/admin/news/category',
         'module' => 'product',
-        'name' => 'Quản lý Danh Mục Tin Tức',
+        'name' => 'Danh Mục Tin Tức',
+        'icon' => 'movie',
+        'active' => false,
+    ],
+    [
+        'url' => '/admin/news/detail',
+        'module' => 'product',
+        'name' => 'Quản lý bài viết',
+        'icon' => 'movie',
+        'active' => false,
+    ],
+    [
+        'url' => '/admin/page',
+        'module' => 'product',
+        'name' => 'Quản lý trang',
         'icon' => 'movie',
         'active' => false,
     ]

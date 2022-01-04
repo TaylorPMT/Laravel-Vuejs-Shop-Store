@@ -12,14 +12,12 @@ Route::name('frontend.')->group(function () {
         Route::get('intro', 'HomeController@intro')->name('intro');
         Route::get('category/{url}', 'HomeController@category')->name('product.category');
         Route::get('product/{url}', 'HomeController@products')->name('product');
+        Route::get('news/detail/{url}', 'HomeController@newDetail')->name('news.detail');
     });
 });
 
 Route::get('news-list', function () {
     return view('Frontend.pages.news.list');
-});
-Route::get('news-detail', function () {
-    return view('Frontend.pages.news.detail');
 });
 
 

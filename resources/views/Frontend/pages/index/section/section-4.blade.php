@@ -1,40 +1,65 @@
+@php
+$first_record = $news[0] ?? '';
+@endphp
 <section class="section home-4">
     <div class="container">
         <div class="wrap-title">
             <div class="section-title">Tin tức
-                <div class="section-title-line"><img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt="Symbol" title="Symbol"></div>
+                <div class="section-title-line"><img class="lazyload"
+                        data-src="{{ asset('frontend/assets/img/title.png') }}" alt="Symbol" title="Symbol"></div>
             </div>
         </div>
-        <div class="wrap-news"> 
-            <div class="row"> 
+        <div class="wrap-news">
+            <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 box-left">
-                    <div class="news-item lg-item">
-                        <div class="news-item__image"> <a href=""><img src="{{ asset('frontend/assets/img/flower/1.jpg') }}" alt=""></a></div>
-                        <div class="news-item__detail"> 
-                            <div class="title"> <a href="">Tin tức 1</a></div>
-                            <div class="date">12/08/2021</div>
-                            <div class="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam minima, deleniti pariatur, aspernatur ut quibusdam molestiae nesciunt natus optio inventore quis voluptatibus eaque a quas, ad quia doloremque adipisci aliquid?</div>
-                            <div class="seemore"> <a href=""> <span>Xem chi tiết</span><em class="material-icons">east</em></a></div>
+                    @if (!empty($first_record))
+                        <div class="news-item lg-item">
+                            <div class="news-item__image"> <a
+                                    href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}"><img
+                                        src="{{ asset($first_record->image[0] ?? '') }}"
+                                        alt="{{ $first_record->link }}"></a></div>
+                            <div class="news-item__detail">
+                                <div class="title"> <a
+                                        href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}">{{ $first_record->name }}</a>
+                                </div>
+                                <div class="date">{{ convert_date($first_record->created_at) }}</div>
+                                <div class="content">{!! $first_record->description !!}
+                                </div>
+                                <div class="seemore"> <a
+                                        href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}">
+                                        <span>Xem chi tiết</span><em class="material-icons">east</em></a></div>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 box-right">
                     <div class="row">
-                        @for($i=2; $i < 6; $i++)
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                            <div class="news-item sm-item">
-                                <div class="news-item__image"> <a href=""><img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/')}}/{{$i}}.jpg" alt="" title=""></a></div>
-                                <div class="news-item__detail"> 
-                                    <div class="title"> <a href="">Tin tức {{$i}}</a></div>
-                                    <div class="date"> 
-                                        <time>12/08/2021</time>
+                        @if (count($news) > 2 && !empty($news))
+                            @foreach (collect($news)->slice(1) as $item)
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <div class="news-item sm-item">
+                                        <div class="news-item__image"> <a
+                                                href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}"><img
+                                                    class="lazyload"
+                                                    data-src="{{ asset($item->image[0] ?? '') }}" alt="" title=""></a>
+                                        </div>
+                                        <div class="news-item__detail">
+                                            <div class="title"> <a
+                                                    href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}">{{ @$item->name }}</a>
+                                            </div>
+                                            <div class="date">
+                                                <time>{{ convert_date($item->created_at) }}</time>
+                                            </div>
+                                            <div class="content">{!! $first_record->description !!}</div>
+                                            <div class="seemore"> <a
+                                                    href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}">
+                                                    <span>Xem chi tiết</span><em class="material-icons">east</em></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam minima, deleniti pariatur, aspernatur ut quibusdam molestiae nesciunt natus optio inventore quis voluptatibus eaque a quas, ad quia doloremque adipisci aliquid?</div>
-                                    <div class="seemore"> <a href=""> <span>Xem chi tiết</span><em class="material-icons">east</em></a></div>
                                 </div>
-                            </div>
-                        </div>
-                        @endfor
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
