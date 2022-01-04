@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.ico') }}">
     <title>@yield('title')</title>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/frontend.js') }}" defer></script>
     <script>
         DOMAIN = "{{ env('APP_URL') ?? asset('/') }}"
     </script>

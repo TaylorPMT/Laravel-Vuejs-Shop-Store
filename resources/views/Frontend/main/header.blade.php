@@ -47,7 +47,7 @@ $menu = $repo->menus();
             </div>
         </div>
     </div>
-    <div id="app">
+    <div id="frontend">
         <search-component></search-component>
     </div>
 
