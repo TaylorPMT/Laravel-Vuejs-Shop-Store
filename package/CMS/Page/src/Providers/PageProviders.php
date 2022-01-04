@@ -4,6 +4,8 @@ namespace CMS\Page\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Helpers\Helpers;
+use CMS\Page\Repository\BlockRepository;
+use CMS\Page\Repository\BlockRepositoryInterface;
 
 class PageProviders extends ServiceProvider
 {
@@ -25,8 +27,8 @@ class PageProviders extends ServiceProvider
         }
         $repository = [
             [
-                'interface' => NewRepositoryInterface::class,
-                'binding'   => NewRepository::class,
+                'interface' => BlockRepositoryInterface::class,
+                'binding'   => BlockRepository::class,
             ],
         ];
         foreach ($repository as $bind) {
