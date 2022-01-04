@@ -5,8 +5,7 @@
             <button class="btn-search">
                 <em class="material-icons">search</em>
             </button>
-        </div>
-        <div class="wrap-search-result" v-if="!isEmpty(data)">
+            <div class="wrap-search-result" v-if="!isEmpty(data)">
             <ul>
                 <li v-for="(item, index) in data" :key="index">
                     <div class="item">
@@ -18,6 +17,8 @@
                 </li>
             </ul>
         </div>
+        </div>
+        
     </div>
 </template>
 
