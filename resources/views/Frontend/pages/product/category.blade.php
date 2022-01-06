@@ -25,8 +25,12 @@
                             @endforeach
                         </div>
                     </div>
+                    @include('Frontend.main.paginate')
                 </div>
             </div>
+
+            
+
         </div>
     </section>
 
