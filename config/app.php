@@ -181,6 +181,7 @@ return [
         CMS\Frontend\Providers\FrontendProviders::class,
         CMS\Menu\Providers\MenuProviders::class,
         CMS\News\Providers\NewsProviders::class,
+        CMS\Page\Providers\PageProviders::class,
 
     ],
 
