@@ -8,6 +8,8 @@ import category from "../../../package/CMS/Category/resources/assets/routes/inde
 import product from "../../../package/CMS/Product/resources/assets/routes/index";
 import menu from "../../../package/CMS/Menu/resources/assets/routes/index";
 import news from '../../../package/CMS/News/resources/assets/routes/index';
+import block from '../../../package/CMS/Page/resources/assets/routes/index';
+
 import error404 from "../components/error/404.vue";
 const routes = [{
         path: "/admin",
@@ -62,7 +64,8 @@ routes[0].children = routes[0].children.concat(
     category,
     product,
     menu,
-    news
+    news,
+    block
 );
 export default new Router({
     mode: "history",

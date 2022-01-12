@@ -3,26 +3,26 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-end">
                 <button class="btn btn-sm btn-success" @click="submit()">Lưu lại</button>
-                <BaseBackPage :page="`/admin/category`"></BaseBackPage>
+                <BaseBackPage :page="`/admin/block/page`"></BaseBackPage>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 2">
+                <BaseInput :label="'Tên block'" :class_form="'form-control'" v-model="data.name"></BaseInput>
+                <BaseFormSelect
+                    v-model="data.folder"
+                    :label="'Folder'"
+                    :options="ConfigFolderPage"
+                />
                 <BaseInput
-                    :label="'Tên Loại Sản Phẩm'"
+                    :label="'Tiêu đề'"
                     :class_form="'form-control'"
-                    v-model="data.name"
+                    v-model="data.json_block.name"
                 ></BaseInput>
-                <!-- <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.link"></BaseInput> -->
                 <BaseCkeditor
-                    :label="'Mô tả ngắn'"
-                    :editorData="data.description"
-                    v-model="data.description"
-                ></BaseCkeditor>
-                <BaseCkeditor
-                    :label="'Mô tả chi tiết'"
-                    :editorData="data.content"
-                    v-model="data.content"
+                    :label="'JSON_BLOCK'"
+                    :editorData="data.json_block.data_content"
+                    v-model="data.json_block.data_content"
                 ></BaseCkeditor>
             </div>
             <div class="col-md-4">
@@ -60,10 +60,17 @@ export default {
         return {
             data: {
                 name: "",
-                content: "",
-                description: "",
-                link: "",
+                folder: "",
                 image: [],
+                json_block: {
+                    list_category: [],
+                    list_product: [],
+                    data_content: '',
+                    name: '',
+                },
+                dataCategory: [],
+                optionsCategory: [],
+
             },
             dataImage: {
                 type: Array,
@@ -73,7 +80,8 @@ export default {
     },
     computed: {
         ...mapState({
-
+            CategoryList: state => state.storeCategory.LIST_CATEGORY,
+            ConfigFolderPage: state => state.storeBlock.CONFIG_BLOCK
         })
     },
     methods: {
@@ -81,7 +89,9 @@ export default {
             this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
         },
         async getValueImage(e) {
+            console.log(e);
             let vm = this;
+
             let arr = e.map((images, i) => {
                 let index = images.indexOf("uploads");
                 return images.slice(index, images.length);
@@ -95,25 +105,48 @@ export default {
         },
         async formatData() {
             let vm = this;
+            await this.setCategory();
             let customer =
                 vm.readOnlyJson(
                     vm.parseJSON(vm.data),
-                    "content",
-                    "description",
-                    "link",
                     "name",
-                    "orders",
-                    "parent_id",
-                    'image'
+                    "folder",
+                    "image",
+                    "json_block",
                 )
                 ;
-
             return customer;
+        },
+        async handleGetAllCategory() {
+            let res = await this.$store.dispatch("getListCategory", {});
+            let data = this.CategoryList.data;
+            let arr = [];
+            for (let item in data) {
+                let obj = {};
+                obj.id = data[item].id;
+                obj.text = data[item].name;
+                if (data[item] !== '') {
+                    arr.push(obj);
+                }
+            }
+
+            this.optionsCategory = arr;
+        },
+        async setCategory() {
+            let vm = this;
+            let dataCategory = this.dataCategory;
+            for (let property in dataCategory) {
+                if (dataCategory[property] !== '') {
+                    let obj = {};
+                    obj.id = dataCategory[property];
+                    vm.json_block.list_category.push(obj);
+                }
+            }
         },
         async submit() {
             let show = confirm(this.message().confirm_update);
             if (show) {
-                let res = await this.$store.dispatch("createCategory", {
+                let res = await this.$store.dispatch("createPageBlock", {
                     data: await this.formatData()
                 });
                 if (res.error == false) {
@@ -121,11 +154,19 @@ export default {
                     this.$store.commit("SET_STATUS_ACTION");
                 }
             }
-        }
+        },
+        async getConfig() {
+            let res = await this.$store.dispatch('getPageBlock', {});
+            return true;
+        },
 
     },
 
     async created() {
+        await this.handleGetAllCategory();
+
+        await this.getConfig();
+
     },
 
     components: {

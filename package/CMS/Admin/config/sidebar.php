@@ -50,5 +50,12 @@ return [
         'name' => 'Quản lý trang',
         'icon' => 'movie',
         'active' => false,
+    ],
+    [
+        'url' => '/admin/block/page',
+        'module' => 'product',
+        'name' => 'Quản lý Layout',
+        'icon' => 'movie',
+        'active' => false,
     ]
 ];

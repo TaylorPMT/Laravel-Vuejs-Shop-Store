@@ -41,7 +41,7 @@ export default {
                     language: "vi",
                     defaultLanguage: "vi",
                     skin: "moono-lisa",
-                    extraPlugins: "product",
+                    extraPlugins: ["product"],
                     editorplaceholder: "",
                     // enterMode: CKEDITOR.ENTER_BR,
                     toolbar: [
@@ -99,7 +99,7 @@ export default {
                         { name: "tools", items: ["Maximize", "ShowBlocks"] },
                         { name: "colors", items: ["TextColor", "BGColor"] },
                         { name: "others", items: ["-"] },
-                        { name: "product_new", items: ["Product"] }
+                        { name: "product_new", items: ["Product"] },
                     ]
                 };
             }

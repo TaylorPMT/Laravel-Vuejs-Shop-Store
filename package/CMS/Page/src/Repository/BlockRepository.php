@@ -7,7 +7,7 @@ use App\Repository\BaseRepository;
 use CMS\Page\Models\Block;
 use Illuminate\Support\Str;
 
-class BlockRepository extends BaseRepository implements BaseInterface
+class BlockRepository extends BaseRepository implements BlockRepositoryInterface
 {
     protected $_model;
 
@@ -100,6 +100,11 @@ class BlockRepository extends BaseRepository implements BaseInterface
         return $list;
     }
 
+    public function configPage()
+    {
+        $builder = config('block');
+        return $this->responseJson(false, 200, 'Thành công', $builder);
+    }
 
     public function create($request)
     {

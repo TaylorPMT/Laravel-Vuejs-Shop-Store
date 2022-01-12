@@ -3,26 +3,32 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-end">
                 <button class="btn btn-sm btn-success" @click="submit()">Lưu lại</button>
-                <BaseBackPage :page="`/admin/category`"></BaseBackPage>
+                <BaseBackPage :page="`/admin/block/page`"></BaseBackPage>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 2">
                 <BaseInput
-                    :label="'Tên Loại Sản Phẩm'"
+                    :label="'Tên block'"
                     :class_form="'form-control'"
-                    v-model="data.name"
+                    v-model="DetailConfigPage.name"
                 ></BaseInput>
-                <!-- <BaseInput :label="'URL'" :class_form="'form-control'" v-model="data.link"></BaseInput> -->
+                <BaseFormSelect
+                    v-model="DetailConfigPage.folder"
+                    :label="'Folder'"
+                    :options="ConfigFolderPage"
+                />
+                <BaseInput
+                    v-if="DetailConfigPage.json_block"
+                    :label="'Tiêu đề'"
+                    :class_form="'form-control'"
+                    v-model="DetailConfigPage.json_block.name"
+                ></BaseInput>
                 <BaseCkeditor
-                    :label="'Mô tả ngắn'"
-                    :editorData="data.description"
-                    v-model="data.description"
-                ></BaseCkeditor>
-                <BaseCkeditor
-                    :label="'Mô tả chi tiết'"
-                    :editorData="data.content"
-                    v-model="data.content"
+                    :label="'JSON_BLOCK'"
+                    :editorData="DetailConfigPage.json_block.data_content"
+                    v-model="DetailConfigPage.json_block.data_content"
+                    v-if="DetailConfigPage.json_block"
                 ></BaseCkeditor>
             </div>
             <div class="col-md-4">
@@ -36,9 +42,13 @@
                     type="button"
                     class="btn btn-sm btn-success"
                     @click="handleFileUpload()"
-                >Tải hình ảnh</button>
-                <div class="image-preview" v-if="!isEmpty(data.image)">
-                    <div class="item" v-for="(item,index) in data.image" :key="'image-' + index">
+                >Hình ảnh block</button>
+                <div class="image-preview" v-if="!isEmpty(DetailConfigPage.image)">
+                    <div
+                        class="item"
+                        v-for="(item,index) in DetailConfigPage.image"
+                        :key="'image-' + index"
+                    >
                         <img :src="asset(item)" :alt="'image-' + index" />
                     </div>
                 </div>
@@ -60,10 +70,17 @@ export default {
         return {
             data: {
                 name: "",
-                content: "",
-                description: "",
-                link: "",
+                folder: "",
                 image: [],
+                json_block: {
+                    list_category: [],
+                    list_product: [],
+                    data_content: '',
+                    name: '',
+                },
+                dataCategory: [],
+                optionsCategory: [],
+
             },
             dataImage: {
                 type: Array,
@@ -73,10 +90,18 @@ export default {
     },
     computed: {
         ...mapState({
-
+            CategoryList: state => state.storeCategory.LIST_CATEGORY,
+            ConfigFolderPage: state => state.storeBlock.CONFIG_BLOCK,
+            DetailConfigPage: state => state.storeBlock.DETAIL_CONFIG_BLOCK
         })
     },
     methods: {
+        async findDetail() {
+            let route = this.getPathUrl();
+            let res = await this.$store.dispatch('findPageBlock', [route.id, ""]);
+
+            return res;
+        },
         async handleFileUpload() {
             this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
         },
@@ -87,33 +112,46 @@ export default {
                 return images.slice(index, images.length);
             });
             for (let property in arr) {
-                vm.data.image.push(arr[property]);
+                vm.DetailConfigPage.image.push(arr[property]);
             }
 
-            return vm.data.image;
+            return vm.DetailConfigPage.image;
 
         },
         async formatData() {
             let vm = this;
             let customer =
                 vm.readOnlyJson(
-                    vm.parseJSON(vm.data),
-                    "content",
-                    "description",
-                    "link",
+                    vm.parseJSON(vm.DetailConfigPage),
+                    "id",
                     "name",
-                    "orders",
-                    "parent_id",
-                    'image'
+                    "folder",
+                    "image",
+                    "json_block",
                 )
                 ;
-
             return customer;
         },
+        async handleGetAllCategory() {
+            let res = await this.$store.dispatch("getListCategory", {});
+            let data = this.CategoryList.data;
+            let arr = [];
+            for (let item in data) {
+                let obj = {};
+                obj.id = data[item].id;
+                obj.text = data[item].name;
+                if (data[item] !== '') {
+                    arr.push(obj);
+                }
+            }
+
+            this.optionsCategory = arr;
+        },
+
         async submit() {
             let show = confirm(this.message().confirm_update);
             if (show) {
-                let res = await this.$store.dispatch("createCategory", {
+                let res = await this.$store.dispatch("updatePageBlock", {
                     data: await this.formatData()
                 });
                 if (res.error == false) {
@@ -121,11 +159,20 @@ export default {
                     this.$store.commit("SET_STATUS_ACTION");
                 }
             }
-        }
+        },
+        async getConfig() {
+            let res = await this.$store.dispatch('getPageBlock', {});
+            return true;
+        },
 
     },
 
     async created() {
+        await this.getConfig();
+        await this.handleGetAllCategory();
+        await this.findDetail();
+
+
     },
 
     components: {

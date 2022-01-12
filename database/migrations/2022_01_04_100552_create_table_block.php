@@ -15,6 +15,11 @@ class CreateTableBlock extends Migration
     {
         Schema::create('block', function (Blueprint $table) {
             $table->id();
+            $table->text('json_block')->nullable();
+            $table->string('key')->nullable();
+            $table->string('name')->nullable();
+            $table->string('folder')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

@@ -27,5 +27,10 @@ const api = {
     // quan ly page
     LIST_PAGE_HOME: '/admin/page',
 
+    // quan ly block
+    LIST_CONFIG_BLOCK: `/admin/block/page`,
+    CREATE_CONFIG_BLOCK: `/admin/block/page/create`,
+    EDIT_CONFIG_BLOCK: `/admin/block/page/:id/edit`,
+
 }
 export default api;

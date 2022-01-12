@@ -6,13 +6,11 @@
                     <div>
                         <router-link
                             :to="
-                                encodeURI('/admin/page/create')
+                                encodeURI('/admin/block/page/create')
                             "
-                            rel="tooltip"
-                            title="Thêm loại"
                             class="btn btn-success btn-primary"
                         >
-                            <span>Thêm config page</span>
+                            <span v-html="title"></span>
                             <span class="material-icons">add</span>
                         </router-link>
                     </div>
@@ -60,20 +58,19 @@
                                         </th>
                                         <th style="text-align: right;">Lựa chọn</th>
                                     </thead>
-                                    <tbody v-if="listData">
+                                    <tbody v-if="listData" v-sortable="{ onEnd: reorder }">
                                         <tr
                                             v-for="(item,
                                             index) in listData.data"
-                                            :key="item.page"
+                                            :key="item.id"
                                         >
                                             <td class="td-center">{{ listData.from + index }}</td>
                                             <td>{{ item.name }}</td>
-
                                             <td class="td-actions text-right">
                                                 <router-link
                                                     :to="
-                                                        encodeURI('/admin/menu/' +
-                                                            item.page +
+                                                        encodeURI('/admin/block/page/' +
+                                                            item.id +
                                                             '/edit')
                                                     "
                                                     rel="tooltip"
@@ -140,6 +137,20 @@ export default {
         }
     },
     methods: {
+
+        async reorder({ oldIndex, newIndex }) {
+            let swap = this.listData.data;
+
+            [swap[oldIndex], swap[newIndex]] = [swap[newIndex], swap[oldIndex]];
+            let data = await this.formatSwap(swap);
+            data = await this.formatData(data);
+            let res = await this.$store.dispatch('orderMenu', {
+                data
+            });
+            if (res.error == false) {
+                await this.success(res.message, "");
+            }
+        },
         async formatData(data) {
             let vm = this;
             data = vm.readOnlyArray(
@@ -161,7 +172,12 @@ export default {
             await this.getList();
         },
         async getList() {
-            let res = await this.$store.dispatch("getListConfigPage", {});
+            let options = {
+                ...this.filters,
+                fields: this.filters.toString(),
+                ...this.pagination
+            };
+            let res = await this.$store.dispatch("getListPageBlock", options);
         },
         async handleDelete(id) {
             let show = confirm(this.message().confirm_delete);
@@ -189,12 +205,12 @@ export default {
     },
     computed: {
         ...mapState({
-            listData: state => state.storeMenu.LIST_CONFIG_PAGE
+            listData: state => state.storeBlock.LIST_BLOCK
         })
     },
     data() {
         return {
-            title: "Quản lý menu",
+            title: "Block",
             show_download: true,
             downloading: false,
             pagination: {
