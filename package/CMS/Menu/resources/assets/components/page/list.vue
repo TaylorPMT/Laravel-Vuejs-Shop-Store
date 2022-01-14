@@ -64,7 +64,7 @@
                                         <tr
                                             v-for="(item,
                                             index) in listData.data"
-                                            :key="item.page"
+                                            :key="index"
                                         >
                                             <td class="td-center">{{ listData.from + index }}</td>
                                             <td>{{ item.name }}</td>
@@ -72,7 +72,7 @@
                                             <td class="td-actions text-right">
                                                 <router-link
                                                     :to="
-                                                        encodeURI('/admin/menu/' +
+                                                        encodeURI('/admin/page/' +
                                                             item.page +
                                                             '/edit')
                                                     "

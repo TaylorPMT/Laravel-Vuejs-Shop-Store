@@ -6,6 +6,9 @@ namespace CMS\Menu\Repository;
 use App\Repository\BaseRepository;
 use CMS\Menu\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -131,10 +134,17 @@ class MenuRepository extends BaseRepository implements MenuInterface
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
         }
     }
+    public function paginate($items, $perPage = 5, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
 
     public function config_page()
     {
-        $builder = config('page');
+        $builder = $this->paginate(config('page'));
+
         return $this->responseJson(false, 200, 'Thành công', $builder);
     }
 }

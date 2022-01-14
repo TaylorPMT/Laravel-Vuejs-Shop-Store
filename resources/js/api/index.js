@@ -26,6 +26,8 @@ const api = {
 
     // quan ly page
     LIST_PAGE_HOME: '/admin/page',
+    LIST_PAGE_CREATE: '/admin/page/create',
+    LIST_PAGE_EDIT: '/admin/page/:id/edit',
 
     // quan ly block
     LIST_CONFIG_BLOCK: `/admin/block/page`,

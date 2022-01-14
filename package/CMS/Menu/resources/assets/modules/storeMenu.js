@@ -61,7 +61,7 @@ const actions = {
         let url = `${callApi.CONFIG_PAGE.LIST}`;
         let res = await axios.get(url, options);
         this.commit('SET_LIST_CONFIG_PAGE', {
-            data: res.data
+            data: res.data.data
         });
         return true;
     }
