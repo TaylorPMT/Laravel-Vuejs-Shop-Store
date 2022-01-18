@@ -102,25 +102,26 @@ export default {
     },
 
     watch: {
-        'optionsCategory': async function (val) {
+        'dataCategory': async function (val) {
             let vm = this;
             let store = vm.BlockPage;
             let arr = [];
             store.forEach(e => {
-                let data = val.some(o => o.id === e.id);
+                let data = val.some(o => o == e.id);
+
                 if (data == true) {
                     let obj = {};
                     obj.id = e.folder;
                     arr.push(obj);
                 }
             });
+            vm.data.list_id = [];
+            console.log(vm.data.list_id);
             vm.data.list_id.push(...arr);
 
         },
         'data.list_id': async function (val) {
-            if (!this.isEmpty(val)) {
-                await this.findPageBlockArray()
-            }
+            await this.findPageBlockArray()
         },
     },
     async created() {
@@ -137,15 +138,30 @@ export default {
 </script>
 <style lang="scss" scope>
 .box-review {
+    position: relative;
+    transition: 0.1s ease-in-out;
+    font-size: 16px;
+    padding: 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgb(0 0 0 / 5%);
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 8px;
+        background-color: #aaa; /* or add it to the track */
+    }
     width: 100%;
     display: flex;
-    height: 100%;
+    height: 500px;
+    overflow-y: scroll;
     justify-content: center;
     flex-flow: column;
     .image-review {
         min-width: 100%;
         height: auto;
         & > img {
+            display: block;
+            margin: auto;
             object-fit: cover;
         }
     }
