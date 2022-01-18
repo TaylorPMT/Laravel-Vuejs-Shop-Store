@@ -7,7 +7,7 @@
     <section class="section section-list-product">
         <div class="container">
             <div class="wrap-title">
-                <div class="section-title">Tất cả sản phẩm
+                <div class="section-title">{{ $data->name }}
                     <div class="section-title-line"><img src="./img/title.png" alt=""></div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            
+
 
         </div>
     </section>
