@@ -2,36 +2,6 @@
     <div>
         <div class="container-fluid my-5">
             <div class="row">
-                <div class="col-md-2">
-                    <div>
-                        <router-link
-                            :to="
-                                encodeURI('/admin/page/create')
-                            "
-                            rel="tooltip"
-                            title="Thêm loại"
-                            class="btn btn-success btn-primary"
-                        >
-                            <span>Thêm config page</span>
-                            <span class="material-icons">add</span>
-                        </router-link>
-                    </div>
-                </div>
-                <div class="col-md-10 form-search-admin">
-                    <form @submit.prevent="handleSearchInput()">
-                        <input
-                            type="text"
-                            v-model="filters.key_word"
-                            class="form-group"
-                            placeholder="Tìm kiếm..."
-                        />
-                        <button type="submit" class="btn btn-primary">
-                            <em class="material-icons">search</em>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body no-padding">
