@@ -89,7 +89,6 @@ export default {
             this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
         },
         async getValueImage(e) {
-            console.log(e);
             let vm = this;
 
             let arr = e.map((images, i) => {

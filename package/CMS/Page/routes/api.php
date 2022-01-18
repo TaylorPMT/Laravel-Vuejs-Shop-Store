@@ -11,9 +11,11 @@ Route::group([
         Route::group(['middleware' => 'admin:api'], function () {
             Route::group(['prefix' => 'block/page'], function () {
                 Route::get('list', 'BlockController@getList');
+                Route::get('listAll', 'BlockController@getListAll');
                 Route::get('show/{id}', 'BlockController@show');
                 Route::put('update/{id}', 'BlockController@update');
                 Route::get('config', 'BlockController@getBlockConfig');
+                Route::get('showList', 'BlockController@findArray');
                 Route::post('create', 'BlockController@createBlock');
             });
         });

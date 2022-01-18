@@ -73,7 +73,7 @@
                                                 <router-link
                                                     :to="
                                                         encodeURI('/admin/page/' +
-                                                            item.page +
+                                                            item.id +
                                                             '/edit')
                                                     "
                                                     rel="tooltip"

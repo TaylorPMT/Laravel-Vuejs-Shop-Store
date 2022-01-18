@@ -34,13 +34,16 @@ const callApi = {
     },
     CONFIG_PAGE: {
         LIST: prefix + `/page/list`,
+        SHOW: prefix + `/page/show/`,
     },
     CONFIG_BLOCK_PAGE: {
         LIST: prefix + `/block/page/list?`,
+        LIST_ALL: prefix + `/block/page/listAll`,
         CREATE: prefix + `/block/page/create`,
         CONFIG: prefix + `/block/page/config`,
         SHOW: prefix + `/block/page/show/`,
         EDIT: prefix + `/block/page/update/`,
+        FIND_ALL: prefix + `/block/page/showList/`,
     },
 };
 export default callApi;

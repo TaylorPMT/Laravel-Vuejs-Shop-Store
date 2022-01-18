@@ -115,4 +115,28 @@ class BlockRepository extends BaseRepository implements BlockRepositoryInterface
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
         }
     }
+
+    public function getListAll($request)
+    {
+        $builder = $this->queryCollection();
+        $builder = $builder->where(function ($query) use ($request) {
+            if ($request->get('key_word')) {
+                $query->where('name', 'LIKE', "%$request->key_word%");
+            }
+        });
+        $builder =  $builder->get();
+        return $this->responseJson(false, 200, 'Thành công', $builder);
+    }
+
+    public function findArray($request)
+    {
+        $list_id = $request->list_id;
+        $list = [];
+        collect($list_id)->map(function ($value, $key) use (&$list) {
+            $id = json_decode($value);
+            $list[] = collect(config('block'))->whereIn('id', $id->id)->first();
+        });
+        $builder = $list;
+        return $this->responseJson(false, 200, 'Thành công', $builder);
+    }
 }

@@ -6,6 +6,7 @@ const state = {
     LIST_MENU: [],
     DETAIL_MENU: [],
     LIST_CONFIG_PAGE: [],
+    DETAIL_CONFIG_PAGE: [],
 };
 
 const mutations = {
@@ -17,6 +18,9 @@ const mutations = {
     },
     SET_LIST_CONFIG_PAGE(state, data) {
         state.LIST_CONFIG_PAGE = data.data;
+    },
+    SET_PAGE_CONFIG_DETAIL(state, data) {
+        state.DETAIL_CONFIG_PAGE = data.data;
     }
 };
 
@@ -64,7 +68,16 @@ const actions = {
             data: res.data.data
         });
         return true;
-    }
+    },
+    //page edit
+    async findPageEdit({ state, dispatch }, [id, options]) {
+        let url = `${callApi.CONFIG_PAGE.SHOW}`;
+        let res = await axios.getById(url, id, options);
+        this.commit('SET_PAGE_CONFIG_DETAIL', {
+            data: res.data.data
+        });
+        return true;
+    },
 };
 
 export default {

@@ -40,4 +40,16 @@ class BlockController extends BaseController
         $builder = $this->_block->update($request);
         return $builder;
     }
+
+    public function getListAll(Request $request)
+    {
+        $builder = $this->_block->getListAll($request);
+        return $builder;
+    }
+
+    public function findArray(Request $request)
+    {
+        $builder = $this->_block->findArray($request);
+        return $builder;
+    }
 }

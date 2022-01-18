@@ -5,6 +5,7 @@ let axios = new callAxios();
 const state = {
     CONFIG_BLOCK: [],
     LIST_BLOCK: [],
+    LIST_BLOCK_ALL: [],
     DETAIL_CONFIG_BLOCK: [],
 };
 
@@ -17,6 +18,9 @@ const mutations = {
     },
     SET_DETAIL_CONFIG_BLOCK(state, data) {
         state.DETAIL_CONFIG_BLOCK = data.data;
+    },
+    SET_LIST_BLOCK_ALL(state, data) {
+        state.LIST_BLOCK_ALL = data.data;
     }
 };
 
@@ -49,6 +53,22 @@ const actions = {
         let res = await axios.edit(url, '', options)
         return res.data;
     },
+    async listAllPageBlock({ state, dispatch }, options) {
+        let url = `${callApi.CONFIG_BLOCK_PAGE.LIST_ALL}`;
+        let res = await axios.getList(url, options);
+        this.commit('SET_LIST_BLOCK_ALL', {
+            data: res.data.data,
+        });
+        return true;
+    },
+    async findPageBlockArray({ state, dispatch }, [id, options]) {
+        let url = `${callApi.CONFIG_BLOCK_PAGE.FIND_ALL}`;
+        let res = await axios.getById(url, id, options);
+        this.commit("SET_DETAIL_CONFIG_BLOCK", {
+            data: res.data.data
+        });
+        return true;
+    }
 };
 
 export default {

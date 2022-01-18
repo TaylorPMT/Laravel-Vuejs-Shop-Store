@@ -52,14 +52,7 @@ class MenuRepository extends BaseRepository implements MenuInterface
         try {
             $error = false;
             $message = $this->_messagesSuccess;
-            $builder =  $this->queryCollection();
-            $builder = $builder->where(function ($query) use ($request) {
-                $id = $request->id;
-                if (!empty($id)) {
-                    $query->where('id', $id);
-                }
-            });
-            $builder = $builder->first();
+            $builder = collect(config('page'))->where('id', $request->id)->first();
             if (empty($builder)) {
                 $error = true;
                 $message = $this->_messagesFails;
