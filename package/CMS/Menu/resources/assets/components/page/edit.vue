@@ -163,6 +163,7 @@ export default {
             display: block;
             margin: auto;
             object-fit: cover;
+            width: 100%;
         }
     }
 }
