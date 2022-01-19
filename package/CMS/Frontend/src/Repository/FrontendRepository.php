@@ -64,6 +64,7 @@ class FrontendRepository extends BaseRepository implements CategoryInterface
     public function productsFindCategory($id_category)
     {
         $data = $this->_product->where('category_id', $id_category)->paginate(config('general.product.paginate'));
+
         return $data;
     }
 
