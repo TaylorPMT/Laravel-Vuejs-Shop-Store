@@ -25,7 +25,7 @@
                             @endforeach
                         </div>
                     </div>
-                    {{ @$product->withQueryString()->links('Frontend.main.paginate') }}
+                    {{ @$product->withQueryString()->links() }}
 
                 </div>
             </div>
