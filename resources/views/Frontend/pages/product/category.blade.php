@@ -25,7 +25,9 @@
                             @endforeach
                         </div>
                     </div>
-                    @include('Frontend.main.paginate')
+                    @include('Frontend.main.paginate',[
+                    'paginator' => $data->products
+                    ])
                 </div>
             </div>
 
