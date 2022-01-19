@@ -1,4 +1,5 @@
 @if ($paginator->hasPages())
+    {{ dd('ok') }}
     <div class="pagBlock">
         <div class="pagBox">
             @if ($paginator->onFirstPage())
