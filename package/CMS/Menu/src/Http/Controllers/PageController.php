@@ -35,7 +35,7 @@ class PageController extends BaseController
 
     public function update(Request $request, $id)
     {
-        $builder = $this->_menu_repo->update($request);
+        $builder = $this->_menu_repo->updatePage($request);
         return $builder;
     }
 

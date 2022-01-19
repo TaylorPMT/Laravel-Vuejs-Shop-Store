@@ -10,7 +10,7 @@
         {{ config('app.name', 'Laravel') }}
 
     </title>
-    <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ addVersionTo(mix('css/app.css')) }}" type="text/css" rel="stylesheet" />
     <meta name="csrf-token" value="{{ csrf_token() }}" />
 
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
@@ -37,11 +37,10 @@
     <div class="wrapper">
         <div id="app" class="main-panel">
             <mainapp></mainapp>
-            {{-- @include('BackEnd.elements.footer') --}}
         </div>
     </div>
     @yield('script')
-    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ addVersionTo(mix('/js/app.js')) }}"></script>
     <script src="{{ asset('admins/CMS/plugins/ckfinder/ckfinder.js') }}"></script>
 
     <script src="{{ asset('assets/demo/demo.js') }}"></script>
@@ -75,7 +74,7 @@
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script
         src="{{ asset('assets/js/plugins/nouislider.min.js"></script>
-                  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert --><script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js') }}">
+                                          <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert --><script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js') }}">
     </script>
     <!-- Library for adding dinamically elements -->
     <script src="{{ asset('assets/js/plugins/arrive.min.js') }}"></script>
