@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ addVersionTo(asset('frontend/assets/css/main.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(addVersionTo('frontend/assets/css/main.min.css')) }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.ico') }}">
     <title>@yield('title')</title>
-    <script src="{{ addVersionTo(asset('js/frontend.js')) }}" defer></script>
+    <script src="{{ asset(addVersionTo('js/frontend.js')) }}" defer></script>
     <script>
         DOMAIN = "{{ env('APP_URL') ?? asset('/') }}"
     </script>
@@ -137,7 +137,7 @@
     </script>
     <script>
         LazyLoad.css([
-            "{{ addVersionTo(asset('frontend/assets/css/plugins.min.css')) }}",
+            "{{ asset(addVersionTo('frontend/assets/css/plugins.min.css')) }}",
             'https://fonts.googleapis.com/icon?family=Material+Icons',
             'https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css',
             'https://fonts.googleapis.com/css2?family=KoHo:wght@200;300;400;500;600;700&display=swap',
