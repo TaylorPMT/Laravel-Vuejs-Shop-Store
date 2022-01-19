@@ -58,8 +58,9 @@ class HomeController extends BaseController
                 'children' => false,
             ],
         ];
+        $product = $this->_home->productsFindCategory($data->id);
 
-        return view('Frontend.pages.product.category', compact('data', 'breadcrumb', 'category'));
+        return view('Frontend.pages.product.category', compact('data', 'breadcrumb', 'category', 'product'));
     }
 
     public function products(Request $request)

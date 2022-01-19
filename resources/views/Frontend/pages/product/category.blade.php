@@ -18,14 +18,14 @@
                 <div class="col-lg-9 col-md-12">
                     <div class="wrapper-right">
                         <div class="row">
-                            @foreach ($data->products as $item)
+                            @foreach ($product as $item)
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                                     @include('Frontend.main.product-item')
                                 </div>
                             @endforeach
                         </div>
                     </div>
-                    {{ @$data->products()->paginate(config('general.product.paginate'))->withQueryString()->links('Frontend.main.paginate') }}
+                    {{ @$product->withQueryString()->links('Frontend.main.paginate') }}
 
                 </div>
             </div>
