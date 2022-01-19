@@ -40,6 +40,7 @@ class HomeController extends BaseController
     public function category(Request $request)
     {
         $data = $this->_home->productsByCategory($request);
+
         if (empty($data)) {
             abort('404');
         }

@@ -25,9 +25,8 @@
                             @endforeach
                         </div>
                     </div>
-                    @include('Frontend.main.paginate',[
-                    'paginator' => $data->products()->paginate(10)
-                    ])
+                    {{ @$data->products()->paginate(config('general.product.paginate'))->withQueryString()->links('Frontend.main.paginate') }}
+
                 </div>
             </div>
 
