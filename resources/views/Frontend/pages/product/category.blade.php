@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     @include('Frontend.main.paginate',[
-                    'paginator' => $data->products
+                    'paginator' => $data->products()->paginate(10)
                     ])
                 </div>
             </div>
