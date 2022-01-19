@@ -35,6 +35,7 @@ const callApi = {
     CONFIG_PAGE: {
         LIST: prefix + `/page/list`,
         SHOW: prefix + `/page/show/`,
+        EDIT: prefix + `/page/update/`,
     },
     CONFIG_BLOCK_PAGE: {
         LIST: prefix + `/block/page/list?`,

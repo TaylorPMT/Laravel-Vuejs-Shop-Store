@@ -78,6 +78,12 @@ const actions = {
         });
         return true;
     },
+    async updatePageConfig({ state, dispatch }, options) {
+        let url = `${callApi.CONFIG_PAGE.EDIT}`;
+
+        let res = await axios.edit(url, options.id, options);
+        return res.data;
+    },
 };
 
 export default {

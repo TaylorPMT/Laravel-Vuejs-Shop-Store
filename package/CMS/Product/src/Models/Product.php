@@ -17,7 +17,7 @@ class Product extends Model
     public $table = 'products';
     const BUFFER = 10;
     const SEARCHABLE_FIELDS = [
-        'id',  'name', 'description', 'link', 'image'
+        'id',  'name', 'image'
     ];
     protected $guarded = [];
     protected $casts = [

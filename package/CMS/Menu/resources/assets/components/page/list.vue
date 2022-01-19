@@ -36,7 +36,7 @@
                                             index) in listData.data"
                                             :key="index"
                                         >
-                                            <td class="td-center">{{ listData.from + index }}</td>
+                                            <td class="td-center">{{ listData.from }}</td>
                                             <td>{{ item.name }}</td>
 
                                             <td class="td-actions text-right">

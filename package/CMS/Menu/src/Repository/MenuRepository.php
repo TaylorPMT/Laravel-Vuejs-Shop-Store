@@ -11,6 +11,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
 
 class MenuRepository extends BaseRepository implements MenuInterface
 {
@@ -80,6 +81,28 @@ class MenuRepository extends BaseRepository implements MenuInterface
         try {
             $builder =  $this->_model->find($request->id)->update($this->formatData($request->all()));
             return $this->responseJson(false, 200, 'Thành công', $builder);
+        } catch (\Exception $e) {
+            return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
+        }
+    }
+
+    public function updatePage($request)
+    {
+        try {
+            $data = collect($request->list_id)->map(function ($val, $index) {
+                return $val['id'];
+            })->toArray();
+
+            if (empty(config('page.' . $request->id))) {
+                return $this->responseJson(true, 500, $this->_messagesErrorsException, 'Không tìm thấy file config');
+            }
+            config()->set('page.' . $request->id . '.page_config', $data);
+
+            $text = '<?php return ' . var_export(config('page'), true) . ';';
+
+            file_put_contents(base_path('package/CMS/Admin/config/page.php'), $text);
+
+            return $this->responseJson(false, 200, 'Thành công', '');
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
         }

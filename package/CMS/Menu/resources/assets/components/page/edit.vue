@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-end">
                 <button class="btn btn-sm btn-success" @click="submit()">Lưu lại</button>
-                <BaseBackPage :page="`/admin/menu`"></BaseBackPage>
+                <BaseBackPage :page="`/admin/page`"></BaseBackPage>
             </div>
         </div>
         <div class="row">
@@ -59,10 +59,36 @@ export default {
     methods: {
         async findData() {
             let route = this.getPathUrl();
-            let res = this.$store.dispatch('findPageEdit', [
+            let res = await this.$store.dispatch('findPageEdit', [
                 route.id, ''
             ]);
             return res;
+        },
+        async setCategorySelect2() {
+            let vm = this;
+            let dataCategory = this.BlockPage;
+
+            for (let property in dataCategory) {
+                let data = dataCategory[property];
+                if (data !== '') {
+                    this.dataCategory.push(data.id);
+                }
+            }
+
+        },
+        async submit() {
+            let route = this.getPathUrl();
+            let show = confirm(this.message().confirm_update);
+            if (show) {
+                let res = await this.$store.dispatch("updatePageConfig", {
+                    data: await this.formatData(),
+                    id: route.id,
+                });
+                if (res.error == false) {
+                    this.success(res.message, "");
+                    this.$store.commit("SET_STATUS_ACTION");
+                }
+            }
         },
         async getBlockPage() {
             let res = await this.$store.dispatch('listAllPageBlock', {
@@ -98,7 +124,6 @@ export default {
             return res;
         }
 
-
     },
 
     watch: {
@@ -116,7 +141,6 @@ export default {
                 }
             });
             vm.data.list_id = [];
-            console.log(vm.data.list_id);
             vm.data.list_id.push(...arr);
 
         },
@@ -127,6 +151,7 @@ export default {
     async created() {
         await this.findData();
         await this.getBlockPage();
+        await this.setCategorySelect2();
         this.loading = true
     },
 
