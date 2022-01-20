@@ -30,9 +30,9 @@
                     </div>
                     <div class="col-lg-3 col-sm-6 fanpage">
                         <div class="footer-title">Fanpage</div>
-                        <!--<div class="fb-page" data-href="https://www.facebook.com/nguyenvanson08/" data-tabs="timeline" data-width="" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/nguyenvanson08/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/nguyenvanson08/">Sơn Flower Boutique</a></blockquote></div> -->
+                        <div class="fb-page" data-href="https://www.facebook.com/nguyenvanson08/" data-tabs="timeline" data-width="" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/nguyenvanson08/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/nguyenvanson08/">Sơn Flower Boutique</a></blockquote></div> 
 
-                        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fwwfashionformen%2F&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        
 
                     </div>
                 </div>
