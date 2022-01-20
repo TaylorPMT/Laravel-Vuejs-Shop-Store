@@ -1,6 +1,6 @@
 <?php
 return [
     'product' => [
-        'paginate' => 20,
+        'paginate' => 1,
     ]
 ];

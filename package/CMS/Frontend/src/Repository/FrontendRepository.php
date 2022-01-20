@@ -57,9 +57,13 @@ class FrontendRepository extends BaseRepository implements CategoryInterface
 
     public function productsByCategory($request)
     {
-        $data = $this->_category->with(['products' => function ($query) {
-            return $query->paginate(config('general.product.paginate'));
-        }])->where('link', $request->url)->first();
+        $data = $this->_category->where('link', $request->url)->first();
+        return $data;
+    }
+
+    public function productsFindCategory($id_category)
+    {
+        $data = $this->_product->where('category_id', $id_category)->paginate(config('general.product.paginate'));
 
         return $data;
     }
