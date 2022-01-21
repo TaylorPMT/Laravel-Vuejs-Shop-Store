@@ -1,15 +1,11 @@
 <div class="pagBlock">
     <div class="pagBox">
         @if ($paginator->onFirstPage())
-            <span class="pagIcon hover disabled">
-                <svg class="">
-                    <use xlink:href="/assets/img/svg/symbol-defs.svg#i-pag-prev" />
-                </svg></span>
+            <span class="pagIcon pagPrev hover disabled">
+            <em class="material-icons">trending_flat</em></span>
         @else
-            <a href="{{ $paginator->previousPageUrl() }}"> <span class="pagIcon hover">
-                    <svg class="">
-                        <use xlink:href="/assets/img/svg/symbol-defs.svg#i-pag-prev" />
-                    </svg></span></a>
+            <a href="{{ $paginator->previousPageUrl() }}"> <span class="pagIcon pagPrev hover">
+            <em class="material-icons">trending_flat</em></span></a>
         @endif
         @if ($paginator->lastPage() <= 4)
             @foreach ($elements as $element)
@@ -60,15 +56,11 @@
         @if ($paginator->hasMorePages())
             <a href="{{ $paginator->nextPageUrl() }}">
                 <span class="pagIcon pagNext hover">
-                    <svg class="">
-                        <use xlink:href="/assets/img/svg/symbol-defs.svg#i-pag-next" />
-                    </svg></span>
+                <em class="material-icons">trending_flat</em></span>
             </a>
         @else
             <span class="pagIcon pagNext hover disabled">
-                <svg class="">
-                    <use xlink:href="/assets/img/svg/symbol-defs.svg#i-pag-next" />
-                </svg></span>
+            <em class="material-icons">trending_flat</em></span>
         @endif
 
     </div>
@@ -78,7 +70,7 @@
             {{ $paginator->total() }}Từ{{ ($paginator->currentPage() - 1) * $paginator->perPage() + 1 }}～{{ $paginator->total() <= $paginator->perPage() ? $paginator->total() : ($paginator->currentPage() * $paginator->perPage() >= $paginator->total() ? $paginator->total() : $paginator->currentPage() * $paginator->perPage()) }}
 
         @else
-            Tổng {{ $paginator->total() }}Đang xem
+            Tổng {{ $paginator->total() }} Đang xem
             1～{{ $paginator->total() <= $paginator->perPage() ? $paginator->total() : ($paginator->currentPage() * $paginator->perPage() >= $paginator->total() ? $paginator->total() : $paginator->currentPage() * $paginator->perPage()) }}
 
         @endif
