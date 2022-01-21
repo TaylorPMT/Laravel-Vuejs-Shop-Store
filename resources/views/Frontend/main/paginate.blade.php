@@ -67,7 +67,7 @@
     <p class="pagTxt">
         @if ($paginator->lastPage() > 1 && $paginator->currentPage() != 1)
             Tổng
-            {{ $paginator->total() }}Từ{{ ($paginator->currentPage() - 1) * $paginator->perPage() + 1 }}～{{ $paginator->total() <= $paginator->perPage() ? $paginator->total() : ($paginator->currentPage() * $paginator->perPage() >= $paginator->total() ? $paginator->total() : $paginator->currentPage() * $paginator->perPage()) }}
+            {{ $paginator->total() }} Từ {{ ($paginator->currentPage() - 1) * $paginator->perPage() + 1 }}～{{ $paginator->total() <= $paginator->perPage() ? $paginator->total() : ($paginator->currentPage() * $paginator->perPage() >= $paginator->total() ? $paginator->total() : $paginator->currentPage() * $paginator->perPage()) }}
 
         @else
             Tổng {{ $paginator->total() }} Đang xem
