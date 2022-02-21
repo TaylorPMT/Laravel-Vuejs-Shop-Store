@@ -13,6 +13,7 @@ Route::name('frontend.')->group(function () {
         Route::get('category/{url}', 'HomeController@category')->name('product.category');
         Route::get('product/{url}', 'HomeController@products')->name('product');
         Route::get('news/detail/{url}', 'HomeController@newDetail')->name('news.detail');
+        Route::get('search/attribute', 'SearchController@searchPage')->name('search.page');
     });
 });
 

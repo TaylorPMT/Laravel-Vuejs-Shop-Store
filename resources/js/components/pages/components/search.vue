@@ -2,23 +2,23 @@
     <div class="wrap-search">
         <div class="searchbox">
             <input placeholder="Tìm Kiếm" v-model="filters.key_word" />
-            <button class="btn-search">
+            <button class="btn-search" @click="search">
                 <em class="material-icons">search</em>
             </button>
+
             <div class="wrap-search-result" v-if="!isEmpty(data)">
-            <ul>
-                <li v-for="(item, index) in data" :key="index">
-                    <div class="item">
-                        <a class="wrap-img" :href="item.view_link">
-                            <img :src="asset(item.image)" :alt="'image-' + index" />
-                        </a>
-                        <a :href="item.view_link" class="wrap-title">{{ item.name }}</a>
-                    </div>
-                </li>
-            </ul>
+                <ul>
+                    <li v-for="(item, index) in data" :key="index">
+                        <div class="item">
+                            <a class="wrap-img" :href="item.view_link">
+                                <img :src="asset(item.image)" :alt="'image-' + index" />
+                            </a>
+                            <a :href="item.view_link" class="wrap-title">{{ item.name }}</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        </div>
-        
     </div>
 </template>
 
@@ -57,14 +57,24 @@ export default {
         }
     },
     methods: {
-        async getResults() {
-            let options = {
+        async format() {
+            return {
                 ...this.filters,
                 fields: this.filters.fields.toString(),
                 ...this.pagination
             };
+
+        },
+        async search() {
+            window.location = '/search/attribute?key_word=' + this.filters.key_word;
+        },
+        async getResults() {
+            let options = await this.format();
             let res = await axios.getList('/api/site-search?', options);
-            this.data = res.data.data;
+            if (res.data.data) {
+                return this.data = res.data.data;
+            }
+            this.data = [];
         },
     }
 };
