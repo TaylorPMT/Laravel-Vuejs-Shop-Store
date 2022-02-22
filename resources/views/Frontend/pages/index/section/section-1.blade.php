@@ -5,7 +5,7 @@
                 <div class="wrap-title"> 
                     <div class="section-title">Giới thiệu
                         <div class="section-title-line">
-                            <img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt="" title="Symbols">
+                            <img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt="" title="Symbols" width="50" height="50">
                         </div>
                     </div>
                 </div>
@@ -22,22 +22,22 @@
                         <div class="swiper-wrapper"> 
                             <div class="swiper-slide">
                                 <a href="{{ asset('frontend/assets/img/flower/1.jpg') }}" data-fancybox="Img" title="Album 1">
-                                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/1.jpg') }}" alt="" title="">
+                                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/1.jpg') }}" alt="" title="" width="600" height="420">
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="{{ asset('frontend/assets/img/flower/2.jpg') }}" data-fancybox="Img" title="Album 1">
-                                <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/2.jpg') }}" alt="" title="">
+                                <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/2.jpg') }}" alt="" title="" width="600" height="420">
                             </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="{{ asset('frontend/assets/img/flower/3.jpg') }}" data-fancybox="Img" title="Album 1">
-                                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/3.jpg') }}" alt="" title="">
+                                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/3.jpg') }}" alt="" title="" width="600" height="420">
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="{{ asset('frontend/assets/img/flower/4.jpg') }}" data-fancybox="Img" title="Album 1">
-                                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/4.jpg') }}" alt="" title="">
+                                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/4.jpg') }}" alt="" title="" width="600" height="420">
                                 </a>
                             </div>
                         </div>

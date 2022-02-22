@@ -8,7 +8,7 @@
         <div class="container">
             <div class="wrap-title">
                 <div class="section-title">Giới thiệu
-                    <div class="section-title-line"><img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt=""></div>
+                    <div class="section-title-line"><img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt="" width="50" height="50"></div>
                 </div>
             </div>
             <div class="wrap-content"></div>

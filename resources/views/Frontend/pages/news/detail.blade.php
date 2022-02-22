@@ -26,7 +26,7 @@
                 <div class="wrap-title">
                     <div class="section-title">Tin tức liên quan
                         <div class="section-title-line"><img src="{{ asset('frontend/assets/img/title.png') }}"
-                                alt="Symbols" title="Symbols"></div>
+                                alt="Symbols" title="Symbols" width="50" height="50"></div>
                     </div>
                 </div>
                 <div class="swiper-news-related">
@@ -38,7 +38,7 @@
                                         <div class="newsimage"> <a class="img zoom-out"
                                                 href="{{ route('frontend.news.detail', ['url' => $item->link]) }}"><img
                                                     class="lazyload" data-src="{{ asset($item->image[0] ?? '') }}"
-                                                    alt="{{ $item->name }}"></a>
+                                                    alt="{{ $item->name }}" width="293" height="330"></a>
                                         </div>
                                         <div class="newsitem">
                                             <div class="date"> <em class="material-icons">date_range</em>

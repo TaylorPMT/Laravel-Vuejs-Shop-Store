@@ -10,7 +10,7 @@
             <div class="wrap-title">
                 <div class="section-title">Bộ sưu tập
                     <div class="section-title-line"><img class="lazyload"
-                            data-src="{{ asset('frontend/assets/img/title.png') }}" alt="Symbols" title="Symbols"></div>
+                            data-src="{{ asset('frontend/assets/img/title.png') }}" alt="Symbols" title="Symbols" width="50" height="50"></div>
                 </div>
             </div>
             <div class="wrap-gallery">
@@ -24,7 +24,7 @@
 
                                     <div class="img zoom-out">
                                         <img class="lazyload" data-src="{{ asset(current($item->image)) }}"
-                                            alt="{{ $item->name }}" title="{{ $item->name }}">
+                                            alt="{{ $item->name }}" title="{{ $item->name }}" width="285" height="285">
                                     </div>
 
                                     <div class="title">{{ $item->name }}</div>
@@ -35,7 +35,7 @@
                                 @foreach (collect($item->image)->slice(1) as $subImage)
                                     <a class="d-none fancybox" rel="group-{{ $item->id }}"
                                         data-fancybox="group-{{ $item->id }}" href="{{ asset($subImage) }}">
-                                        <img src="{{ asset($subImage) }}">
+                                        <img src="{{ asset($subImage) }}" width="285" height="285">
                                     </a>
                                 @endforeach
                             </div>

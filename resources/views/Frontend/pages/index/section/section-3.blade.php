@@ -5,7 +5,7 @@
                 <div class="section-title">{{ $category->name }}
                     <div class="section-title-line">
                         <img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}"
-                            alt="Symbols" title="Symbols">
+                            alt="Symbols" title="Symbols" width="50" height="50">
                     </div>
                 </div>
             </div>

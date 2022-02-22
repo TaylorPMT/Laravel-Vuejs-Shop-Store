@@ -5,7 +5,7 @@
     <div class="block-product">
         <a class="product-img zoom-out" href="{{ $route }}">
             <img class="lazyload" data-src="{{ asset(current($item->image)) }}" alt="{{ $item->link }}"
-                title="{{ $item->name }}">
+                title="{{ $item->name }}" width="390" height="507">
         </a>
         <div class="product-info">
             <a class="product-info__title" href="{{ $route }}" title="{{ $item->name }}">{{ $item->name }}</a>

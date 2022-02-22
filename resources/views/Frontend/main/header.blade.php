@@ -9,7 +9,7 @@ $menu = $repo->menus();
                 <div class="hamburger-menu"><span></span></div>
                 <div class="logo"><a class="img" href="/" title="Trang chủ"><img
                             class="lazyload" data-src="{{ asset('frontend/assets/img/logo-main.jpg') }}"
-                            alt="Logo" title="Sơn Boutique"></a></div>
+                            alt="Logo" title="Sơn Boutique" width="185" height="55"></a></div>
                 <div class="wrap-menu">
                     <ul class="primary-menu">
                         @foreach ($menu as $item)

@@ -3,7 +3,7 @@
         <div class="wrap-title"> 
             <div class="section-title">Dịch vụ nhận hoa
                 <div class="section-title-line">
-                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt=""></div>
+                    <img class="lazyload" data-src="{{ asset('frontend/assets/img/title.png') }}" alt="" width="50" height="50"></div>
             </div>
         </div>
         <div class="wrap-product">
@@ -12,7 +12,7 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="block-product"> 
                         <a class="product-img zoom-out" href="">
-                            <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/')}}/{{$i}}.jpg" alt="">
+                            <img class="lazyload" data-src="{{ asset('frontend/assets/img/flower/')}}/{{$i}}.jpg" alt="" width="390" height="507">
                         </a>
                         <div class="product-info">
                             <a class="product-info__title" href="">Gói sản phẩm {{$i}}</a>

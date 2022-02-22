@@ -17,7 +17,7 @@
                                             <div class="swiper-slide">
                                                 <a class="img" href="{{ asset($image) }}" data-fancybox="Img"
                                                     title="{{ $data->name }}">
-                                                    <img src="{{ asset($image) }}" alt="{{ $data->name }}">
+                                                    <img src="{{ asset($image) }}" alt="{{ $data->name }}" width="600" height="500">
                                                 </a>
                                             </div>
                                         @endforeach
@@ -30,7 +30,7 @@
                                         @foreach ($data->image as $image)
                                             <div class="swiper-slide">
                                                 <div class="img"> <img src="{{ asset($image) }}"
-                                                        alt="{{ $data->name }}"></div>
+                                                        alt="{{ $data->name }}" width="114" height="114"></div>
                                             </div>
                                         @endforeach
                                     </div>

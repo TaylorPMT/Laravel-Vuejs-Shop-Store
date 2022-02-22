@@ -6,7 +6,7 @@ $first_record = $news[0] ?? '';
         <div class="wrap-title">
             <div class="section-title">Tin tức
                 <div class="section-title-line"><img class="lazyload"
-                        data-src="{{ asset('frontend/assets/img/title.png') }}" alt="Symbol" title="Symbol"></div>
+                        data-src="{{ asset('frontend/assets/img/title.png') }}" alt="Symbol" title="Symbol" width="50" height="50"></div>
             </div>
         </div>
         <div class="wrap-news">
@@ -39,9 +39,12 @@ $first_record = $news[0] ?? '';
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                     <div class="news-item sm-item">
                                         <div class="news-item__image"> <a
-                                                href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}"><img
+                                                href="{{ route('frontend.news.detail', ['url' => $first_record->link]) }}">
+                                                <img
                                                     class="lazyload"
-                                                    data-src="{{ asset($item->image[0] ?? '') }}" alt="" title=""></a>
+                                                    data-src="{{ asset($item->image[0] ?? '') }}" alt="" title=""
+                                                    width="285" height="223"    
+                                                ></a>
                                         </div>
                                         <div class="news-item__detail">
                                             <div class="title"> <a
