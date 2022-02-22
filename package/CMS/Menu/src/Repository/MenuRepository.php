@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
@@ -101,7 +102,7 @@ class MenuRepository extends BaseRepository implements MenuInterface
             $text = '<?php return ' . var_export(config('page'), true) . ';';
 
             file_put_contents(base_path('package/CMS/Admin/config/page.php'), $text);
-
+            Artisan::call('cache:clear');
             return $this->responseJson(false, 200, 'Thành công', '');
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
@@ -162,5 +163,12 @@ class MenuRepository extends BaseRepository implements MenuInterface
         $builder = $this->paginate(config('page'));
 
         return $this->responseJson(false, 200, 'Thành công', $builder);
+    }
+
+    public function blockPage($id_block)
+    {
+        $builder = collect(config('page'))->where('id', $id_block)->pluck('page_config')->values();
+
+        return $builder[0];
     }
 }

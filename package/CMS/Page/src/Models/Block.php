@@ -12,4 +12,12 @@ class Block extends Model
         'image' => 'json',
         'json_block' => 'json'
     ];
+    protected $appends   = [
+        'block'
+    ];
+
+    public function getBlockAttribute()
+    {
+        return collect(config('block'))->where('id', $this->attributes['folder'])->first();
+    }
 }
