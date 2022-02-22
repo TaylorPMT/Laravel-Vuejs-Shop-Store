@@ -3108,31 +3108,80 @@ var axios = new _axios_callAxios__WEBPACK_IMPORTED_MODULE_2__["callAxios"]();
     }()
   },
   methods: {
-    getResults: function getResults() {
+    format: function format() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var options, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                options = _objectSpread(_objectSpread({}, _this.filters), {}, {
+                return _context2.abrupt("return", _objectSpread(_objectSpread({}, _this.filters), {}, {
                   fields: _this.filters.fields.toString()
-                }, _this.pagination);
-                _context2.next = 3;
-                return axios.getList('/api/site-search?', options);
+                }, _this.pagination));
 
-              case 3:
-                res = _context2.sent;
-                _this.data = res.data.data;
-
-              case 5:
+              case 1:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
+      }))();
+    },
+    search: function search() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                window.location = '/search/attribute?key_word=' + _this2.filters.key_word;
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    getResults: function getResults() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var options, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _this3.format();
+
+              case 2:
+                options = _context4.sent;
+                _context4.next = 5;
+                return axios.getList('/api/site-search?', options);
+
+              case 5:
+                res = _context4.sent;
+
+                if (!res.data.data) {
+                  _context4.next = 8;
+                  break;
+                }
+
+                return _context4.abrupt("return", _this3.data = res.data.data);
+
+              case 8:
+                _this3.data = [];
+
+              case 9:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     }
   }
@@ -43848,7 +43897,9 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _vm._m(0),
+      _c("button", { staticClass: "btn-search", on: { click: _vm.search } }, [
+        _c("em", { staticClass: "material-icons" }, [_vm._v("search")])
+      ]),
       _vm._v(" "),
       !_vm.isEmpty(_vm.data)
         ? _c("div", { staticClass: "wrap-search-result" }, [
@@ -43891,16 +43942,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn-search" }, [
-      _c("em", { staticClass: "material-icons" }, [_vm._v("search")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

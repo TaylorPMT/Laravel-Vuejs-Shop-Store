@@ -6,7 +6,6 @@ use Symfony\Component\Finder\SplFileInfo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
-
 use CMS\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,12 +46,13 @@ class FullSiteSearch
             })->map(function ($class_name) use ($name_space, &$data_result) {
                 $model = app($name_space . $class_name);
                 $fields = array_filter($model::SEARCHABLE_FIELDS, fn ($fields) => $fields !== 'id');
-                $data_result =  $model::search(self::$keyword)->get()->map(function ($model_record) use ($fields, $class_name) {
+                $data_result =  $model::search(self::$keyword)->get()->filter(function ($model_record) use ($fields, $class_name) {
                     //for result
                     return self::createMatchAttribute($model_record, $fields, $class_name);
                 });
             });
         });
+
         return $data_result;
     }
 
@@ -76,13 +76,15 @@ class FullSiteSearch
             $should_add_post_fix = ($start + $length) < strlen($serialized_values);
             $sliced = $should_add_prefix ? '...' . $sliced : $sliced;
             $sliced = $should_add_post_fix ? $sliced . '....' : $sliced;
+            $model_record->setAttribute('match', html_entity_decode(strip_tags($sliced)) ?? substr(html_entity_decode(strip_tags($serialized_values)), 0, 2 * $model_record::BUFFER) . '....');
+            $model_record->setAttribute('model', $class_name);
+            $model_record->setAttribute('view_link', self::createViewLink($model_record));
+            $model_record->setAttribute('image', $image_link);
+            return $model_record;
         }
-        $model_record->setAttribute('match', html_entity_decode(strip_tags($sliced)) ?? substr(html_entity_decode(strip_tags($serialized_values)), 0, 2 * $model_record::BUFFER) . '....');
-        $model_record->setAttribute('model', $class_name);
-        $model_record->setAttribute('view_link', self::createViewLink($model_record));
-        $model_record->setAttribute('image', $image_link);
-        return $model_record;
+        return null;
     }
+
     private static function createViewLink(Model $model)
     {
         $mapping = [

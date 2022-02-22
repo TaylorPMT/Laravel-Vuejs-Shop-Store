@@ -96,9 +96,9 @@ $config['images'] = array(
     'maxHeight' => 1200,
     'quality'   => 80,
     'sizes' => array(
-        'small'  => array('width' => 480, 'height' => 320, 'quality' => 80),
-        'medium' => array('width' => 600, 'height' => 480, 'quality' => 80),
-        'large'  => array('width' => 800, 'height' => 600, 'quality' => 80)
+        'small'  => array('width' => 480, 'height' => 320, 'quality' => 50),
+        'medium' => array('width' => 600, 'height' => 480, 'quality' => 50),
+        'large'  => array('width' => 800, 'height' => 600, 'quality' => 50)
     )
 );
 

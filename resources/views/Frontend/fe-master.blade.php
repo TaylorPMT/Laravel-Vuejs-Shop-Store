@@ -153,7 +153,7 @@
             "{{ asset('frontend/assets/js/main.min.js') }}",
         ], function() {});
     </script>
-    @include('Frontend.scripts.plugins.mess-fb')
+    {{-- @include('Frontend.scripts.plugins.mess-fb') --}}
 </body>
 
 </html>
