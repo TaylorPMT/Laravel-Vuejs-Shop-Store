@@ -144,7 +144,7 @@
             // 'https://fonts.googleapis.com/css2?family=KoHo:wght@200;300;400;500;600;700&display=swap',
             'https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css',
             "https://fonts.googleapis.com/css2?family=Material+Icons",
-            "{{ asset(addVersionTo('frontend/assets/fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2')) }}"
+            "{{ asset(addVersionTo('frontend/assets/fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2')) }}",
             "{{ asset(addVersionTo('frontend/assets/fonts/KoHo-Bold.ttf')) }}",
             "{{ asset(addVersionTo('frontend/assets/fonts/KoHo-ExtraLight.ttf')) }}",
             "{{ asset(addVersionTo('frontend/assets/fonts/KoHo-Light.ttf')) }}",
