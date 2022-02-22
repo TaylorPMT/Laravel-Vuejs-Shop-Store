@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset(addVersionTo('frontend/assets/css/main.min.css')) }}">
+    <link rel="stylesheet" rel="preload" href="{{ asset(addVersionTo('frontend/assets/css/main.min.css')) }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.ico') }}">
+    <link rel="icon" rel="preload" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.ico') }}">
     <title>@yield('title')</title>
     <script src="{{ asset(addVersionTo('js/frontend.js')) }}" defer></script>
     <script>
