@@ -4,23 +4,29 @@ namespace CMS\Frontend\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
 use CMS\Frontend\Repository\FrontendRepository;
+use CMS\Menu\Repository\MenuInterface;
+use CMS\Page\Repository\BlockRepositoryInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends BaseController
 {
 
     public $_home;
-    public function __construct(FrontendRepository $frontendInterface)
+    public $_page;
+    public function __construct(FrontendRepository $frontendInterface, MenuInterface $page, BlockRepositoryInterface $block)
     {
         $this->_home = $frontendInterface;
+        $this->_page = $page;
+        $this->_block = $block;
     }
 
     public function home(Request $request)
     {
-        $category =
-            $this->_home->categoryProduct(1);
-        $news = $this->_home->news(5);
-        return view('Frontend.pages.index.index', compact('category', 'news'));
+
+        $page = $this->_page->blockPage('home-page');
+        $block = $this->_block->loadBlockData($page);
+
+        return view('Frontend.pages.index.index', compact('block'));
     }
 
     public function gallery()

@@ -139,4 +139,12 @@ class BlockRepository extends BaseRepository implements BlockRepositoryInterface
         $builder = $list;
         return $this->responseJson(false, 200, 'Thành công', $builder);
     }
+
+    public function loadBlockData($list_id)
+    {
+        $builder = $this->queryCollection();
+
+        $builder = $builder->whereIn('id', $list_id)->get();
+        return $builder;
+    }
 }
