@@ -39,7 +39,7 @@ $menu = $repo->menus();
                 </div>
 
                 <div class="wrap-right">
-                    <div class="language hide "><a href="">en </a><em class="material-icons">arrow_drop_down</em>
+                    <div class="language d-none "><a href="">en </a><em class="material-icons">arrow_drop_down</em>
                         <div class="language-dropdown"><a class="language__item">vn</a></div>
                     </div>
                     <div class="search"> <em class="material-icons">search</em></div>
