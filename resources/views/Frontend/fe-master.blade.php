@@ -139,12 +139,12 @@
         LazyLoad.css([
             "{{ asset(addVersionTo('frontend/assets/css/plugins.min.css')) }}",
             'https://fonts.googleapis.com/icon?family=Material+Icons',
-            'https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css',
+            // 'https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css',
             'https://fonts.googleapis.com/css2?family=KoHo:wght@200;300;400;500;600;700&display=swap',
             'https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css',
             "https://fonts.googleapis.com/css2?family=Material+Icons",
             //- 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            // "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         ], function() {});
     </script>
     <script>

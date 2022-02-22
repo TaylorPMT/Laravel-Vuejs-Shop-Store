@@ -30,7 +30,9 @@
                     </div>
                     <div class="col-lg-3 col-sm-6 fanpage">
                         <div class="footer-title">Fanpage</div>
-                        <div class="fb-page" data-href="https://www.facebook.com/nguyenvanson08/" data-tabs="timeline" data-width="" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/nguyenvanson08/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/nguyenvanson08/">Sơn Flower Boutique</a></blockquote></div> 
+                        <div class="fb-page" data-href="https://www.facebook.com/nguyenvanson08/" data-tabs="timeline" data-width="285" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                            <blockquote cite="https://www.facebook.com/nguyenvanson08/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/nguyenvanson08/">Sơn Flower Boutique</a></blockquote>
+                        </div> 
 
                         
 
