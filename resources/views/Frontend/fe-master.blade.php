@@ -143,6 +143,12 @@
             // 'https://fonts.googleapis.com/css2?family=KoHo:wght@200;300;400;500;600;700&display=swap',
             'https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css',
             "https://fonts.googleapis.com/css2?family=Material+Icons",
+            "{{ asset(addVersionTo('frontend/assets/fonts/KoHo-Bold.ttf')) }}"
+            "{{ asset(addVersionTo('frontend/assets/fonts/KoHo-ExtraLight.ttf')) }}"
+            "{{ asset(addVersionTo('frontend/assets/fonts/KoHo-Light.ttf')) }}"
+            "{{ asset(addVersionTo('frontend/assets/fonts/KoHo-Medium.ttf')) }}"
+            "{{ asset(addVersionTo('frontend/assets/fonts/KoHo-MediumItalic.ttf')) }}"
+            "{{ asset(addVersionTo('frontend/assets/fonts/KoHo-Regular.ttf')) }}"
             //- 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
             // "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         ], function() {});
