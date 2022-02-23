@@ -16,9 +16,9 @@ class ProductSingleShortcode
 
     public function register($shortcode, $content, $compiler, $name, $viewData)
     {
+
         if ($shortcode->sku) {
             $skuArr = array_unique(array_map('trim', explode(',', $shortcode->sku)));
-
             $sku = $this->productRepository->getProductBySku($skuArr);
             if ($sku) {
                 $shortcode = self::shortcode_name;
@@ -27,7 +27,7 @@ class ProductSingleShortcode
                     $productImage = asset($item->image[0] ?? 'default');
                     $productName = $item->name;
                     $productSlug = route('frontend.product', ['url' => $item->link]);
-                    $html .= "<div>
+                    $html .= "<div class=\"$shortcode\">
                                    <div class=\"$shortcode text-center\">
                                       <div >
                                          <a class=\"product-img\" href=\"\" title=\"$item->name\">

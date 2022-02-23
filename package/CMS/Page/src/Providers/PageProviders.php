@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use App\Helpers\Helpers;
 use CMS\Page\Repository\BlockRepository;
 use CMS\Page\Repository\BlockRepositoryInterface;
+use Shortcode;
+use CMS\Page\Repository\Shortcode\BlockSingleShortCode;
 
 class PageProviders extends ServiceProvider
 {
@@ -31,6 +33,8 @@ class PageProviders extends ServiceProvider
                 'binding'   => BlockRepository::class,
             ],
         ];
+        Shortcode::register(BlockSingleShortCode::short_code_name, BlockSingleShortCode::class);
+
         foreach ($repository as $bind) {
             $this->app->bind($bind['interface'], $bind['binding']);
         }

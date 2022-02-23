@@ -41,7 +41,8 @@ export default {
                     language: "vi",
                     defaultLanguage: "vi",
                     skin: "moono-lisa",
-                    extraPlugins: ["product"],
+                    extraPlugins: ["product", "category"],
+                    removePlugins: ['divarea'],
                     editorplaceholder: "",
                     // enterMode: CKEDITOR.ENTER_BR,
                     toolbar: [
@@ -100,6 +101,7 @@ export default {
                         { name: "colors", items: ["TextColor", "BGColor"] },
                         { name: "others", items: ["-"] },
                         { name: "product_new", items: ["Product"] },
+                        { name: "category_new", items: ["Category"] },
                     ]
                 };
             }

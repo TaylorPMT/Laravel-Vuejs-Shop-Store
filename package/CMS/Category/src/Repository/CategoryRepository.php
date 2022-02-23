@@ -114,4 +114,20 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
         }
     }
+
+    public function getShortCode($list_id, $list_quantity)
+    {
+
+        $list_quantity = !empty($list_quantity[0]) ? $list_quantity[0] : 4;
+        $data = $this->queryCollection()->whereIn('id', $list_id)->with(['products'])->take($list_quantity)->get();
+        $list = [];
+        $data = $data->map(function ($value, $index) use (&$list) {
+            if (!empty($value->products)) {
+                $value->products->map(function ($value) use (&$list) {
+                    return   $list[] = $value;
+                });
+            }
+        });
+        return $list;
+    }
 }

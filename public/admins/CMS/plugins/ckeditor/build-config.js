@@ -98,6 +98,7 @@ var CKBUILDER_CONFIG = {
         'pastetext': 1,
         'pastetools': 1,
         'product': 1,
+        'category': 1,
         'news': 1,
         'preview': 1,
         'print': 1,

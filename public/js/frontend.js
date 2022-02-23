@@ -2336,7 +2336,7 @@ __webpack_require__.r(__webpack_exports__);
           language: "vi",
           defaultLanguage: "vi",
           skin: "moono-lisa",
-          extraPlugins: ["product"],
+          extraPlugins: ["product", "category"],
           editorplaceholder: "",
           // enterMode: CKEDITOR.ENTER_BR,
           toolbar: [{
@@ -2376,6 +2376,9 @@ __webpack_require__.r(__webpack_exports__);
           }, {
             name: "product_new",
             items: ["Product"]
+          }, {
+            name: "category_new",
+            items: ["Category"]
           }]
         };
       }
