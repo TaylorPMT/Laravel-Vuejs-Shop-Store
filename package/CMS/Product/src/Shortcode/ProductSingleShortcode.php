@@ -30,7 +30,7 @@ class ProductSingleShortcode
                     $html .= "<div class=\"$shortcode\">
                                    <div class=\"$shortcode text-center\">
                                       
-                                         <a class=\"product-img\" href=\"\" title=\"$item->name\">
+                                         <a class=\"product-img\" href=\"$productSlug\" title=\"$item->name\">
                                          <img src=\"$productImage\" alt=\"$productName\"
                                          class=\"block-product\"
                                          >
