@@ -29,13 +29,13 @@ class ProductSingleShortcode
                     $productSlug = route('frontend.product', ['url' => $item->link]);
                     $html .= "<div class=\"$shortcode\">
                                    <div class=\"$shortcode text-center\">
-                                      <div >
+                                      
                                          <a class=\"product-img\" href=\"\" title=\"$item->name\">
                                          <img src=\"$productImage\" alt=\"$productName\"
                                          class=\"block-product\"
                                          >
                                          </a>
-                                      </div>
+                                     
                                       <div class=\"product-info\">
                                          <p class=\"title-pro product-info__title\">
                                             <a href=\"$productSlug\" title=\"$productName\">

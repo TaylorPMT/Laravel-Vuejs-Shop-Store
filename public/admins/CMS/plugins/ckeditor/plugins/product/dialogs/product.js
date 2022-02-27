@@ -20,7 +20,6 @@ CKEDITOR.dialog.add('productDialog', function (editor) {
         onOk: function () {
             var dialog = this;
             var product = editor.document.createElement('div');
-            product.className = "related-item";
             product.setHtml('[product-item sku="' + dialog.getValueOf('tab-basic', 'product') + '"]');
             editor.insertElement(product);
         }
