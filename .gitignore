@@ -55,7 +55,7 @@ Thumbs.db
 /storage/*.key
 /vendor
 /public/js/app.js
-/public/uploads/
+/public/uploads/*
 .composer-block.json
 .package-lock.json
 .env

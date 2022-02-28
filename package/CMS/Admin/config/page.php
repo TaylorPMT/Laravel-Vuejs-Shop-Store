@@ -1,10 +1,10 @@
 <?php return array (
-  'home-page' => 
+  'home-page' =>
   array (
     'id' => 'home-page',
     'page' => 'home',
     'name' => 'Trang chủ',
-    'page_config' => 
+    'page_config' =>
     array (
       0 => '1',
       1 => '2',

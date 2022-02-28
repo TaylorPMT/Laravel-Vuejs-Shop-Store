@@ -20,7 +20,7 @@
                             laborum assumenda culpa a odit asperiores.</p>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil ullam vel neque veritatis
                             dignissimos! Reiciendis pariatur consectetur impedit nesciunt. Animi quibusdam, est quis ex
-                            laborum assumenda culpa a odit asperiores.</p>
+                            laborum assumenda culpa a odit asperiores</p>
                     </div>
                     <div class="wrap-button"><a class="btn btn-primary" href="">Xem thêm</a></div>
                 </div>
