@@ -2,13 +2,19 @@
     <div class="content-group">
         <div class="row">
             <div class="col-md-12 d-flex justify-content-end">
-                <button class="btn btn-sm btn-success" @click="submit()">Lưu lại</button>
+                <button class="btn btn-sm btn-success" @click="submit()">
+                    Lưu lại
+                </button>
                 <BaseBackPage :page="`/admin/block/page`"></BaseBackPage>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 2">
-                <BaseInput :label="'Tên block'" :class_form="'form-control'" v-model="data.name"></BaseInput>
+                <BaseInput
+                    :label="'Tên block'"
+                    :class_form="'form-control'"
+                    v-model="data.name"
+                ></BaseInput>
                 <BaseFormSelect
                     v-model="data.folder"
                     :label="'Folder'"
@@ -36,9 +42,15 @@
                     type="button"
                     class="btn btn-sm btn-success"
                     @click="handleFileUpload()"
-                >Tải hình ảnh</button>
+                >
+                    Tải hình ảnh
+                </button>
                 <div class="image-preview" v-if="!isEmpty(data.image)">
-                    <div class="item" v-for="(item,index) in data.image" :key="'image-' + index">
+                    <div
+                        class="item"
+                        v-for="(item, index) in data.image"
+                        :key="'image-' + index"
+                    >
                         <img :src="asset(item)" :alt="'image-' + index" />
                     </div>
                 </div>
@@ -53,7 +65,6 @@ import Form from "../../../../../../../resources/js/components/elements/Form";
 import mixin from "../../../../../../../resources/js/mix/mixin";
 import notice from "../../../../../../../resources/js/mix/notice";
 
-
 export default {
     mixins: [mixin, notice],
     data() {
@@ -65,17 +76,16 @@ export default {
                 json_block: {
                     list_category: [],
                     list_product: [],
-                    data_content: '',
-                    name: '',
+                    data_content: "",
+                    name: ""
                 },
                 dataCategory: [],
-                optionsCategory: [],
-
+                optionsCategory: []
             },
             dataImage: {
                 type: Array,
                 default: () => []
-            },
+            }
         };
     },
     computed: {
@@ -86,7 +96,7 @@ export default {
     },
     methods: {
         async handleFileUpload() {
-            this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
+            this.$refs.ckfinder.selectFileWithCKFinder("imagePage", "modal");
         },
         async getValueImage(e) {
             let vm = this;
@@ -100,20 +110,17 @@ export default {
             }
 
             return vm.data.image;
-
         },
         async formatData() {
             let vm = this;
             await this.setCategory();
-            let customer =
-                vm.readOnlyJson(
-                    vm.parseJSON(vm.data),
-                    "name",
-                    "folder",
-                    "image",
-                    "json_block",
-                )
-                ;
+            let customer = vm.readOnlyJson(
+                vm.parseJSON(vm.data),
+                "name",
+                "folder",
+                "image",
+                "json_block"
+            );
             return customer;
         },
         async handleGetAllCategory() {
@@ -124,7 +131,7 @@ export default {
                 let obj = {};
                 obj.id = data[item].id;
                 obj.text = data[item].name;
-                if (data[item] !== '') {
+                if (data[item] !== "") {
                     arr.push(obj);
                 }
             }
@@ -135,7 +142,7 @@ export default {
             let vm = this;
             let dataCategory = this.dataCategory;
             for (let property in dataCategory) {
-                if (dataCategory[property] !== '') {
+                if (dataCategory[property] !== "") {
                     let obj = {};
                     obj.id = dataCategory[property];
                     vm.json_block.list_category.push(obj);
@@ -155,19 +162,23 @@ export default {
             }
         },
         async getConfig() {
-            let res = await this.$store.dispatch('getPageBlock', {});
+            let res = await this.$store.dispatch("getPageBlock", {});
             return true;
-        },
-
+        }
     },
 
     async created() {
         await this.handleGetAllCategory();
 
         await this.getConfig();
-
     },
-
+    "DetailConfigPage.folder": async function(val) {
+        let block = this.ConfigFolderPage;
+        let obj = block.find((o, i) => {
+            return o.id == val;
+        });
+        this.DetailConfigPage.image.push(obj.image);
+    },
     components: {
         Navbar,
         Form

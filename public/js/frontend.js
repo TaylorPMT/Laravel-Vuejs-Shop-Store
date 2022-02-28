@@ -2337,6 +2337,7 @@ __webpack_require__.r(__webpack_exports__);
           defaultLanguage: "vi",
           skin: "moono-lisa",
           extraPlugins: ["product", "category"],
+          removePlugins: ['divarea'],
           editorplaceholder: "",
           // enterMode: CKEDITOR.ENTER_BR,
           toolbar: [{

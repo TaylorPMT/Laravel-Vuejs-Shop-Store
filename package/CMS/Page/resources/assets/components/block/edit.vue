@@ -38,11 +38,6 @@
                     :multiImage="true"
                     @inputCKFinder="getValueImage($event)"
                 ></BaseCkfinder>
-                <button
-                    type="button"
-                    class="btn btn-sm btn-success"
-                    @click="handleFileUpload()"
-                >Hình ảnh block</button>
                 <div class="image-preview" v-if="!isEmpty(DetailConfigPage.image)">
                     <div
                         class="item"
@@ -105,19 +100,7 @@ export default {
         async handleFileUpload() {
             this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
         },
-        async getValueImage(e) {
-            let vm = this;
-            let arr = e.map((images, i) => {
-                let index = images.indexOf("uploads");
-                return images.slice(index, images.length);
-            });
-            for (let property in arr) {
-                vm.DetailConfigPage.image.push(arr[property]);
-            }
 
-            return vm.DetailConfigPage.image;
-
-        },
         async formatData() {
             let vm = this;
             let customer =
@@ -173,6 +156,15 @@ export default {
         await this.findDetail();
 
 
+    },
+    watch :{
+        'DetailConfigPage.folder': async function (val){
+            let block = this.ConfigFolderPage;
+            let obj = block.find((o, i) => {
+              return o.id == val;
+            });
+            this.DetailConfigPage.image.push(obj.image);
+        },
     },
 
     components: {
