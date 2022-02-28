@@ -89,6 +89,7 @@ class BlockRepository extends BaseRepository implements BlockRepositoryInterface
     public function formatData($data)
     {
 
+
         $list = collect($data)->map(function ($value, $key) use ($data) {
             if ($key == 'link') {
                 if (!empty($data['name'])) {
@@ -97,6 +98,7 @@ class BlockRepository extends BaseRepository implements BlockRepositoryInterface
             }
             return $value;
         })->toArray();
+
         return $list;
     }
 

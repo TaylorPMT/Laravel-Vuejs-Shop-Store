@@ -3,8 +3,10 @@
 @section('body-class', 'homepage')
 @section('content')
     @include('Frontend.pages.index.banner.banner')
+
+
     @foreach ($block as $item)
-        @include($item->block['path'],['block_data'=>$item->json_block,'block_data_item' => $item->data_content])
+        @include($item->block['path'],['block_data'=>$item->json_block,'block_data_item' =>json_decode($item->data_content)])
     @endforeach
     {{-- @include('Frontend.pages.index.section.section-1')
     @include('Frontend.pages.index.section.section-2')

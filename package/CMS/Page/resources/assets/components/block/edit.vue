@@ -24,12 +24,12 @@
                     :class_form="'form-control'"
                     v-model="DetailConfigPage.json_block.name"
                 ></BaseInput>
-                <BaseCkeditor
+                <BaseInput
                     :label="'JSON_BLOCK'"
-                    :editorData="DetailConfigPage.json_block.data_content"
+                     :class_form="'form-control'"
                     v-model="DetailConfigPage.json_block.data_content"
                     v-if="DetailConfigPage.json_block"
-                ></BaseCkeditor>
+                ></BaseInput>
             </div>
             <div class="col-md-4">
                 <BaseCkfinder

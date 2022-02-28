@@ -11,7 +11,31 @@
             </div>
             <div class="wrap-product">
                 <div class="row">
-                    {!! $block_data_item !!}
+                    @php
+                          $html = "";
+                        foreach ($block_data_item as $item) {
+                            $productImage = asset($item->image[0] ?? 'default');
+                            $productName = $item->name;
+                            $productSlug = route('frontend.product', ['url' => $item->link]);
+                            $productContent = $item->description;
+                            $html .= "
+                            <div class=\"col-md-4 col-sm-12\">
+                                    <div class=\"block-product\">
+                                            <a class=\"product-img zoom-out\" href=\"$productSlug\">
+                                                <img class=\"lazyload\"
+                                                    data-src=\"$productImage\"
+                                                    alt=\"\" width=\"390\" height=\"507\">
+                                            </a>
+                                            <div class=\"product-info\">
+                                                <a class=\"product-info__title\" href=\"$productSlug\">$productName</a>
+                                                <div class=\"product-info__detail\">$productContent</div>
+                                            </div>
+                                    </div>
+                            </div> ";
+                        }
+                        $html .= "";
+                    @endphp
+                    {!! $html !!}
                 </div>
             </div>
         </div>

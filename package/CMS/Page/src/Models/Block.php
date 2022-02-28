@@ -27,6 +27,7 @@ class Block extends Model
     {
         $data = json_decode($this->attributes['json_block'], true);
         $data =  Shortcode::compile($data['data_content']);
+
         return $data;
     }
 }
