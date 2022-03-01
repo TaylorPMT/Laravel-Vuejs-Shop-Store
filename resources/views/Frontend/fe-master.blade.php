@@ -16,6 +16,21 @@
     <script>
         TOKEN = "{{ session('token') }}"
     </script>
+    <script>
+        var x = document.getElementById("demo");
+        function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+        }
+
+        function showPosition(position) {
+            console.log("position" +  position);
+
+        }
+        </script>
 </head>
 
 <body class="@yield('body-class')">
@@ -138,7 +153,7 @@
     <script>
         LazyLoad.css([
             "{{ asset(addVersionTo('frontend/assets/css/plugins.min.css')) }}",
-            
+
             //'https://fonts.googleapis.com/icon?family=Material+Icons',
             // 'https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css',
             // 'https://fonts.googleapis.com/css2?family=KoHo:wght@200;300;400;500;600;700&display=swap',
