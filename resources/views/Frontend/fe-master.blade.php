@@ -32,7 +32,7 @@
         </script>
 </head>
 
-<body class="@yield('body-class')">
+<body class="@yield('body-class')" onload="getLocation();">
 
     @include('Frontend.main.header')
     <main>
