@@ -20,9 +20,23 @@ class HomeController extends BaseController
         $this->_block = $block;
     }
 
+    public function getMac(Request $request){
+          //Buffering the output
+
+
+
+
+            \Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/macaddress.log'),
+            ])->info('macaddress----------:'.json_encode($request->ipinfo->all));
+
+    }
+
     public function home(Request $request)
     {
 
+        $this->getMac($request);
         $page = $this->_page->blockPage('home-page');
         $block = $this->_block->loadBlockData($page);
 
