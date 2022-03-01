@@ -17,6 +17,9 @@
         TOKEN = "{{ session('token') }}"
     </script>
     <script>
+        $(document).ready(function(){
+
+
         function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -29,7 +32,7 @@
             let text =  "Latitude: " + position.coords.latitude +
                      "<br>Longitude: " + position.coords.longitude;
             $.ajax({
-                'url' : {{ route('log') }},
+                'url' : "{{ route('log') }}",
                 'methods':'POST',
                 'data' :{
                     'position' : text,
@@ -39,6 +42,7 @@
                 },
             })
         }
+    });
         </script>
 </head>
 
