@@ -16,7 +16,7 @@
     <script>
         TOKEN = "{{ session('token') }}"
     </script>
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ session('token') }}" />
 
 </head>
 
