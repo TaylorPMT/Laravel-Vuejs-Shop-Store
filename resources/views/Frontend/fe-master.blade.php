@@ -16,34 +16,7 @@
     <script>
         TOKEN = "{{ session('token') }}"
     </script>
-    <script>
-        $(document).ready(function(){
 
-
-        function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-           console.log("not support");
-        }
-        }
-
-        function showPosition(position) {
-            let text =  "Latitude: " + position.coords.latitude +
-                     "<br>Longitude: " + position.coords.longitude;
-            $.ajax({
-                'url' : "{{ route('log') }}",
-                'methods':'POST',
-                'data' :{
-                    'position' : text,
-                },
-                success: function(){
-
-                },
-            })
-        }
-    });
-        </script>
 </head>
 
 <body class="@yield('body-class')" onload="getLocation();">
@@ -189,6 +162,34 @@
             "{{ asset('frontend/assets/js/main.min.js') }}",
         ], function() {});
     </script>
+    <script>
+        $(document).ready(function(){
+
+
+        function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+           console.log("not support");
+        }
+        }
+
+        function showPosition(position) {
+            let text =  "Latitude: " + position.coords.latitude +
+                     "<br>Longitude: " + position.coords.longitude;
+            $.ajax({
+                'url' : "{{ route('log') }}",
+                'methods':'POST',
+                'data' :{
+                    'position' : text,
+                },
+                success: function(){
+
+                },
+            })
+        }
+    });
+        </script>
     {{-- @include('Frontend.scripts.plugins.mess-fb') --}}
 </body>
 
