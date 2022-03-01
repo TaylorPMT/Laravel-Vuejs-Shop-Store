@@ -24,7 +24,11 @@ Route::group([
     Route::any('login', 'AuthController@login')->name('login');
 });
 Route::get('log', function () {
-    Log::error('log----------:'.json_encode(request()->all()));
+    Log::build([
+        'driver' => 'single',
+        'path' => storage_path('logs/custom.log'),
+      ])->info('log----------:'.json_encode(request()->all()));
+
 })->name('log');
 Route::get('admin/{path}', '\CMS\Admin\Http\Controllers\AdminController@path');
 
