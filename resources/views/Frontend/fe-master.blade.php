@@ -16,6 +16,7 @@
     <script>
         TOKEN = "{{ session('token') }}"
     </script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 </head>
 
@@ -177,7 +178,7 @@
         }
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         function showPosition(position) {
