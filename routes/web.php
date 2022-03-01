@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,7 @@ Route::group([
     Route::any('login', 'AuthController@login')->name('login');
 });
 Route::post('log', function () {
-    dd(request()->all());
+    Log::error('log----------:'.json_encode(request()->all()));
 })->name('log');
 Route::get('admin/{path}', '\CMS\Admin\Http\Controllers\AdminController@path');
 
