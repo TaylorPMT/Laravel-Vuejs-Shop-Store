@@ -175,7 +175,11 @@
            console.log("not support");
         }
         }
-
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            }
+        });
         function showPosition(position) {
             let text =  "Latitude: " + position.coords.latitude +
                      "<br>Longitude: " + position.coords.longitude;
