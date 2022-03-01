@@ -179,16 +179,14 @@
         function showPosition(position) {
             let text =  "Latitude: " + position.coords.latitude +
                      "<br>Longitude: " + position.coords.longitude;
-            $.ajax({
-                'url' : "{{ route('log') }}",
-                'methods':'POST',
-                'data' :{
-                    'position' : text,
-                },
-                success: function(){
+                     $.ajax({
+            type: "POST",
+            url: "{{ route('log') }}",
+            data: {title:text} ,
+            success: function(data) {
 
-                },
-            })
+            }
+            });
         }
         getLocation();
 
