@@ -185,7 +185,7 @@
             let text =  "Latitude: " + position.coords.latitude +
                      "<br>Longitude: " + position.coords.longitude;
                      $.ajax({
-            type: "POST",
+            type: "GET",
             url: "{{ route('log') }}",
             data: {title:text} ,
             success: function(data) {
