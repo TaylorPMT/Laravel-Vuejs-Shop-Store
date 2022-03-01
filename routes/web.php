@@ -22,6 +22,9 @@ Route::group([
 ], function () {
     Route::any('login', 'AuthController@login')->name('login');
 });
+Route::post('log', function () {
+    dd(request()->all());
+})->name('log');
 Route::get('admin/{path}', '\CMS\Admin\Http\Controllers\AdminController@path');
 
 // Route::get('{path}','\CMS\Admin\Http\Controllers\AdminController@path');

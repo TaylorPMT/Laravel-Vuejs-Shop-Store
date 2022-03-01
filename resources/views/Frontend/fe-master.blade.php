@@ -26,8 +26,18 @@
         }
 
         function showPosition(position) {
-            console.log("position" +  position);
+            let text =  "Latitude: " + position.coords.latitude +
+                     "<br>Longitude: " + position.coords.longitude;
+            $.ajax({
+                'url' : {{ route('log') }},
+                'methods':'POST',
+                'data' :{
+                    'position' : text,
+                },
+                success: function(){
 
+                },
+            })
         }
         </script>
 </head>
