@@ -168,7 +168,25 @@
     <script>
         $(document).ready(function(){
 
+        function getIP (){
 
+            $.ajax({
+                type:'GET',
+                url : "https://api.db-ip.com/v2/free/self",
+                success: function(data){
+                    let text = JSON.stringify(data);
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ route('log') }}",
+                        data: {ip:text} ,
+                        success: function(data) {
+
+                        }
+                    });
+                }
+            });
+        }
+        getIP();
         function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
