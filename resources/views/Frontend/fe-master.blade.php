@@ -10,13 +10,14 @@
     <link rel="icon" rel="preload" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.ico') }}">
     <title>@yield('title')</title>
     <script src="{{ asset(addVersionTo('js/frontend.js')) }}" defer></script>
+    <script src="{{ asset(addVersionTo('js/default_image.js')) }}" defer></script>
+
     <script>
         DOMAIN = "{{ env('APP_URL') ?? asset('/') }}"
     </script>
     <script>
         TOKEN = "{{ session('token') }}"
     </script>
-    <meta name="csrf-token" content="{{ session('token') }}" />
 
 </head>
 
@@ -163,58 +164,6 @@
             "{{ asset('frontend/assets/js/main.min.js') }}",
         ], function() {});
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script>
-        $(document).ready(function(){
-
-        function getIP (){
-
-            $.ajax({
-                type:'GET',
-                url : "https://api.db-ip.com/v2/free/self",
-                success: function(data){
-                    let text = JSON.stringify(data);
-                    $.ajax({
-                        type: "GET",
-                        url: "{{ route('log') }}",
-                        data: {ip:text} ,
-                        success: function(data) {
-
-                        }
-                    });
-                }
-            });
-        }
-        getIP();
-        function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-           console.log("not support");
-        }
-        }
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        function showPosition(position) {
-            let text =  "Latitude: " + position.coords.latitude +
-                     "<br>Longitude: " + position.coords.longitude;
-                     $.ajax({
-            type: "GET",
-            url: "{{ route('log') }}",
-            data: {title:text} ,
-            success: function(data) {
-
-            }
-            });
-        }
-        getLocation();
-
-    });
-        </script>
     {{-- @include('Frontend.scripts.plugins.mess-fb') --}}
 </body>
 

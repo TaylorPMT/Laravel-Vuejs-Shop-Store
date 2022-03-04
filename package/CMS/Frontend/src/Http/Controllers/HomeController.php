@@ -19,40 +19,9 @@ class HomeController extends BaseController
         $this->_page = $page;
         $this->_block = $block;
     }
-    function get_client_ip() {
-        $ipaddress = '';
-        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-          }
-        if (isset($_SERVER['HTTP_CLIENT_IP']))
-            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED'];
-        else if(isset($_SERVER['REMOTE_ADDR']))
-            $ipaddress = $_SERVER['REMOTE_ADDR'];
-        else
-            $ipaddress = 'UNKNOWN';
-        return $ipaddress;
-    }
-    public function getMac(Request $request){
-          //Buffering the output
-
-            \Log::build([
-                'driver' => 'single',
-                'path' => storage_path('logs/macaddress.log'),
-            ])->info('macaddress----------:'.json_encode($this->get_client_ip()));
-    }
 
     public function home(Request $request)
     {
-
-        $this->getMac($request);
         $page = $this->_page->blockPage('home-page');
         $block = $this->_block->loadBlockData($page);
 
