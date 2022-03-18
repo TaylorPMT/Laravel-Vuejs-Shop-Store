@@ -87,4 +87,7 @@ export default {
 </script>
 
 <style>
+.select2 {
+    width : 100% !important;
+}
 </style>

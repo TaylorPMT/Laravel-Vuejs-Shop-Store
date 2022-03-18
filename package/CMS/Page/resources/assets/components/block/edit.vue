@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 2">
+            <div class="col-md-8">
                 <BaseInput
                     :label="'Tên block'"
                     :class_form="'form-control'"
@@ -24,6 +24,7 @@
                     :class_form="'form-control'"
                     v-model="DetailConfigPage.json_block.name"
                 ></BaseInput>
+                <button class="btn btn-sm btn-success" @click="openModal()">Add dữ liệu</button>
                 <BaseInput
                     :label="'JSON_BLOCK'"
                      :class_form="'form-control'"
@@ -41,14 +42,14 @@
                 <div class="image-preview" v-if="!isEmpty(DetailConfigPage.image)">
                     <div
                         class="item"
-                        v-for="(item,index) in DetailConfigPage.image"
-                        :key="'image-' + index"
+
                     >
-                        <img :src="asset(item)" :alt="'image-' + index" />
+                        <img :src="asset(DetailConfigPage.image)" :alt="'image-'" />
                     </div>
                 </div>
             </div>
         </div>
+        <ModalAttribute ref="popup-block" :title="'Danh sách hiển thị'" v-model="data.dataCategory"  :data="this.optionsCategory" />
     </div>
 </template>
 <script>
@@ -57,7 +58,7 @@ import Navbar from "../../../../../../../resources/js/components/elements/Navbar
 import Form from "../../../../../../../resources/js/components/elements/Form";
 import mixin from "../../../../../../../resources/js/mix/mixin";
 import notice from "../../../../../../../resources/js/mix/notice";
-
+import ModalAttribute from "../modal/modal_attributes";
 
 export default {
     mixins: [mixin, notice],
@@ -74,13 +75,15 @@ export default {
                     name: '',
                 },
                 dataCategory: [],
-                optionsCategory: [],
-
             },
             dataImage: {
                 type: Array,
                 default: () => []
             },
+            optionsCategory : {
+                type:[Array, Object],
+                default : () => []
+            }
         };
     },
     computed: {
@@ -127,8 +130,9 @@ export default {
                     arr.push(obj);
                 }
             }
-
             this.optionsCategory = arr;
+
+            return true;
         },
 
         async submit() {
@@ -148,14 +152,15 @@ export default {
             return true;
         },
 
+        async openModal(){
+           await this.$refs['popup-block'].open();
+        },
     },
 
     async created() {
         await this.getConfig();
         await this.handleGetAllCategory();
         await this.findDetail();
-
-
     },
     watch :{
         'DetailConfigPage.folder': async function (val){
@@ -163,13 +168,14 @@ export default {
             let obj = block.find((o, i) => {
               return o.id == val;
             });
-            this.DetailConfigPage.image.push(obj.image);
+            this.DetailConfigPage.image = obj.image;
         },
     },
 
     components: {
         Navbar,
-        Form
+        Form,
+        ModalAttribute
     }
 };
 </script>

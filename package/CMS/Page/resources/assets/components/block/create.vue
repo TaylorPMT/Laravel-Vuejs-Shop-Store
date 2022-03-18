@@ -49,10 +49,8 @@
                 <div class="image-preview" v-if="!isEmpty(data.image)">
                     <div
                         class="item"
-                        v-for="(item, index) in data.image"
-                        :key="'image-' + index"
                     >
-                        <img :src="asset(item)" :alt="'image-' + index" />
+                        <img :src="asset(data.image)" :alt="'image-'" />
                     </div>
                 </div>
             </div>
@@ -178,7 +176,7 @@ export default {
         let obj = block.find((o, i) => {
             return o.id == val;
         });
-        this.DetailConfigPage.image.push(obj.image);
+        this.DetailConfigPage.image = obj.image;
     },
     components: {
         Navbar,
