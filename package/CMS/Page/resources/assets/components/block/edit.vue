@@ -30,6 +30,7 @@
                      :class_form="'form-control'"
                     v-model="DetailConfigPage.json_block.data_content"
                     v-if="DetailConfigPage.json_block"
+                    :readonly="true"
                 ></BaseInput>
             </div>
             <div class="col-md-4">
@@ -49,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <ModalAttribute ref="popup-block" :title="'Danh sách hiển thị'" v-model="data.dataCategory"  :data="this.optionsCategory" />
+        <ModalAttribute ref="popup-block" :title="'Danh sách hiển thị'" @inputData="getValue($event)"  :data="this.optionsCategory" />
     </div>
 </template>
 <script>
@@ -102,6 +103,10 @@ export default {
         },
         async handleFileUpload() {
             this.$refs.ckfinder.selectFileWithCKFinder('imagePage', 'modal');
+        },
+
+        async getValue(e){
+            return this.DetailConfigPage.json_block.data_content = e;
         },
 
         async formatData() {

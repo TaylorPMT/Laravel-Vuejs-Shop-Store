@@ -9,6 +9,7 @@
                         class="close"
                         data-dismiss="modal"
                         aria-label="Close"
+                        @click="close()"
                     >
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -19,10 +20,10 @@
                             <BaseFormSelect2
                                 :nameLabel="title"
                                 :status="true"
-                                :options="dataCategory"
+                                :options="optionsData"
                                 v-model="dataSelected"
                             />
-                              <BaseInput
+                            <BaseInput
                                 v-if="!isEmpty(dataSelected)"
                                 :label="'Số lượng hiển thị'"
                                 :class_form="'form-control'"
@@ -32,15 +33,16 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">
-                        Save changes
+                    <button type="button" class="btn btn-primary" @click="submit()">
+                        Đồng ý
                     </button>
                     <button
                         type="button"
                         class="btn btn-secondary"
                         data-dismiss="modal"
+                        @click="close()"
                     >
-                        Close
+                        Thoát
                     </button>
                 </div>
             </div>
@@ -67,19 +69,32 @@ export default {
         }
     },
     data: () => ({
-        dataCategory: [],
-        dataSelected : [],
+        optionsData: [],
+        dataSelected: [],
         isShow: "",
         key: "",
         text: "",
         action: false,
-        quantityPost : ""
+        quantityPost: ""
     }),
     methods: {
+        close() {
+            this.isShow = "";
+        },
         async open() {
-            this.dataCategory = this.data;
+            this.optionsData = this.data;
             this.isShow = "show";
-        }
+        },
+        async submit(){
+           if(this.isEmpty(this.dataSelected) || this.isEmpty(this.quantityPost)){
+               return this.error("Vui lòng chọn dữ liệu", "");
+           }
+
+            let str = `[category-item sku="${this.dataSelected.toString()}" quantity="${this.quantityPost}"]`;
+            this.$emit('inputData',str);
+            this.close();
+            return str;
+       }
     },
     watch: {},
     async created() {}

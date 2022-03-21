@@ -1,7 +1,7 @@
 <template>
     <div class="form-group">
         <label class="f-bold cl-black d-block">{{ label }}</label>
-        <input :class="class_form" :type="type" v-model="inputValue" />
+        <input :class="class_form" :type="type" v-model="inputValue" :readonly="readonly"/>
     </div>
 </template>
 <script>
@@ -30,7 +30,11 @@ export default {
                     "url"
                 ].includes(value);
             }
+        },
+        readonly : {
+
         }
+
     },
     computed: {
         inputValue: {
