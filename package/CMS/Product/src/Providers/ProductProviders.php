@@ -7,10 +7,10 @@ use Illuminate\Support\ServiceProvider;
 use CMS\Category\Repository\CategoryInterface;
 use CMS\Category\Repository\CategoryRepository;
 use CMS\Page\Repository\Shortcode\BlockSingleShortCode;
-use Shortcode;
 use CMS\Product\Shortcode\ProductSingleShortcode;
 use CMS\Product\Repository\ProductRepository;
 use CMS\Product\Repository\ProductRepositoryInterface;
+use Shortcode;
 
 class  ProductProviders  extends ServiceProvider
 {

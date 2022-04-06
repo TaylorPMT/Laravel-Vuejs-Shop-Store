@@ -17,6 +17,7 @@ class BlockSingleShortCode
     public function register($shortcode, $content, $compiler, $name, $viewData)
     {
         if ($shortcode->sku) {
+
             $skuArr = array_unique(array_map('trim', explode(',', $shortcode->sku)));
 
             $skuNumber = array_unique(array_map('trim', explode(',', $shortcode->quantity)));

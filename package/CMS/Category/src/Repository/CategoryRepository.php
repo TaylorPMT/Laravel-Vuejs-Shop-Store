@@ -26,7 +26,7 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
             'content',
             'parent_id',
             'link',
-            'orders'
+            'orders',
         ];
 
         $builder = $this->_model;
@@ -34,8 +34,7 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
         return $builder;
     }
 
-    public function list($request)
-    {
+    function list($request) {
         $builder = $this->queryCollection();
         $builder = $builder->where(function ($query) use ($request) {
             if ($request->get('key_word')) {
@@ -49,9 +48,9 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
     public function find($request)
     {
         try {
-            $error = false;
+            $error   = false;
             $message = $this->_messagesSuccess;
-            $builder =  $this->queryCollection();
+            $builder = $this->queryCollection();
             $builder = $builder->where(function ($query) use ($request) {
                 $id = $request->id;
                 if (!empty($id)) {
@@ -60,7 +59,7 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
             });
             $builder = $builder->first();
             if (empty($builder)) {
-                $error = true;
+                $error   = true;
                 $message = $this->_messagesFails;
             }
 
@@ -83,8 +82,8 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
     public function update($request)
     {
         try {
-            $data = $this->formatData($request->all());
-            $builder =  $this->_model->find($request->id)->update($data);
+            $data    = $this->formatData($request->all());
+            $builder = $this->_model->find($request->id)->update($data);
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
             return $this->responseJson(true, 500, $this->_messagesErrorsException, $e->getMessage());
@@ -107,7 +106,7 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
     public function create($request)
     {
         try {
-            $data = $this->formatData($request->all());
+            $data    = $this->formatData($request->all());
             $builder = $this->_model->create($data);
             return $this->responseJson(false, 200, 'Thành công', $builder);
         } catch (\Exception $e) {
@@ -115,19 +114,21 @@ class CategoryRepository extends BaseRepository implements CategoryInterface
         }
     }
 
-    public function getShortCode($list_id, $list_quantity)
+    public function getShortCode($list_id, $quantity)
     {
-
-        $list_quantity = !empty($list_quantity[0]) ? $list_quantity[0] : 4;
-        $data = $this->queryCollection()->whereIn('id', $list_id)->with(['products'])->take($list_quantity)->get();
+        $quantity = !empty($quantity[0]) ? $quantity[0] : 4;
+        $data = $this->queryCollection()->whereIn('id', $list_id)->with(['products' => function ($query) use($quantity) {
+            $query->limit(1);
+        }])->get();
         $list = [];
         $data = $data->map(function ($value, $index) use (&$list) {
             if (!empty($value->products)) {
                 $value->products->map(function ($value) use (&$list) {
-                    return   $list[] = $value;
+                    return $list[] = $value;
                 });
             }
         });
+
         return $list;
     }
 }

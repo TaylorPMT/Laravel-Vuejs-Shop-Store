@@ -10,7 +10,7 @@
     <link rel="icon" rel="preload" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.ico') }}">
     <title>@yield('title')</title>
     <script src="{{ asset(addVersionTo('js/frontend.js')) }}" defer></script>
-    <script src="{{ asset(addVersionTo('js/default_image.js')) }}" defer></script>
+    <script src="{{ asset(addVersionTo('js/default_image.js')) }}"></script>
 
     <script>
         DOMAIN = "{{ env('APP_URL') ?? asset('/') }}"

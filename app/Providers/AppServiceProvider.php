@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Libraries\Shortcode\Providers\ShortcodesServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
-use App\Libraries\Shortcode\Facades\Shortcode;
+use Taylorpmt\ShortCode\Providers\ShortcodesServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,9 +17,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->register(ShortcodesServiceProvider::class);
-
-        $loader = AliasLoader::getInstance();
-        $loader->alias('Shortcode', Shortcode::class);
     }
 
     /**
@@ -30,9 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
-
 
     }
 }

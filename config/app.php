@@ -182,6 +182,7 @@ return [
         CMS\Menu\Providers\MenuProviders::class,
         CMS\News\Providers\NewsProviders::class,
         CMS\Page\Providers\PageProviders::class,
+        Taylorpmt\ShortCode\Providers\ShortcodesServiceProvider::class,
 
     ],
 
@@ -236,6 +237,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Shortcode' => Taylorpmt\ShortCode\Facades\Shortcode::class,
 
     ],
 
