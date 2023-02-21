@@ -1,3 +1,3 @@
-Laravel & Vuejs 
-Build Project Shop Store 
-Use Laravel Short Code Render Page And Item Products using Ckeditor 
+**Laravel & Vuejs **
+- Build Project Shop Store 
+- Code Render Page And Item Products using CkEditor
